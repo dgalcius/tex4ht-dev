@@ -1,0 +1,217 @@
+% $Id: tex4ht-configure2.tex 131 2014-10-19 18:08:53Z karl $
+% Copyright 2009-2013 CV Radhakrishnan.
+% Released under LPPLv1.3+.
+% 
+% TeX4ht and \Configure, part 2.
+
+\ifx\texhtstandalonedoc1
+\documentclass[a4paper]{article}
+\usepackage{xspace,graphicx,blog}
+\begin{document}
+\section{Cross-linking}
+\else
+\section{\textbackslash{}Configure Cross-linking}
+\fi
+
+\begin{verbatim}
+  \Link[@1 @2]{@3}{@4}...\EndLink
+\end{verbatim}
+
+\noindent  Creates
+
+\begin{verbatim}
+  <a href="@1#@3" name="@4" @2>...</a>
+\end{verbatim}
+
+\begin{itemize}
+\item   When \Verb=@1= is empty, \texht will derive its value automatically.
+    The derived value will be the file name containing the target \Verb=@3=.
+
+  \item  \Verb=\Link= may be followed by \Verb=-=, if \texht needs not automatically
+    determine (for other \Verb=\link= commands) the file containing \Verb=@4=.
+    In the present of such a flag, \texht can spare a definition of
+    one macro.
+
+  \item The component \Verb=[@1 @2]= is optional. If omitted,
+    \Verb=@1= and \Verb=@2= are  assumed to be empty.
+
+  \item  The \Verb=href= attribute is omitted when \Verb=@1= and
+    \Verb=@3= are empty. 
+
+  \item  The name attribute is omitted when \Verb=@4= is empty.
+  
+\end{itemize}
+\ifx\cvrtexht\undefined\else\Tg</ul>\fi
+
+  \Example
+
+\begin{verbatim}
+  \Link{a}{}...\Endlink .....  \Link{}{b}...\EndLink
+  \Link[http://foo  id="fooo"]{a}{b}...\EndLink
+
+  \Configure{Link}..............4
+\end{verbatim}
+
+\noindent   Configures \Verb=\Link...\EndLink= so that
+
+\begin{tabular}{ll}
+\fline     \#1 replaces \Verb=a=
+
+\fline     \#2 replaces \Verb+href=+
+
+\fline     \#3 replaces \Verb+name=+
+
+\fline     \#4 replaces `\#'.  If empty, the older value remains in effect.
+
+\end{tabular}
+
+\Example
+
+\begin{verbatim}
+  \Configure{Link}{a}{href=}{name=}{}
+  \Configure{Link}{ref}{target=}{id=}{\empty}
+
+  \Configure{?Link}..............1
+\end{verbatim}
+
+\begin{tabular}{ll}
+\fline   \#1 insertion before broken links
+
+\end{tabular}
+\par\medskip
+
+\noindent   To help with debugging
+
+\begin{verbatim}
+\LinkCommand...................1 <= i <= 6
+\end{verbatim}
+\noindent
+   Creates a \Verb=\Link=-like command
+
+\begin{tabular}{ll}
+
+\fline   \#1   tag name
+
+\fline   \#2   href-like attribute
+
+\fline   \#3   name-like attribute
+
+\fline   \#4   insertion
+
+\fline   \#5   \Verb=/=, if empty element
+
+\fline   \#6  replacement for \#  (ignored if absent)
+
+\end{tabular}
+
+\Example
+
+\begin{verbatim}
+  \LinkCommand\JSLink{a,\noexpand\jsref,name}
+  \def\jsref="#1"{href="javascript:window.open('#1')"}
+
+  \JSLink{a}{}xx\EndJSLink
+  \Link{}{a}\EndLink       % or \JSLink{}{a}\EndJSLink
+
+  \Configure{XrefFile}.....................1
+\end{verbatim}
+
+\begin{tabular}{ll}
+
+\fline \#1 names cross-references of files (appends \#1 to \Verb=)F= and
+      \Verb=)Q= entries of the \Verb=.xref= files). Applicable mainly
+      implicitly within \Verb=\Link= commands.
+
+\end{tabular}
+
+\begin{verbatim}
+  \Tag.....................................2
+\end{verbatim}
+
+\begin{tabular}{ll}
+\fline   \#1  label
+
+\fline   \#2  content
+
+\end{tabular}
+
+\begin{verbatim}
+  \Ref.....................................1
+  \LikeRef.................................1
+\end{verbatim}
+
+\begin{tabular}{ll}
+ \fline  \#1  label
+
+\end{tabular}
+
+\par\medskip
+
+   \Verb=\Tag= and \Verb=\Ref= are \Verb=tex4ht.sty= commands
+   introduced cross-referencing 
+   content through \Verb=.xref= auxiliary files.
+
+   \Verb=\LikeRef= is a variant of \Verb=\Ref= which doesn't verify whether the
+   labels exit.  It is mainly used in \Verb=\Link= and \Verb=\edef= environments.
+
+\begin{verbatim}
+  \ifTag ..................................3
+\end{verbatim}
+
+\begin{tabular}{ll}
+\fline   \#1  questioned tag
+
+\fline   \#2  true part
+
+\fline   \#3  false part
+
+\end{tabular}
+
+\begin{verbatim}
+  \LoadRef-[prefix]+{filename.ext}{pattern}
+\end{verbatim}
+
+\noindent   Load the named xref-type file
+\fspace=20mm
+\begin{tabular}{ll}
+\fline .xref  optional --- \Verb=.xref= is assume for a default\par
+
+\fline   +    optional --- asks \Verb=\Ref= and \Verb=\LikeRef= commands
+              to use expanded tags \Verb=filename::tag=, instead of
+              just \Verb=tag=
+
+\fline[prefix]   optional --- asks just for tags starting with the
+              specified prefix.
+
+\fline   -    optional --- deletes the prefixes from the loaded tags
+
+\fline   \{pattern\}  to be included only when \Verb=[prefix]= or
+\Verb=+= are included. 
+              States how tags are to be addressed, with the parameter
+              symbol `\#1'  specifying the loaded part.
+
+\end{tabular}
+
+\fspace=6mm
+
+   \Example
+
+\begin{verbatim}
+  % a.tex
+  \LoadRef-[to:]{b}{from:#1}      \Ref{from:filename}
+                                  \LikeRef{from:filename}
+
+  % b.tex
+  \Tag{to:filename}{\FileName}
+\end{verbatim}
+
+   \Example
+
+\begin{verbatim}
+  \LoadRef-[)F]{file}{)Ffoo##1}
+  \LoadRef-[)Q]{file}{)Qfoo##1}
+  \Configure{XrefFile}{foo}   \Link...\EndLink
+  \LoadRef{another-file}
+\end{verbatim}
+
+\ifx\texhtstandalonedoc1 \end{document}\fi

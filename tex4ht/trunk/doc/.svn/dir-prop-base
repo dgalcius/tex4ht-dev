@@ -1,0 +1,19 @@
+K 10
+svn:ignore
+V 150
+tex4ht.cp
+tex4ht.fn
+tex4ht.html
+tex4ht.pg
+tex4ht.pdf
+tex4ht.txt
+tex4ht.log
+tex4ht.dvi
+tex4ht.tp
+tex4ht.ky
+tex4ht.toc
+tex4ht.vr
+tex4ht.info
+tex4ht.aux
+
+END
