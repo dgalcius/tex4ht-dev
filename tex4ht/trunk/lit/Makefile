@@ -27,6 +27,11 @@ dev_null = </dev/null    # when we don't call tex directly.
 
 HTTEX = ht "tex $(tex_opts)"  # set tex options for plain tex
 
+
+include cond4ht.d
+include tex4ht-cond4ht.d
+include tex4ht-4ht.d
+
 default: all
 
 common = tex4ht-cpright.tex common.tex common-code.tex ProTex.sty AlProTex.sty
@@ -224,7 +229,7 @@ cond4ht-doc: tex4ht-cond4ht.tex $(common)
 	tex $(tex_opts) $<
 
 4ht-doc: tex4ht-4ht.tex $(common)
-	tex $(tex_opts) $<
+	$(HTTEX) $<
 
 $(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
 	latex $(tex_opts) $<
@@ -583,3 +588,6 @@ toderiveddir: derived
 	echo $$f && mkdir -p $(deriveddir)/$${f%.*} \
 	&& awk -v outdir=$(deriveddir)/$${f%.*} '{system("[ -f "$$0" ] &&  mv -f " $$0" "outdir)}' $$f ; \
 done
+
+test:
+	@echo test
