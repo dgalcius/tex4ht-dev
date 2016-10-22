@@ -36265,15 +36265,18 @@ MC stands for multi-choice
 \def\Skipmkfilename{\csname BYE\endcsname\endinput}
 \input cond4ht.4ht
 
-%-------------------------------------------------------
-\let\OPO=\OutputCodE
-\def\OutputCodE\<#1\>{%
-   \openin15=\HOME/#1
-%   \ifeof15    \Needs{"ln -s #1 \HOME/#1"} 
-    \ifeof15    \Needs{"cp -f #1 \HOME#1"} 
-        \immediate\write16{"cd \HOME; ln -s \SOURCE/#1 . ; cd \SOURCE"} \fi
-   \closein15
-   \OPO\<#1\>}
+
+%% Remove dependency on absolute path. 22/10/2016 (dg)
+%% 
+%%%-------------------------------------------------------
+%% \let\OPO=\OutputCodE
+%% \def\OutputCodE\<#1\>{%
+%%   \openin15=\HOME/#1
+%% %   \ifeof15    \Needs{"ln -s #1 \HOME/#1"} 
+%%    \ifeof15    \Needs{"cp -f #1 \HOME#1"} 
+%%        \immediate\write16{"cd \HOME; ln -s \SOURCE/#1 . ; cd \SOURCE"} \fi
+%%   \closein15
+%%   \OPO\<#1\>}
 
 \OutFiles
 

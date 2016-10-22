@@ -33,6 +33,9 @@ common = tex4ht-cpright.tex common.tex common-code.tex ProTex.sty AlProTex.sty
 common_info = $(common) common-info.tex
 derived = 
 
+derived += $(tex4ht_cond4ht_derived)
+tex4ht_cond4ht_derived = cond4ht.4ht mktex4ht.4ht
+
 derived += $(tex4ht_4ht_derived)
 tex4ht_4ht_derived = \
   algorithmic.4ht biblatex.4ht book.4ht frenchb.4ht \
@@ -47,9 +50,6 @@ tex4ht_bibtex2_derived = bibtex2.4ht
 
 derived += $(tex4ht_c_derived)
 tex4ht_c_derived = tex4ht.c
-
-derived += $(tex4ht_cond4ht_derived)
-tex4ht_cond4ht_derived = cond4ht.4ht mktex4ht.4ht
 
 derived += $(tex4ht_docbook_derived)
 tex4ht_docbook_derived = docbook.4ht docbook-math.4ht docbook-mml.4ht
@@ -212,15 +212,6 @@ xtpipes_derived = \
 # 
 all: $(derived)
 
-$(tex4ht_4ht_derived): tex4ht-4ht.tex $(common)
-	tex $(tex_opts) $<
-
-$(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
-	latex $(tex_opts) $<
-
-$(tex4ht_c_derived): tex4ht-c.tex $(common)
-	tex $(tex_opts) $<
-
 cond4ht $(tex4ht_cond4ht_derived): tex4ht-cond4ht.tex $(common)
 	tex $(tex_opts) $<
 	tex $(tex_opts) cond4ht.4ht
@@ -228,6 +219,18 @@ cond4ht $(tex4ht_cond4ht_derived): tex4ht-cond4ht.tex $(common)
 cond4ht-doc: tex4ht-cond4ht.tex $(common)
 	tex $(tex_opts) $<
 	tex $(tex_opts) cond4ht.4ht
+
+4ht $(tex4ht_4ht_derived): tex4ht-4ht.tex $(common)
+	tex $(tex_opts) $<
+
+4ht-doc: tex4ht-4ht.tex $(common)
+	tex $(tex_opts) $<
+
+$(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
+	latex $(tex_opts) $<
+
+$(tex4ht_c_derived): tex4ht-c.tex $(common)
+	tex $(tex_opts) $<
 
 $(tex4ht_docbook_derived): tex4ht-docbook.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
