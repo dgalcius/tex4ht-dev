@@ -5,7 +5,7 @@
 define cond4ht_derived
  mktex4ht.4ht\
 
-endef 
+endef
 # deps files list from cond4ht.fls.
 define cond4ht_deps
  cond4ht.4ht\
@@ -15,4 +15,4 @@ define cond4ht_deps
  mktex4ht-cnf.tex\
  tex4ht-cpright.tex\
 
-endef 
+endef

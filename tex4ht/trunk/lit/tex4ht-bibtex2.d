@@ -5,7 +5,7 @@
 define tex4ht-bibtex2_derived
  bibtex2.4ht\
 
-endef 
+endef
 # deps files list from tex4ht-bibtex2.fls.
 define tex4ht-bibtex2_deps
  tex4ht-bibtex2.tex\
@@ -16,4 +16,4 @@ define tex4ht-bibtex2_deps
  tex4ht-cpright.tex\
  tex4ht-cpright.tex\
 
-endef 
+endef

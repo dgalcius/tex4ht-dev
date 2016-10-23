@@ -319,7 +319,7 @@ define tex4ht-4ht_derived
  idxmake.4ht\
  bibtex.4ht\
 
-endef 
+endef
 # deps files list from tex4ht-4ht.fls.
 define tex4ht-4ht_deps
  tex4ht-4ht.tex\
@@ -329,4 +329,4 @@ define tex4ht-4ht_deps
  mktex4ht-cnf.tex\
  tex4ht-cpright.tex\
 
-endef 
+endef
