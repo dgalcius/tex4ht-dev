@@ -14,7 +14,8 @@ fls2dd ()
     grep -v "^$4 /" | # filter out lines with absolute path, e.g. /usr/local/...
     grep -v ".log" | # remove unicode.log, etc
     awk "/$4/ { print \" \" \$2 \"\\\\\" }" | # print (INPUT|OUTPUT) entries only
-    sort --unique
+    #    sort --unique
+    cat
   
   echo -e "\nendef "
 
