@@ -31,6 +31,9 @@ HTTEX = ht "tex $(tex_opts)"  # set tex options for plain tex
 include cond4ht.d
 include tex4ht-cond4ht.d
 include tex4ht-4ht.d
+include tex4ht-bibtex2.d
+include tex4ht-c.d
+include tex4ht-docbook.d
 
 default: all
 
@@ -42,16 +45,10 @@ xderived =
 derived += $(cond4ht_derived)
 derived += $(tex4ht-cond4ht_derived)
 derived += $(tex4ht-4ht_derived)
+derived += $(tex4ht-bibtex2_derived)
+derived += $(tex4ht-c_derived)
+derived += $(tex4ht-docbook_derived)
 
-
-xderived += $(tex4ht_bibtex2_derived)
-tex4ht_bibtex2_derived = bibtex2.4ht
-
-xderived += $(tex4ht_c_derived)
-tex4ht_c_derived = tex4ht.c
-
-xderived += $(tex4ht_docbook_derived)
-tex4ht_docbook_derived = docbook.4ht docbook-math.4ht docbook-mml.4ht
 
 xderived += $(tex4ht_docbook_xtpipes_derived)
 tex4ht_docbook_xtpipes_derived = docbook.4xt DbUtilities.java
@@ -213,10 +210,12 @@ derived-doc =
 derived-doc += $(tex4ht-cond4ht_doc)
 derived-doc += $(cond4ht_doc)
 derived-doc += $(tex4ht-4ht_doc)
+derived-doc += $(tex4ht-c_doc)
 
 cond4ht_doc = $(htmldir)/cond4ht/cond4ht.html
 tex4ht-cond4ht_doc = $(htmldir)/tex4ht-cond4ht/tex4ht-cond4ht.html
 tex4ht-4ht_doc = $(htmldir)/tex4ht-4ht/tex4ht-4ht.html
+tex4ht-c_doc = $(htmldir)/tex4ht-c/tex4ht-c.html
 
 # 
 all: $(derived)
@@ -240,19 +239,29 @@ cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
 4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
 	$(HTTEX) $<
 
-bibtex2 $(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
+bibtex2 $(tex4ht-bibtex2_derived): $(tex4ht-bibtex2_deps)
 	latex $(tex_opts) $<
 
-bibtex2-doc $(tex4ht-bibtex2_doc): tex4ht-bibtex2.tex $(common)
-	latex $(tex_opts) $<
-
-$(tex4ht_c_derived): tex4ht-c.tex $(common)
-	tex $(tex_opts) $<
-
-$(tex4ht_docbook_derived): tex4ht-docbook.tex $(common)
+bibtex2-doc $(tex4ht-bibtex2_doc): $(tex4ht-bibtex2_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-$(tex4ht_docbook_xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
+c $(tex4ht-c_derived): $(tex4ht-c_deps) 
+	tex $(tex_opts) $<
+
+c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
+	$(HTTEX) $<
+
+docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps) 
+	latex $(tex_opts) $<
+
+docbook-doc $(tex4ht_docbook_derived): tex4ht-docbook.tex $(common)
+	xhlatex $< "html,3" "" "" $(tex_1opt)
+
+docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
+	xhlatex $< "html,3" "" "" $(tex_1opt)
+
+
+docbook-xtpipes-doc $(tex4ht_docbook_xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 $(tex4ht_env_derived): tex4ht-env.tex $(common)
