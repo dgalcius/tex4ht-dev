@@ -17,7 +17,7 @@ fls2dd ()
     #    sort --unique
     cat
   
-  echo -e "\nendef "
+  echo -e "\nendef"
 
 }
 
@@ -47,7 +47,7 @@ fls2dd_fls ()
         sed -f $6 |
         awk '/OUTPUT/ { print "  " $2 "\\" }' # always OUTPUT
 
-    echo -e "\nendef "
+    echo -e "\nendef"
 }
 
 # fls2dd_fls:
