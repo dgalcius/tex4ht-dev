@@ -8,10 +8,10 @@ define cond4ht_derived
 endef 
 # deps files list from cond4ht.fls.
 define cond4ht_deps
- AlProTex.sty\
- ProTex.sty\
- common.tex\
  cond4ht.4ht\
+ common.tex\
+ ProTex.sty\
+ AlProTex.sty\
  mktex4ht-cnf.tex\
  tex4ht-cpright.tex\
 
