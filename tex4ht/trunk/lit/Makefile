@@ -36,44 +36,38 @@ default: all
 
 common = tex4ht-cpright.tex common.tex common-code.tex ProTex.sty AlProTex.sty
 common_info = $(common) common-info.tex
-derived = 
+derived =
+xderived =
 
-derived += $(tex4ht_cond4ht_derived)
-tex4ht_cond4ht_derived = cond4ht.4ht mktex4ht.4ht
+derived += $(cond4ht_derived)
+derived += $(tex4ht-cond4ht_derived)
+derived += $(tex4ht-4ht_derived)
 
-derived += $(tex4ht_4ht_derived)
-tex4ht_4ht_derived = \
-  algorithmic.4ht biblatex.4ht book.4ht frenchb.4ht \
-  geometry.4ht graphicx.4ht hyperref.4ht latex.4ht lettrine.4ht listings.4ht \
-  memoir.4ht multicol.4ht quoting.4ht reading.4ht \
-  scrartcl.4ht scrbook.4ht scrreprt.4ht spanish.4ht subscript.4ht \
-  titlesec.4ht tocloft.4ht wrapfig.4ht usepackage.4ht
-# xx and many, many more.
 
-derived += $(tex4ht_bibtex2_derived)
+xderived += $(tex4ht_bibtex2_derived)
 tex4ht_bibtex2_derived = bibtex2.4ht
 
-derived += $(tex4ht_c_derived)
+xderived += $(tex4ht_c_derived)
 tex4ht_c_derived = tex4ht.c
 
-derived += $(tex4ht_docbook_derived)
+xderived += $(tex4ht_docbook_derived)
 tex4ht_docbook_derived = docbook.4ht docbook-math.4ht docbook-mml.4ht
 
-derived += $(tex4ht_docbook_xtpipes_derived)
+xderived += $(tex4ht_docbook_xtpipes_derived)
 tex4ht_docbook_xtpipes_derived = docbook.4xt DbUtilities.java
 
-derived += $(tex4ht_env_derived)
+xderived += $(tex4ht_env_derived)
 tex4ht_env_derived = tex4ht.env-unix tex4ht.env-win32 tex4ht.env
 
-derived += $(tex4ht_fonts_cjk_derived)
+xderived += $(tex4ht_fonts_cjk_derived)
 tex4ht_fonts_cjk_derived = tex4ht-fonts-cjk.html # and lots more
 
-derived += $(tex4ht_fonts_cjk_utf8_derived)
+xderived += $(tex4ht_fonts_cjk_utf8_derived)
 tex4ht_fonts_cjk_utf8_derived = tex4ht-fonts-cjk-utf8.html # and lots more
 
 # noncjk.tex \input's modern, but seems more maintainable
 # to have separate lists.
-derived += $(tex4ht_fonts_noncjk_derived)
+xderived += $(tex4ht_fonts_noncjk_derived)
 tex4ht_fonts_noncjk_derived = \
   tex4ht.dir/texmf/tex4ht/ht-fonts/alias/ec/eccc.htf \
   tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/ec/eccc-uni.htf \
@@ -82,7 +76,7 @@ tex4ht_fonts_noncjk_derived = \
   tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/jknappen/tc/tcrm.htf \
   tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/adobe/courier/pcrro8r.htf \
   SearchFonts.java lm-htf.tex
-tex4ht_fonts_modern_derived = \
+xtex4ht_fonts_modern_derived = \
   tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/l7x-lmcsc.htf \
   tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/l7x-lm.htf  
 # xx and lots more
@@ -92,19 +86,19 @@ tex4ht_fonts_modern_derived = \
 #derived += $(tex4ht_htcmd_derived)
 #tex4ht_htcmd_derived = htcmd.c
 
-derived += $(tex4ht_html_speech_derived)
+xderived += $(tex4ht_html_speech_derived)
 tex4ht_html_speech_derived = html-speech.4ht html-speech-math.4ht emacspeak.4ht
 
-derived += $(tex4ht_html_speech_xtpipes_derived)
+xderived += $(tex4ht_html_speech_xtpipes_derived)
 tex4ht_html_speech_xtpipes_derived = htspk.4xt HtSpk.java
 
-derived += $(tex4ht_html0_derived)
+xderived += $(tex4ht_html0_derived)
 tex4ht_html0_derived = html0.4ht
 
-derived += $(tex4ht_html32_derived)
+xderived += $(tex4ht_html32_derived)
 tex4ht_html32_derived = html32.4ht html32-math.4ht 
 
-derived += $(tex4ht_html4_derived)
+xderived += $(tex4ht_html4_derived)
 tex4ht_html4_derived = \
   html4.4ht html4-math.4ht html4-uni.4ht \
   html4-l2-url.4ht html4-russian-accents.4ht \
@@ -113,94 +107,94 @@ tex4ht_html4_derived = \
 #xx big changes for unknown reasons derived += $(tex4ht_info_derived)
 tex4ht_info_derived = info4ht.4ht
 
-derived += $(tex4ht_info_html4_derived)
+xderived += $(tex4ht_info_html4_derived)
 tex4ht_info_html4_derived = infoht4.4ht
 
-derived += $(tex4ht_info_javahelp_derived)
+xderived += $(tex4ht_info_javahelp_derived)
 tex4ht_info_javahelp_derived = infojh.4ht
 
-derived += $(tex4ht_info_mml_derived)
+xderived += $(tex4ht_info_mml_derived)
 tex4ht_info_mml_derived = infomml.4ht
 
-derived += $(tex4ht_info_ooffice_derived)
+xderived += $(tex4ht_info_ooffice_derived)
 tex4ht_info_ooffice_derived = infoof.4ht
 
-derived += $(tex4ht_info_svg_derived)
+xderived += $(tex4ht_info_svg_derived)
 tex4ht_info_svg_derived = infosvg.4ht
 
-derived += $(tex4ht_javahelp_derived)
+xderived += $(tex4ht_javahelp_derived)
 tex4ht_javahelp_derived = javahelp.4ht javahelp-a.4ht
 
-derived += $(tex4ht_javahelp_xtpipes_derived)
+xderived += $(tex4ht_javahelp_xtpipes_derived)
 tex4ht_javahelp_xtpipes_derived = javahelp.4xt
 
-derived += $(tex4ht_jsmath_derived)
+xderived += $(tex4ht_jsmath_derived)
 tex4ht_jsmath_derived = jsmath.4ht html-jsmath.4ht
 
-derived += $(tex4ht_jsml_xtpipes_derived)
+xderived += $(tex4ht_jsml_xtpipes_derived)
 tex4ht_jsml_xtpipes_derived = \
   jsml.4xt \
   HtJsml.java GroupMn.java JsmlFilter.java JsmlMathBreak.java
 
-derived += $(tex4ht_jsml_derived)
+xderived += $(tex4ht_jsml_derived)
 tex4ht_jsml_derived = jsml.4ht jsml-math.4ht
 
-derived += $(tex4ht_mathltx_derived)
+xderived += $(tex4ht_mathltx_derived)
 tex4ht_mathltx_derived = mathltx.4ht html-mltx.4ht
 
-derived += $(tex4ht_mathml_derived)
+xderived += $(tex4ht_mathml_derived)
 tex4ht_mathml_derived = mathml.4ht html-mml.4ht
 
-derived += $(tex4ht_mathplayer_derived)
+xderived += $(tex4ht_mathplayer_derived)
 tex4ht_mathplayer_derived = mathplayer.4ht
 
-derived += $(tex4ht_mkht_derived)
+xderived += $(tex4ht_mkht_derived)
 tex4ht_mkht_derived = mkht.4ht mk4ht.perl mkht-scripts.4ht
 
-derived += $(tex4ht_moz_derived)
+xderived += $(tex4ht_moz_derived)
 tex4ht_moz_derived = mozilla.4ht
 
-derived += $(tex4ht_oo_xtpipes_derived)
+xderived += $(tex4ht_oo_xtpipes_derived)
 tex4ht_oo_xtpipes_derived = \
    oo-math.4xt oo-text.4xt \
    OoUtilities.java OomFilter.java OoFilter.java
 
-derived += $(tex4ht_ooffice_derived)
+xderived += $(tex4ht_ooffice_derived)
 tex4ht_ooffice_derived = ooffice.4ht ooffice-mml.4ht
 
-derived += $(tex4ht_ooimpress_derived)
+xderived += $(tex4ht_ooimpress_derived)
 tex4ht_ooimpress_derived = ooimpress.4ht
 
-derived += $(tex4ht_options_derived)
+xderived += $(tex4ht_options_derived)
 tex4ht_options_derived = tex4ht.4ht
 
-derived += $(tex4ht_sty_derived)
+xderived += $(tex4ht_sty_derived)
 tex4ht_sty_derived = tex4ht.sty
 
-derived += $(tex4ht_svg_derived)
+xderived += $(tex4ht_svg_derived)
 tex4ht_svg_derived = svg.4ht html4-svg.4ht
 
-derived += $(tex4ht_t4ht_derived)
+xderived += $(tex4ht_t4ht_derived)
 tex4ht_t4ht_derived = t4ht.c
 
-derived += $(tex4ht_tei_derived)
+xderived += $(tex4ht_tei_derived)
 tex4ht_tei_derived = tei.4ht tei-mml.4ht tei-math.4ht tei-mmltei.4ht
 
-derived += $(tex4ht_unicode_derived)
+xderived += $(tex4ht_unicode_derived)
 tex4ht_unicode_derived = unicode.4ht
 
-derived += $(tex4ht_word_derived)
+xderived += $(tex4ht_word_derived)
 tex4ht_word_derived = htmlw.4ht
 
-derived += $(tex4ht_xhtml_xtpipes_derived)
+xderived += $(tex4ht_xhtml_xtpipes_derived)
 tex4ht_xhtml_xtpipes_derived = xhtml.4xt XhtmlEmails.java
 
-derived += $(tex4ht_xhtmml_xtpipes_derived)
+xderived += $(tex4ht_xhtmml_xtpipes_derived)
 tex4ht_xhtmml_xtpipes_derived = xhtmml.4xt XhtmmlUtilities.java
 
 # wripro.tex generates nothing (not literate).
 
-derived += $(xtpipes_derived)
+xderived += $(xtpipes_derived)
 xtpipes_derived = \
   $(wd)/xtpipes.java \
   $(wd)/xtpipes/FileInfo.java \
@@ -214,24 +208,42 @@ xtpipes_derived = \
   xtpipes-map.dtd \
   xtpipes.dtd \
 
+
+derived-doc =
+derived-doc += $(tex4ht-cond4ht_doc)
+derived-doc += $(cond4ht_doc)
+derived-doc += $(tex4ht-4ht_doc)
+
+cond4ht_doc = $(htmldir)/cond4ht/cond4ht.html
+tex4ht-cond4ht_doc = $(htmldir)/tex4ht-cond4ht/tex4ht-cond4ht.html
+tex4ht-4ht_doc = $(htmldir)/tex4ht-4ht/tex4ht-4ht.html
+
 # 
 all: $(derived)
+doc: $(derived-doc) tohtmldir
 
-cond4ht $(tex4ht_cond4ht_derived): tex4ht-cond4ht.tex $(common)
-	tex $(tex_opts) $<
-	tex $(tex_opts) cond4ht.4ht
-
-cond4ht-doc: tex4ht-cond4ht.tex $(common)
-	tex $(tex_opts) $<
-	tex $(tex_opts) cond4ht.4ht
-
-4ht $(tex4ht_4ht_derived): tex4ht-4ht.tex $(common)
+$(cond4ht_derived): $(cond4ht_deps)
 	tex $(tex_opts) $<
 
-4ht-doc: tex4ht-4ht.tex $(common)
+$(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
 
-$(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
+cond4ht $(tex4ht-cond4ht_derived): $(tex4ht-cond4ht_deps) 
+	tex $(tex_opts) $<
+
+cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
+	$(HTTEX) $<
+
+4ht $(tex4ht-4ht_derived): $(tex4ht-4ht_deps)
+	tex $(tex_opts) $<
+
+4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
+	$(HTTEX) $<
+
+bibtex2 $(tex4ht_bibtex2_derived): tex4ht-bibtex2.tex $(common)
+	latex $(tex_opts) $<
+
+bibtex2-doc $(tex4ht-bibtex2_doc): tex4ht-bibtex2.tex $(common)
 	latex $(tex_opts) $<
 
 $(tex4ht_c_derived): tex4ht-c.tex $(common)
@@ -553,8 +565,8 @@ sources_d := $(sources:%.tex=%.d)
 ##   which are included in main Makefile with 'include' directive.
 ## An attemp to mimick automake dependency computation. Generate (small) Makefiles with
 ## vars for dependencies and derived files from *.fls.
-%.d: %.fls
-	$(extra_bin)/fls2d $< >$@
+%.dd: %.fls
+	$(extra_bin)/fls2d $< >$*.d
 
 ## Fonts need to parse *.fls and *.lg files
 tex4ht-fonts-cjk.d: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
