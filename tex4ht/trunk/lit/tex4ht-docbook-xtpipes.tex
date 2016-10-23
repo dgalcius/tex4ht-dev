@@ -12,6 +12,7 @@
 
 \input{common}
 \input{tex4ht-cpright}
+\input{tex4ht-dir}
 
 
 
@@ -49,7 +50,7 @@
 \AtEndDocument{\OutputCodE\<DbUtilities.java\>}
 
 \Needs{"
-    javac DbUtilities.java -d /home/4/gurari/xtpipes.dir/. 
+    javac DbUtilities.java -d \XTPIPES
 "}
 
 \<DbUtilities.java\><<<
@@ -518,16 +519,7 @@ Can they be removed earlier  at the latex pass?
 >>>
 
 
-\AtEndDocument{\Needs{%
-    "cd /home/4/gurari/xtpipes.dir
-     ;  
-     jar cf tex4ht.jar *
-     ;
-     mv tex4ht.jar /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
-     ;
-     cp /home/4/gurari/xtpipes.dir/xtpipes/lib/* 
-        /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
-"}}
+\input{xtpipes-jar}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
