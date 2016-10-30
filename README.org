@@ -1,0 +1,5 @@
+
+Build status:
+
+
+[[https://travis-ci.org/dgalcius/tex4ht-dev][https://travis-ci.org/dgalcius/tex4ht-dev.png?branch=master]]
