@@ -30,7 +30,7 @@ fls2dd_lg ()
     grep 'needs' $1 |
         grep -v 'tmp;' |
         grep -v "mkdir"|
-         awk '/--- needs ---/ { str = $8; gsub("\"", "", str); print "s!" $7 "!" str "!" }'  
+         awk '/--- needs ---/ { str = $8; gsub("\"", "", str); print "s!OUTPUT " $7 "!OUTPUT " str "!" }'  
 }
 
 # fls2dd_fls:
@@ -58,5 +58,5 @@ flslg2dd ()
 {
   fls2dd_lg $1 > temp.sed
   fls2dd_fls $2 $3 $4 $5 "$6" temp.sed
-  rm -f temp.sed
+#  rm -f temp.sed
 }
