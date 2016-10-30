@@ -34,6 +34,9 @@ include tex4ht-4ht.d
 include tex4ht-bibtex2.d
 include tex4ht-c.d
 include tex4ht-docbook.d
+include tex4ht-env.d
+include tex4ht-fonts-cjk.d
+include tex4ht-fonts-cjk-utf8.d
 
 default: all
 
@@ -48,35 +51,11 @@ derived += $(tex4ht-4ht_derived)
 derived += $(tex4ht-bibtex2_derived)
 derived += $(tex4ht-c_derived)
 derived += $(tex4ht-docbook_derived)
-
-
-xderived += $(tex4ht_docbook_xtpipes_derived)
-tex4ht_docbook_xtpipes_derived = docbook.4xt DbUtilities.java
-
-xderived += $(tex4ht_env_derived)
-tex4ht_env_derived = tex4ht.env-unix tex4ht.env-win32 tex4ht.env
-
-xderived += $(tex4ht_fonts_cjk_derived)
-tex4ht_fonts_cjk_derived = tex4ht-fonts-cjk.html # and lots more
-
-xderived += $(tex4ht_fonts_cjk_utf8_derived)
-tex4ht_fonts_cjk_utf8_derived = tex4ht-fonts-cjk-utf8.html # and lots more
-
-# noncjk.tex \input's modern, but seems more maintainable
-# to have separate lists.
-xderived += $(tex4ht_fonts_noncjk_derived)
-tex4ht_fonts_noncjk_derived = \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/alias/ec/eccc.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/ec/eccc-uni.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/alias/t1fonts/ClearSans-BoldItalic-lf-t1.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/alias/t1fonts/ipxg-r-t1.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/jknappen/tc/tcrm.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/adobe/courier/pcrro8r.htf \
-  SearchFonts.java lm-htf.tex
-xtex4ht_fonts_modern_derived = \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/l7x-lmcsc.htf \
-  tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/l7x-lm.htf  
-# xx and lots more
+derived += $(tex4ht-docbook-xtpipes_derived)
+derived += $(tex4ht-env_derived)
+derived += $(tex4ht-fonts-cjk_derived)
+derived += $(tex4ht-fonts-cjk-utf8_derived)
+derived += $(tex4ht-fonts-noncjk_derived)
 # whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
 
 # htcmd not used
@@ -257,26 +236,50 @@ docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 docbook-doc $(tex4ht_docbook_derived): tex4ht-docbook.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
+docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 
+# xx
 docbook-xtpipes-doc $(tex4ht_docbook_xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-$(tex4ht_env_derived): tex4ht-env.tex $(common)
+env $(tex4ht-env_derived): $(tex4ht-env_deps)
+	latex $(tex_opts) $<
+
+# xx
+env-doc $(tex4ht-env_doc): $(tex4ht-env_deps)
 	htlatex $< "xhtml,3" "" "" $(tex_1opt)
 
-$(tex4ht_fonts_cjk_derived): tex4ht-fonts-cjk.tex
+fonts-cjk $(tex4ht-fonts-cjk_derived): $(tex4ht-fonts-cjk_deps)
+	tex $(tex_opts) $<
+	tex4ht $<
+	t4ht $< 
+
+fonts-cjk-doc $(tex4ht-fonts-cjk_doc): $(tex4ht-fonts-cjk_deps)
 	$(HTTEX) $< ""
 
-$(tex4ht_fonts_cjk_utf8_derived): tex4ht-fonts-cjk-utf8.tex
+fonts-cjk-utf8 $(tex4ht-fonts-cjk-utf8_derived): $(tex4ht-fonts-cjk-utf8_deps)
+#	$(HTTEX) $< ""
+	tex $(tex_opts) $<
+	tex4ht $<
+	t4ht $< 
+
+fonts-cjk-utf8-doc $(tex4ht-fonts-cjk-utf8_doc): $(tex4ht-fonts-cjk-utf8_deps)
 	$(HTTEX) $< ""
 
-$(tex4ht_fonts_noncjk_derived) $(tex4ht_fonts_modern_derived): \
+fonts-noncjk $(tex4ht-fonts-noncjk_derived): \
+  tex4ht-fonts-noncjk.tex tex4ht-fonts-modern.tex $(common)
+#	$(HTTEX) $< ""
+	tex $(tex_opts) $<
+	tex4ht $<
+	t4ht $< 
+
+fonts-noncjk-doc $(tex4ht_fonts_noncjk_doc): \
   tex4ht-fonts-noncjk.tex tex4ht-fonts-modern.tex $(common)
 	$(HTTEX) $< ""
 
+#xx not used
 $(tex4ht_htcmd_derived): tex4ht-htcmd.tex $(common)
 	$(HTTEX) $< ""
 
@@ -565,7 +568,7 @@ sources = \
 extra_sources := \
  tex4ht-info.tex
 
-sources_d := $(sources:%.tex=%.d)
+sources_d := $(sources:%.tex=%.dd)
 
 ## Generate *.d (dependency) file. Trying to mimick automake dependency computation.
 ## Automake:
@@ -578,14 +581,14 @@ sources_d := $(sources:%.tex=%.d)
 	$(extra_bin)/fls2d $< >$*.d
 
 ## Fonts need to parse *.fls and *.lg files
-tex4ht-fonts-cjk.d: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
-	$(extra_bin)/flslg2d $^ >$@
+tex4ht-fonts-cjk.dd: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
+	$(extra_bin)/flslg2d $^ >tex4ht-fonts-cjk.d
 
-tex4ht-fonts-cjk-utf8.d: tex4ht-fonts-cjk-utf8.lg tex4ht-fonts-cjk-utf8.fls
-	$(extra_bin)/flslg2d $^ >$@
+tex4ht-fonts-cjk-utf8.dd: tex4ht-fonts-cjk-utf8.lg tex4ht-fonts-cjk-utf8.fls
+	$(extra_bin)/flslg2d $^ >tex4ht-fonts-cjk-utf8.d
 
-tex4ht-fonts-noncjk.d: tex4ht-fonts-noncjk.lg tex4ht-fonts-noncjk.fls
-	$(extra_bin)/flslg2d $^ >$@
+tex4ht-fonts-noncjk.dd: tex4ht-fonts-noncjk.lg tex4ht-fonts-noncjk.fls
+	$(extra_bin)/flslg2d $^ >tex4ht-fonts-noncjk.d
 
 d: $(sources_d)
 
