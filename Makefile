@@ -4,6 +4,7 @@ gitrepo := ~/local/git/tex4ht
 
 default:
 	latex --version
+	make -C tex4ht/trunk/lit all
 
 diff-svn:
 	diff -r  $(svnrepo) $(gitrepo) 
