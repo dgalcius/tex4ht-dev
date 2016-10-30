@@ -1,12 +1,12 @@
 svnrepo := ~/local/svn/tex4ht
-gitrepo := ~/local/github/tex4ht-dev/tex4ht
+gitrepo := ~/local/git/tex4ht
 
 
 default:
 	latex --version
 
 diff-svn:
-	diff $(svnrepo) $(gitrepo) 
+	diff -r  $(svnrepo) $(gitrepo) 
 
 sync:
 #	svn checkout http://svn.gnu.org.ua/sources/tex4ht
