@@ -85,8 +85,8 @@ tlmgr install   \
   zhmetrics     \
   zhnumber
 
-# tex4ht
-tlmgr install tex4ht
+# tex4ht build from lit sources
+tlmgr install tex4ht dratex
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
