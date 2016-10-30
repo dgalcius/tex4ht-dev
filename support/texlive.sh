@@ -85,6 +85,9 @@ tlmgr install   \
   zhmetrics     \
   zhnumber
 
+# tex4ht
+tlmgr install tex4ht
+
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
 
