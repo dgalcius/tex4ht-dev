@@ -10,9 +10,9 @@
     \Configure{ProTex}{log,<<<>>>,title,list,`,[[]]}
 \begin{document}
 
-\input{common}
-\input{tex4ht-cpright}
-
+\input common.tex
+\input tex4ht-cpright.tex
+\input tex4ht-dir.tex
 %%%%%%%%%%%%%%%%%%
 \part{Script for xtpipes}
 %%%%%%%%%%%%%%%%%%
@@ -148,7 +148,7 @@
 \AtEndDocument{\OutputCodE\<HtSpk.java\>}
 
 \Needs{"
-    javac HtSpk.java      -d /home/4/gurari/xtpipes.dir/. 
+    javac HtSpk.java      -d \XTPIPES.
 "}
 
 \<HtSpk.java\><<<
@@ -2412,26 +2412,6 @@ variables in \verb+<mi>i</mi><mi>j</mi>+.
 Left subscripts and tensors.
 \end{itemize}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\AtEndDocument{\Needs{%
-    "cd /home/4/gurari/xtpipes.dir
-     ;  
-     jar cf tex4ht.jar *
-     ;
-     mv tex4ht.jar /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
-     ;
-     cp /home/4/gurari/xtpipes.dir/xtpipes/lib/* 
-        /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
-"}}
-
-
-
-
+\input xtpipes-jar.tex
 \end{document}
-
-
-
-
-
