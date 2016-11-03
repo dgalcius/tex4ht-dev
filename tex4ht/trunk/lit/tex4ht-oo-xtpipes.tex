@@ -10,8 +10,9 @@
     \usepackage{url}
 \begin{document}
 
-\input{common}
-\input{tex4ht-cpright}
+\input common.tex
+\input tex4ht-cpright.tex
+\input tex4ht-dir.tex
 
 
 %%%%%%%%%%%%%%%%%%
@@ -282,7 +283,7 @@ above
 \AtEndDocument{\OutputCodE\<OoUtilities.java\>}
 
 \Needs{"
-    javac OoUtilities.java -d /opt/cvr/gurari/xtpipes.dir/. 
+    javac OoUtilities.java -d \XTPIPES. 
 "}
 
 \<OoUtilities.java\><<<
@@ -1542,7 +1543,7 @@ mtext.
 \AtEndDocument{\OutputCodE\<OomFilter.java\>}
 
 \Needs{"
-    javac OomFilter.java     -d /opt/cvr/gurari/xtpipes.dir/. 
+    javac OomFilter.java     -d \XTPIPES.
 "}
 
 \<OomFilter.java\><<<
@@ -1607,7 +1608,7 @@ public class OomFilter extends XMLFilterImpl {
 \AtEndDocument{\OutputCodE\<OoFilter.java\>}
 
 \Needs{"
-    javac OoFilter.java      -d /opt/cvr/gurari/xtpipes.dir/. 
+    javac OoFilter.java      -d \XTPIPES.
 "}
 
 \<OoFilter.java\><<<
@@ -1956,15 +1957,16 @@ import java.io.FileReader;
 
 
 
-\AtEndDocument{\Needs{%
-    "cd /opt/cvr/gurari/xtpipes.dir
-     ;  
-     jar cf tex4ht.jar *
-     ;
-     mv tex4ht.jar /opt/cvr/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
-     ;
-     cp /opt/cvr/gurari/xtpipes.dir/xtpipes/lib/* 
-        /opt/cvr/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
-"}}
+% \AtEndDocument{\Needs{%
+%     "cd /opt/cvr/gurari/xtpipes.dir
+%      ;  
+%      jar cf tex4ht.jar *
+%      ;
+%      mv tex4ht.jar /opt/cvr/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
+%      ;
+%      cp /opt/cvr/gurari/xtpipes.dir/xtpipes/lib/* 
+%         /opt/cvr/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
+% "}}
+\input xtpipes-jar.tex
 
 \end{document}

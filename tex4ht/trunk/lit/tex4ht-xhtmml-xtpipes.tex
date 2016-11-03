@@ -9,9 +9,11 @@
 \documentclass{article}
     \Configure{ProTex}{log,<<<>>>,title,list,`,[[]]}
     \usepackage{url}
-    \input{common.tex}
 \begin{document}
+
+\input common.tex
 \input tex4ht-cpright.tex
+\input tex4ht-dir.tex
 
 
 %%%%%%%%%%%%%%%%%%
@@ -52,7 +54,7 @@
 \AtEndDocument{\OutputCodE\<XhtmmlUtilities.java\>}
 
 \Needs{"
-    javac XhtmmlUtilities.java -d /home/4/gurari/xtpipes.dir/. 
+    javac XhtmmlUtilities.java -d \XTPIPES.
 "}
 
 \<XhtmmlUtilities.java\><<<
@@ -721,18 +723,7 @@ into
 % END END END END END END END END END END END END END END END END 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\AtEndDocument{\Needs{%
-    "cd /home/4/gurari/xtpipes.dir
-     ;  
-     jar cf tex4ht.jar *
-     ;
-     mv tex4ht.jar /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
-     ;
-     cp /home/4/gurari/xtpipes.dir/xtpipes/lib/* 
-        /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
-"}}
-
-
+\input xtpipes-jar.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
