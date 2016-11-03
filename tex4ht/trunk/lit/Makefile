@@ -37,6 +37,18 @@ include tex4ht-docbook.d
 include tex4ht-env.d
 include tex4ht-fonts-cjk.d
 include tex4ht-fonts-cjk-utf8.d
+include tex4ht-html-speech.d
+include tex4ht-html-speech-xtpipes.d
+include tex4ht-html0.d
+include tex4ht-html32.d
+include tex4ht-html4.d
+include tex4ht-info-html4.d
+include tex4ht-info-javahelp.d
+include tex4ht-info-mml.d
+include tex4ht-info-svg.d
+include tex4ht-info.d
+include tex4ht-javahelp.d
+
 
 default: all
 
@@ -62,47 +74,26 @@ derived += $(tex4ht-fonts-noncjk_derived)
 #derived += $(tex4ht_htcmd_derived)
 #tex4ht_htcmd_derived = htcmd.c
 
-xderived += $(tex4ht_html_speech_derived)
-tex4ht_html_speech_derived = html-speech.4ht html-speech-math.4ht emacspeak.4ht
+derived += $(tex4ht-html-speech_derived)
+derived += $(tex4ht-htm-_speech-xtpipes_derived)
+derived += $(tex4ht-html0_derived)
+derived += $(tex4ht-html32_derived)
+derived += $(tex4ht-html4_derived)
+derived += $(tex4ht-info-html4_derived)
+derived += $(tex4ht-info-javahelp_derived)
+derived += $(tex4ht-info-mml_derived)
+derived += $(tex4ht-info-svg_derived)
+derived += $(tex4ht-info_derived)
+derived += $(tex4ht-javahelp_derived)
+derived += $(tex4ht-javahelp-xtpipes_derived)
 
-xderived += $(tex4ht_html_speech_xtpipes_derived)
-tex4ht_html_speech_xtpipes_derived = htspk.4xt HtSpk.java
 
-xderived += $(tex4ht_html0_derived)
-tex4ht_html0_derived = html0.4ht
-
-xderived += $(tex4ht_html32_derived)
-tex4ht_html32_derived = html32.4ht html32-math.4ht 
-
-xderived += $(tex4ht_html4_derived)
-tex4ht_html4_derived = \
-  html4.4ht html4-math.4ht html4-uni.4ht \
-  html4-l2-url.4ht html4-russian-accents.4ht \
-  onmouseover.4ht exerqz.4ht  
-
-#xx big changes for unknown reasons derived += $(tex4ht_info_derived)
-tex4ht_info_derived = info4ht.4ht
-
-xderived += $(tex4ht_info_html4_derived)
-tex4ht_info_html4_derived = infoht4.4ht
-
-xderived += $(tex4ht_info_javahelp_derived)
-tex4ht_info_javahelp_derived = infojh.4ht
-
-xderived += $(tex4ht_info_mml_derived)
-tex4ht_info_mml_derived = infomml.4ht
 
 xderived += $(tex4ht_info_ooffice_derived)
 tex4ht_info_ooffice_derived = infoof.4ht
 
-xderived += $(tex4ht_info_svg_derived)
-tex4ht_info_svg_derived = infosvg.4ht
 
-xderived += $(tex4ht_javahelp_derived)
-tex4ht_javahelp_derived = javahelp.4ht javahelp-a.4ht
 
-xderived += $(tex4ht_javahelp_xtpipes_derived)
-tex4ht_javahelp_xtpipes_derived = javahelp.4xt
 
 xderived += $(tex4ht_jsmath_derived)
 tex4ht_jsmath_derived = jsmath.4ht html-jsmath.4ht
@@ -268,58 +259,96 @@ fonts-cjk-utf8 $(tex4ht-fonts-cjk-utf8_derived): $(tex4ht-fonts-cjk-utf8_deps)
 fonts-cjk-utf8-doc $(tex4ht-fonts-cjk-utf8_doc): $(tex4ht-fonts-cjk-utf8_deps)
 	$(HTTEX) $< ""
 
-fonts-noncjk $(tex4ht-fonts-noncjk_derived): \
-  tex4ht-fonts-noncjk.tex tex4ht-fonts-modern.tex $(common)
-#	$(HTTEX) $< ""
+fonts-noncjk $(tex4ht-fonts-noncjk_derived): $(tex4ht-fonts-noncjk_deps)
 	tex $(tex_opts) $<
 	tex4ht $<
 	t4ht $< 
 
-fonts-noncjk-doc $(tex4ht_fonts_noncjk_doc): \
-  tex4ht-fonts-noncjk.tex tex4ht-fonts-modern.tex $(common)
+fonts-noncjk-doc $(tex4ht_fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 	$(HTTEX) $< ""
 
 #xx not used
-$(tex4ht_htcmd_derived): tex4ht-htcmd.tex $(common)
-	$(HTTEX) $< ""
+# $(tex4ht_htcmd_derived): tex4ht-htcmd.tex $(common)
+# 	$(HTTEX) $< ""
 
-$(tex4ht_html_speech_derived): tex4ht-html-speech.tex $(common)
-	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-
-$(tex4ht_html_speech_xtpipes_derived): tex4ht-html-speech-xtpipes.tex $(common)
-	htlatex $< "html,next,3" "" "" $(tex_1opt)
-
-$(tex4ht_html0_derived): tex4ht-html0.tex $(common)
-	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-
-$(tex4ht_html32_derived): tex4ht-html32.tex $(common)
-	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-
-$(tex4ht_html4_derived): tex4ht-html4.tex $(common)
+html-speech $(tex4ht-html-speech_derived): $(tex4ht-html-speech_deps) 
 	latex $(tex_opts) $<
 
-$(tex4ht_info_html4_derived): tex4ht-info-html4.tex $(common_info)
+html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps) 
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-$(tex4ht_info_javahelp_derived): tex4ht-info-javahelp.tex $(common_info)
-	htlatex $< "html,sections+" "" "" $(tex_1opt)
+html-speech-xtpipes $(tex4ht-html-speech-xtpipes_derived): $(tex4ht-html-speech-xtpipes_deps)
+	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
-$(tex4ht_info_mml_derived): tex4ht-info-mml.tex $(common_info)
-	htlatex $< "html,sections+" "" "" $(tex_1opt)
+html-speech-xtpipes-doc $(tex4ht-html-speech-_xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
+	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
-$(tex4ht_info_ooffice_derived): tex4ht-info-ooffice.tex $(common_info)
-	htlatex $< "html,sections+" "" "" $(tex_1opt)
+html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
-$(tex4ht_info_svg_derived): tex4ht-info-svg.tex $(common_info)
-	htlatex $< "html,sections+" "" "" $(tex_1opt)
-
-$(tex4ht_info_derived): tex4ht-info.tex $(common)
+html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-$(tex4ht_javahelp_derived): tex4ht-javahelp.tex $(common)
+html32 $(tex4ht-html32_derived): tex4ht-html32.tex $(common)
+	latex $(tex_opts) $<
+
+html32-doc $(tex4ht-html32_doc): tex4ht-html32.tex $(common)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-$(tex4ht_javahelp_xtpipes_derived): tex4ht-javahelp-xtpipes.tex $(common)
+html4 $(tex4ht-html4_derived): tex4ht-html4.tex $(common)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+html4-doc $(tex4ht-html4_doc): tex4ht-html4.tex $(common)
+	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+
+info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-html4-doc $(tex4ht-info-html4_doc): $(tex4ht-info-html4_deps)
+	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+
+info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-javahelp-doc $(tex4ht-info-javahelp_doc): $(tex4ht-info-javahelp_deps)
+	htlatex $< "html,sections+" "" "" $(tex_1opt)
+
+info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-mml-doc $(tex4ht-info-ooffice_derived): $(tex4ht-info-mml_deps)
+	htlatex $< "html,sections+" "" "" $(tex_1opt)
+
+info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-svg-doc $(tex4ht-info-svg_doc): $(tex4ht-info-svg_deps)
+	htlatex $< "html,sections+" "" "" $(tex_1opt)
+
+info $(tex4ht-info_derived): $(tex4ht-info_derived)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-doc $(tex4ht-info_doc): $(tex4ht-info_derived)
+	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+
+javahelp $(tex4ht-javahelp_derived): $(tex4ht-javahelp_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+javahelp-doc $(tex4ht-javahelp_doc): $(tex4ht-javahelp_deps)
+	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+
+javahelp-xtpipes $(tex4ht-javahelp-xtpipes_derived): $(tex4ht-javahelp-xtpipes_deps)
+	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+
+javahelp-xtpipes-doc $(tex4ht-javahelp-xtpipes_doc): $(tex4ht-javahelp-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
 $(tex4ht_jsmath_derived): tex4ht-jsmath.tex $(common)
