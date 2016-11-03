@@ -1731,7 +1731,7 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txsl.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txss.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txsssl.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/txfonts/txb.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/txfonts/txtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txbtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/txfonts/txsc.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txbsc.htf\
@@ -2828,7 +2828,7 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/iwona/t5-iwonacap/t5-iwonachicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/vnr/vn.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txbtt.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/txtt.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/txfonts/txtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/bchrc8v.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/chartervn/bchri8v.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/bchro8v.htf\
@@ -3254,8 +3254,18 @@ endef
 # deps files list from tex4ht-fonts-noncjk.fls.
 define tex4ht-fonts-noncjk_deps
  tex4ht-fonts-noncjk.tex\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
  plain.4ht\
+ html4.4ht\
+ html4-math.4ht\
  th4.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-dir.tex\
