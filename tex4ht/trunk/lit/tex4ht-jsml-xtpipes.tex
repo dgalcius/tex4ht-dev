@@ -11,8 +11,9 @@
 \begin{document}
 
 
-\input{common}
-\input{tex4ht-cpright}
+\input common.tex
+\input tex4ht-cpright.tex
+\input tex4ht-dir.tex
 
 %%%%%%%%%%%%%%%%%%
 \part{Script for xtpipes}
@@ -147,7 +148,7 @@
 \AtEndDocument{\OutputCodE\<HtJsml.java\>}
 
 \Needs{"
-    javac HtJsml.java -d /home/4/gurari/xtpipes.dir/.  
+    javac HtJsml.java -d \XTPIPES.
 "}
 
 \<HtJsml.java\><<<
@@ -183,7 +184,7 @@ public class HtJsml {
    \OutputCodE\<GroupMn.java\> 
 } 
 \Needs{"
-    javac GroupMn.java -d /home/4/gurari/xtpipes.dir/. 
+    javac GroupMn.java -d \XTPIPES. 
 "} 
  
 \<GroupMn.java\><<< 
@@ -791,11 +792,7 @@ on nodes with large numbers of children.
 \AtEndDocument{ 
    \OutputCodE\<JsmlMathBreak.java\> 
 } 
-\Needs{"
-    javac -classpath /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/tex4ht.jar
-          JsmlMathBreak.java
-          -d /home/4/gurari/xtpipes.dir/. 
-"} 
+\input xtpipes-jsml-jar.tex
  
 \<JsmlMathBreak.java\><<< 
 package tex4ht;
@@ -992,7 +989,7 @@ The following adds PARA on `p' paragraphs, ul.
    \OutputCodE\<JsmlFilter.java\> 
 } 
 \Needs{"
-    javac JsmlFilter.java -d /home/4/gurari/xtpipes.dir/.  
+    javac JsmlFilter.java -d \XTPIPES.  
 "} 
  
 \<JsmlFilter.java\><<< 
@@ -3799,26 +3796,7 @@ concat(
 >>>
 
 
-
-
-
-
-
-
-
-\AtEndDocument{\Needs{%
-    "cd /home/4/gurari/xtpipes.dir
-     ;  
-     jar cf tex4ht.jar *
-     ;
-     mv tex4ht.jar /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/. 
-     ;
-     cp /home/4/gurari/xtpipes.dir/xtpipes/lib/* 
-        /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
-"}}
-
-
-
+\input xtpipes-jar.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
