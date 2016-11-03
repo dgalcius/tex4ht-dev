@@ -47,8 +47,12 @@ include tex4ht-info.d
 include tex4ht-info-html4.d
 include tex4ht-info-javahelp.d
 include tex4ht-info-mml.d
+include tex4ht-info-ooffice.d
 include tex4ht-info-svg.d
 include tex4ht-javahelp.d
+include tex4ht-jsmath.d
+include tex4ht-jsml-xtpipes.d
+include tex4ht-jsml.d
 
 
 default: all
@@ -83,29 +87,18 @@ derived += $(tex4ht-html4_derived)
 derived += $(tex4ht-info-html4_derived)
 derived += $(tex4ht-info-javahelp_derived)
 derived += $(tex4ht-info-mml_derived)
+derived += $(tex4ht_info_ooffice_derived)
 derived += $(tex4ht-info-svg_derived)
 derived += $(tex4ht-info_derived)
 derived += $(tex4ht-javahelp_derived)
 derived += $(tex4ht-javahelp-xtpipes_derived)
-
-
-
-xderived += $(tex4ht_info_ooffice_derived)
-tex4ht_info_ooffice_derived = infoof.4ht
+derived += $(tex4ht-jsmath_derived)
+derived += $(tex4ht-jsml-xtpipes_derived)
+derived += $(tex4ht-jsml_derived)
 
 
 
 
-xderived += $(tex4ht_jsmath_derived)
-tex4ht_jsmath_derived = jsmath.4ht html-jsmath.4ht
-
-xderived += $(tex4ht_jsml_xtpipes_derived)
-tex4ht_jsml_xtpipes_derived = \
-  jsml.4xt \
-  HtJsml.java GroupMn.java JsmlFilter.java JsmlMathBreak.java
-
-xderived += $(tex4ht_jsml_derived)
-tex4ht_jsml_derived = jsml.4ht jsml-math.4ht
 
 xderived += $(tex4ht_mathltx_derived)
 tex4ht_mathltx_derived = mathltx.4ht html-mltx.4ht
@@ -322,7 +315,14 @@ info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-info-mml-doc $(tex4ht-info-ooffice_derived): $(tex4ht-info-mml_deps)
+info-mml-doc $(tex4ht-info-mml_doc): $(tex4ht-info-mml_deps)
+	htlatex $< "html,sections+" "" "" $(tex_1opt)
+
+info-ooffice $(tex4ht-info-ooffice_derived): $(tex4ht-info-ooffice_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+info-ooffice-doc $(tex4ht-info-ooffice_doc): $(tex4ht-info-ooffice_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
 info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
@@ -351,13 +351,24 @@ javahelp-xtpipes $(tex4ht-javahelp-xtpipes_derived): $(tex4ht-javahelp-xtpipes_d
 javahelp-xtpipes-doc $(tex4ht-javahelp-xtpipes_doc): $(tex4ht-javahelp-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-$(tex4ht_jsmath_derived): tex4ht-jsmath.tex $(common)
+jsmath $(tex4ht-jsmath_derived): tex4ht-jsmath.tex $(common)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+jsmath-doc $(tex4ht-jsmath_doc): tex4ht-jsmath.tex $(common)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-$(tex4ht_jsml_xtpipes_derived): tex4ht-jsml-xtpipes.tex $(common)
+jsml-xtpipes $(tex4ht-jsml-xtpipes_derived): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-$(tex4ht_jsml_derived): tex4ht-jsml.tex $(common)
+jsml-xtpipes-doc $(tex4ht_jsml_xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
+	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+
+jsml $(tex4ht-jsml_derived): tex4ht-jsml.tex $(common)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+jsml-doc $(tex4ht-jsml_doc): tex4ht-jsml.tex $(common)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 $(tex4ht_mathltx_derived): tex4ht-mathltx.tex $(common)
