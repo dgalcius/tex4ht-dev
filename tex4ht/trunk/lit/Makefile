@@ -42,6 +42,7 @@ include tex4ht-html-speech-xtpipes.d
 include tex4ht-html0.d
 include tex4ht-html32.d
 include tex4ht-html4.d
+## xx make: Circular infoht4.4ht <- infoht4.4ht dependency dropped.
 include tex4ht-info.d
 include tex4ht-info-html4.d
 include tex4ht-info-javahelp.d
