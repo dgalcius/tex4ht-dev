@@ -42,11 +42,11 @@ include tex4ht-html-speech-xtpipes.d
 include tex4ht-html0.d
 include tex4ht-html32.d
 include tex4ht-html4.d
+include tex4ht-info.d
 include tex4ht-info-html4.d
 include tex4ht-info-javahelp.d
 include tex4ht-info-mml.d
 include tex4ht-info-svg.d
-include tex4ht-info.d
 include tex4ht-javahelp.d
 
 
@@ -331,11 +331,10 @@ info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
 info-svg-doc $(tex4ht-info-svg_doc): $(tex4ht-info-svg_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-info $(tex4ht-info_derived): $(tex4ht-info_derived)
-	latex $(tex_opts) $<
+info $(tex4ht-info_derived): $(tex4ht-info_deps)
 	latex $(tex_opts) $<
 
-info-doc $(tex4ht-info_doc): $(tex4ht-info_derived)
+info-doc $(tex4ht-info_doc): $(tex4ht-info_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 javahelp $(tex4ht-javahelp_derived): $(tex4ht-javahelp_deps)
