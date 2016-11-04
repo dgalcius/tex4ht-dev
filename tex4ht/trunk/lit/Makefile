@@ -117,9 +117,11 @@ derived += $(tex4ht-tei_derived)
 derived += $(tex4ht-unicode_derived)
 derived += $(tex4ht-word_derived)
 derived += $(tex4ht-xhtml-xtpipes_derived)
-derived += $(tex4ht-xhtmml-xtpipes_derived)
-xderived += $(xtpipes_derived)
-xtpipes_derived = \
+derived += $(xtpipes_derived)
+
+
+xderived += $(x_xtpipes_derived)
+x_xtpipes_derived = \
   $(wd)/xtpipes.java \
   $(wd)/xtpipes/FileInfo.java \
   $(wd)/xtpipes/InputObject.java \
@@ -454,12 +456,12 @@ xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xtpipes $(xtpipes_derived): xtpipes.tex $(common)
+xtpipes $(xtpipes_derived): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
 
-xtpipes-doc $(xtpipes_doc): xtpipes.tex $(common)
+xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 # 
