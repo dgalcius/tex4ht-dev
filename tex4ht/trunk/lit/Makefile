@@ -448,10 +448,10 @@ xhtml-xtpipes $(tex4ht-xhtml-xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
 xhtml-xtpipes-doc $(tex4ht_xhtml_xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtmml-xtpipes $(tex4ht_xhtmml_xtpipes_derived): tex4ht-xhtmml-xtpipes.tex $(common)
+xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtmml-xtpipes-doc $(tex4ht_xhtmml_xtpipes_derived): tex4ht-xhtmml-xtpipes.tex $(common)
+xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 xtpipes $(xtpipes_derived): xtpipes.tex $(common)
@@ -459,7 +459,7 @@ xtpipes $(xtpipes_derived): xtpipes.tex $(common)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
 
-xtpipes-doc $(xtpipes_derived): xtpipes.tex $(common)
+xtpipes-doc $(xtpipes_doc): xtpipes.tex $(common)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 # 
