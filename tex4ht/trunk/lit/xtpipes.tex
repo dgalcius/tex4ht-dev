@@ -21,7 +21,8 @@
 \begin{document}
 \input common.tex
 \input tex4ht-cpright.tex
-\input tex4ht-dir
+\input tex4ht-dir.tex
+%% fix  \NOOP 
 
 \def\CNT{0}
 \bgroup
@@ -76,7 +77,7 @@
                   \if !#1!\else #1\fi
              \else \ext\fi}%
    \egroup
-   \MakeDir
+  \def\NOOP{ \MakeDir }%%(dg)
    \if !#1!\else
       \Needs{"\mv #1\space \dir \Slash#2\Slash
                     \ifx\ext\empty #1\else \ext\fi"}%
@@ -229,6 +230,7 @@
 
 
 \ifOption{win} {}{
+\def\NOOP{%
 \AtEndDocument{\Needs{"
   cd work.dir
   ;
@@ -242,12 +244,14 @@
         -d /home/4/gurari/xtpipes.dir/.
 "}}
 }
+}
 
 
 \ifOption{win} {
     \def\BIN{}
 }{
-    \def\BIN{(/home/4/gurari/xtpipes.dir)}
+ %   \def\BIN{(/home/4/gurari/xtpipes.dir)} 
+     \def\BIN{(\XTPIPES.)}%%(dg)
 }
 
 % 
@@ -4478,6 +4482,7 @@ rmdir /s /q doc.dir
 ../../..;..;../../jldoc;../../xtpipes/cgjsapi.jar;../../xtpipes/xtpipes.jar;../../jldoc/jldoc.jar;../../ml2xml.dir/ml2xml.dir/bin/ml2xml.jar
 
 \ifOption{win} {}{
+\def\NOOP{%
 \AtEndDocument{\Needs{%
     "cd /home/4/gurari/xtpipes.dir
      ;
@@ -4489,10 +4494,12 @@ rmdir /s /q doc.dir
         /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
 "}}
 }
+}
 
 
 
 \ifOption{win} {}{
+\def\NOOP{%
 \AtEndDocument{\Needs{"
 cd work.dir ;
 mkdir bin;
@@ -4512,7 +4519,9 @@ cd ..
 ;
 cd ..
 ;
-"}}}
+"}}
+}
+}
 
 
 \end{document}
