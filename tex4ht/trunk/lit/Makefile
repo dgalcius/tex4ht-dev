@@ -91,14 +91,14 @@ derived += $(tex4ht-fonts-noncjk_derived)
 #tex4ht_htcmd_derived = htcmd.c
 
 derived += $(tex4ht-html-speech_derived)
-derived += $(tex4ht-htm-speech-xtpipes_derived)
+derived += $(tex4ht-html-speech-xtpipes_derived)
 derived += $(tex4ht-html0_derived)
 derived += $(tex4ht-html32_derived)
 derived += $(tex4ht-html4_derived)
 derived += $(tex4ht-info-html4_derived)
 derived += $(tex4ht-info-javahelp_derived)
 derived += $(tex4ht-info-mml_derived)
-derived += $(tex4ht_info_ooffice_derived)
+derived += $(tex4ht-info-ooffice_derived)
 derived += $(tex4ht-info-svg_derived)
 derived += $(tex4ht-info_derived)
 derived += $(tex4ht-javahelp_derived)
@@ -123,6 +123,7 @@ derived += $(tex4ht-tei_derived)
 derived += $(tex4ht-unicode_derived)
 derived += $(tex4ht-word_derived)
 derived += $(tex4ht-xhtml-xtpipes_derived)
+derived += $(tex4ht-xhtmml-xtpipes_derived)
 derived += $(xtpipes_derived)
 
 
@@ -703,3 +704,4 @@ done
 
 test:
 	@echo test
+	@echo $(derived)
