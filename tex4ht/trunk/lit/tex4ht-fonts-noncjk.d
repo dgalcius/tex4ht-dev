@@ -3168,20 +3168,20 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t2c-antt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-antt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttbcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttbicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcbcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcbicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttclcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttclicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcmcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcmicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcricap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttlcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttlicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttmcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttmicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttrcap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttricap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttbicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttcbcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttcbicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttclcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttclicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttcmcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttcmicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttcricap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttlcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttlicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttmcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttmicap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttrcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttricap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/texnansi-antt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/texnansi-anttbcap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/texnansi-anttbicap.htf\
