@@ -3217,7 +3217,7 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/pxfonts/pxbsy.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/pxfonts/pxbsya.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/pxfonts/pxbsyb.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/pxbsyc.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/pxfonts/pxbsyc.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/pxfonts/pxex.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/pxfonts/pxexa.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/pxfonts/pxi.htf\
