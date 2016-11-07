@@ -1792,7 +1792,6 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/eurmo.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppleb7m.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppleb7t.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppleb7m.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppleb7y.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppler7m.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/mathpple/zppler7v.htf\
@@ -1886,7 +1885,6 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvr8rn.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvro8r.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvro8rn.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/courier/pcrb.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvb.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvbo.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/adobe/helvetic/phvbon.htf\
@@ -2714,7 +2712,6 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/pre2005/qx-lmtcs.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/pre2005/qx-lmtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/pre2005/qx-lmvt.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lm-qx/lm-qx.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/lm-qxtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/iwona/qx-iwona.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/iwona/qx-iwonacap.htf\
@@ -3254,6 +3251,9 @@ endef
 # deps files list from tex4ht-fonts-noncjk.fls.
 define tex4ht-fonts-noncjk_deps
  tex4ht-fonts-noncjk.tex\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\
