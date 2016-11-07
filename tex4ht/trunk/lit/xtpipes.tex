@@ -22,7 +22,6 @@
 \input common.tex
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
-%% fix  \NOOP 
 
 \def\CNT{0}
 \bgroup
@@ -77,12 +76,20 @@
                   \if !#1!\else #1\fi
              \else \ext\fi}%
    \egroup
-  \def\NOOP{ \MakeDir }%%(dg)
+   \MakeDir
    \if !#1!\else
       \Needs{"\mv #1\space \dir \Slash#2\Slash
                     \ifx\ext\empty #1\else \ext\fi"}%
    \fi
 }
+\def\AddFileXX#1#2%
+{%
+  \AtBeginDocument%
+  {%
+    \Needs{"mv #1 #2"}%
+  }%
+}
+
 
 \ifOption{win}
 {
@@ -174,13 +181,8 @@
 %     \def\StartDir{}\fi
 % }
 % \def\SLASH{/}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\def\MYdir{work.dir}
-
+\def\MYdir{\WD}
 
 \expandafter\let\csname !/\endcsname\empty
 \expandafter\let\csname !/\endcsname\empty
@@ -191,30 +193,17 @@
 %\expandafter\let\csname !/home/4/gurari/tex4ht.dir/texmf\endcsname\empty
 %\expandafter\let\csname !/home/4/gurari/xtpipes.dir\endcsname\empty
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%
 \part{Core}
 %%%%%%%%%%%%%%%%%%
-
 
 %%%%%%%%%%%%%%%%%%
 \section{Control}
 %%%%%%%%%%%%%%%%%%
 
-
 %%%%%%%%%%%%%%%%%%
 \subsection{Outline}
 %%%%%%%%%%%%%%%%%%
-
 
 \AtEndDocument{
    \OutputCode[java]\<xtpipes.java\>  % double .java to avoid problems on MS
@@ -230,34 +219,33 @@
 
 
 \ifOption{win} {}{
-\def\NOOP{%
 \AtEndDocument{\Needs{"
-  cd work.dir
-  ;
   javac -Xlint:unchecked xtpipes/*.java
-        -d /home/4/gurari/xtpipes.dir/.
+        -d \XTPIPES.
   ;
   javac -Xlint:unchecked xtpipes/*/*.java
-        -d /home/4/gurari/xtpipes.dir/.
+        -d \XTPIPES.
   ;
   javac -Xlint:unchecked xtpipes.java
-        -d /home/4/gurari/xtpipes.dir/.
+        -d \XTPIPES.
 "}}
-}
 }
 
 
 \ifOption{win} {
     \def\BIN{}
 }{
- %   \def\BIN{(/home/4/gurari/xtpipes.dir)} 
-     \def\BIN{(\XTPIPES.)}%%(dg)
+    \def\BIN{(\XTPIPES)}
 }
 
 % 
-\expandafter\AddFile\BIN{xtpipes.dtd}{xtpipes\Slash lib}
-
-\AddFile{Xtpipes.java}{xtpipes}
+%% System call: mv xtpipes.dtd /home/4/gurari/xtpipes.dir/xtpipes/lib/xtpipes.dtd
+%% \expandafter\AddFile\BIN{xtpipes.dtd}{xtpipes\Slash lib}
+\AddFileXX{xtpipes.dtd}{\XTPIPES /lib/}
+%
+%% System call: mv Xtpipes.java work.dir/xtpipes/Xtpipes.java
+%\AddFile{Xtpipes.java}{xtpipes}
+\AddFileXX{Xtpipes.java}{\WD /xtpipes/}
 
 \<Xtpipes.java\><<<
 package xtpipes;
@@ -283,8 +271,8 @@ public class Xtpipes {
 }
 `<class XtpipesEntityResolver`>
 >>>
-
-\Needs{"\mv xtpipes.java.java \MYdir\Slash xtpipes.java"}
+%% System call: mv xtpipes.java.java work.dir/xtpipes.java
+\Needs{"mv xtpipes.java.java \WD /xtpipes.java"}
 
 NOTE: We can not place Xtpipes.class and xtpipes.class at the same
 directory because MS Windows get confused between the two.
@@ -885,7 +873,8 @@ if( outPrintWriter == null ){
 \AtEndDocument{
    \OutputCodE\<XtpipesPrintWriter.java\>
 }
-\AddFile{XtpipesPrintWriter.java}{xtpipes}
+%% System call: mv XtpipesPrintWriter.java work.dir/xtpipes/XtpipesPrintWriter.java
+\AddFileXX{XtpipesPrintWriter.java}{\WD /xtpipes/}
 
 \<XtpipesPrintWriter.java\><<<
 package xtpipes;
@@ -2602,8 +2591,8 @@ public InputSource resolveEntity(String publicID, String systemID)
 \AtEndDocument{
    \OutputCodE\<FileInfo.java\>
 }
-
-\AddFile{FileInfo.java}{xtpipes}
+%%System call: mv FileInfo.java work.dir/xtpipes/FileInfo.java
+\AddFileXX{FileInfo.java}{\WD /xtpipes/}
 
 \<FileInfo.java\><<<
 package xtpipes;
@@ -2815,8 +2804,8 @@ which the file is scanned directly without trying to build an XML object.
 \AtEndDocument{
    \OutputCodE\<InputObject.java\>
 }
-
-\AddFile{InputObject.java}{xtpipes}
+%% System call: mv InputObject.java work.dir/xtpipes/InputObject.java
+\AddFileXX{InputObject.java}{\WD /xtpipes/}
 
 
 \<InputObject.java\><<<
@@ -3607,7 +3596,8 @@ The same holds for ascii characters listed within the filter.
 \AtEndDocument{
    \OutputCodE\<XtpipesUni.java\>
 }
-\AddFile{XtpipesUni.java}{xtpipes}
+%% System call: mv XtpipesUni.java work.dir/xtpipes/XtpipesUni.java
+\AddFileXX{XtpipesUni.java}{\WD /xtpipes/}
 
 
 \<XtpipesUni.java\><<<
@@ -4010,7 +4000,9 @@ import java.util.ArrayList;
 \AtEndDocument{
    \OutputCodE\<ScriptsManager.java\>
 }
-\AddFile{ScriptsManager.java}{xtpipes\Slash util}
+%% System call: mv ScriptsManager.java work.dir/xtpipes/util/ScriptsManager.java
+\AddFileXX{ScriptsManager.java}{\WD /xtpipes/util/}
+
 
 \<ScriptsManager.java\><<<
 /* ScriptsManager.java (`version), generated from `jobname.tex
@@ -4340,7 +4332,8 @@ The lexical handler sends its strings to the content hadler.
 \AtEndDocument{
    \OutputCodE\<ScriptsManagerLH.java\>
 }
-\AddFile{ScriptsManagerLH.java}{xtpipes\Slash util}
+%% System call: mv ScriptsManagerLH.java work.dir/xtpipes/util/ScriptsManagerLH.java
+\AddFile{ScriptsManagerLH.java}{\WD /xtpipes/util/}
 
 \<ScriptsManagerLH.java\><<<
 /* ScriptsManagerLH.java (`version), generated from `jobname.tex
@@ -4482,24 +4475,20 @@ rmdir /s /q doc.dir
 ../../..;..;../../jldoc;../../xtpipes/cgjsapi.jar;../../xtpipes/xtpipes.jar;../../jldoc/jldoc.jar;../../ml2xml.dir/ml2xml.dir/bin/ml2xml.jar
 
 \ifOption{win} {}{
-\def\NOOP{%
 \AtEndDocument{\Needs{%
-    "cd /home/4/gurari/xtpipes.dir
+    "cd \XTPIPES
      ;
      jar cf tex4ht.jar *
      ;
-     mv tex4ht.jar /home/4/gurari/tex4ht.dir/texmf/tex4ht/bin/.
+     mv tex4ht.jar \HOME texmf/tex4ht/bin/.
      ;
-     cp /home/4/gurari/xtpipes.dir/xtpipes/lib/*
-        /home/4/gurari/tex4ht.dir/texmf/tex4ht/xtpipes/.
+     cp xtpipes/lib/*  ../\HOME /texmf/tex4ht/xtpipes/.
 "}}
-}
 }
 
 
 
 \ifOption{win} {}{
-\def\NOOP{%
 \AtEndDocument{\Needs{"
 cd work.dir ;
 mkdir bin;
@@ -4513,15 +4502,13 @@ cd xtpipes;
 mkdir bin;
  mv ../bin/xtpipes.jar bin/.
 ;
-cp -r bin /home/4/gurari/xtpipes.dir/xtpipes/.
+cp -r bin ../../\XTPIPES/xtpipes/.
 ;
 cd ..
 ;
 cd ..
 ;
-"}}
-}
-}
+"}}}
 
 
 \end{document}
