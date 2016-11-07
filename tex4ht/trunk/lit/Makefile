@@ -414,14 +414,14 @@ options-doc $(tex4ht_options_doc): $(tex4ht-options_deps)
 sty $(tex4ht-sty_derived): $(tex4ht-sty_deps)
 	tex $(tex_opts) $<
 
-sty-doc $(tex4ht-sty_derived): $(tex4ht-sty_deps)
+sty-doc $(tex4ht-sty_doc): $(tex4ht-sty_deps)
 	$(HTTEX) $< ""
 
 svg $(tex4ht-svg_derived): $(tex4ht-svg_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-svg-doc $(tex4ht-svg_derived): tex4ht-svg.tex $(common)
+svg-doc $(tex4ht-svg_doc): $(tex4ht-svg_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 t4ht $(tex4ht-t4ht_derived): $(tex4ht-t4ht_deps)
@@ -454,17 +454,16 @@ word-doc $(tex4ht-word_doc): $(tex4ht-word_deps)
 xhtml-xtpipes $(tex4ht-xhtml-xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtml-xtpipes-doc $(tex4ht_xhtml_xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
+xhtml-xtpipes-doc $(tex4ht_xhtml_xtpipes_doc): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
+xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_doc): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-#$(xtpipes_deps)
-xtpipes $(xtpipes_derived): xtpipes.tex
+xtpipes $(xtpipes_derived): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
