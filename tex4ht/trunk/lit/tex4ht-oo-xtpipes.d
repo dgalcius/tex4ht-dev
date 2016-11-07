@@ -13,7 +13,11 @@ endef
 # deps files list from tex4ht-oo-xtpipes.fls.
 define tex4ht-oo-xtpipes_deps
  tex4ht-oo-xtpipes.tex\
+ tex4ht.sty\
+ tex4ht.sty\
  usepackage.4ht\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\

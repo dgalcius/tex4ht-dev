@@ -237,6 +237,9 @@ define mkht-scripts_deps
  ./mkht.4ht\
  ProTex.sty\
  AlProTex.sty\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\

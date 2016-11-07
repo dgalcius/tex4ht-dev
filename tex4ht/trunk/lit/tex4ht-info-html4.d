@@ -40,5 +40,6 @@ define tex4ht-info-html4_deps
  common.tex\
  common.tex\
  infoht4.4ht\
+ infomml.4ht\
 
 endef

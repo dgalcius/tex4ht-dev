@@ -12,7 +12,11 @@ define tex4ht-jsml_deps
  tex4ht-jsml.tex\
  mktex4ht.4ht\
  ProTex.sty\
+ tex4ht.sty\
+ tex4ht.sty\
  usepackage.4ht\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\

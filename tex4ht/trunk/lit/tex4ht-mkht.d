@@ -11,6 +11,9 @@ endef
 # deps files list from tex4ht-mkht.fls.
 define tex4ht-mkht_deps
  tex4ht-mkht.tex\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\

@@ -11,6 +11,10 @@ define tex4ht-info-javahelp_deps
  tex4ht-info-javahelp.tex\
  mktex4ht.4ht\
  ProTex.sty\
+ tex4ht.sty\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\
@@ -40,5 +44,6 @@ define tex4ht-info-javahelp_deps
  common.tex\
  common.tex\
  infoht4.4ht\
+ infomml.4ht\
 
 endef

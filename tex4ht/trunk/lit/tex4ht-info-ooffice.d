@@ -11,6 +11,10 @@ define tex4ht-info-ooffice_deps
  tex4ht-info-ooffice.tex\
  mktex4ht.4ht\
  ProTex.sty\
+ tex4ht.sty\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\
@@ -41,5 +45,7 @@ define tex4ht-info-ooffice_deps
  common.tex\
  tex4ht-cpright.tex\
  tex4ht-cpright.tex\
+ infoht4.4ht\
+ infomml.4ht\
 
 endef
