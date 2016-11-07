@@ -11,6 +11,10 @@ define tex4ht-info-html4_deps
  tex4ht-info-html4.tex\
  mktex4ht.4ht\
  ProTex.sty\
+ tex4ht.sty\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
  html4.4ht\
  html4-math.4ht\
  html4.4ht\
