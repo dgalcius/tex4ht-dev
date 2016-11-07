@@ -6,7 +6,7 @@
 % Released under LPPL 1.3c+.
 % See tex4ht-cpright.tex for license text.
 
-\input common
+\input common.tex
 \input DraTex.sty
 \input AlDraTex.sty
 
@@ -25,8 +25,10 @@
 
 \def\Link#1\EndLink{}
 
+\def\NOOP{
 \openin15=tex4ht.sty
           \ifeof15
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% replacement for TeX4ht %%%%%%%%%%%%%%%%%%
 \immediate\write16{........dvi mode}
@@ -88,7 +90,7 @@
    \catcode`\{=12 \catcode`\}=12 \catcode`\%=12 \:vrb}
 \long\def\:vrb#1EndVerbatim{\egroup}
 
-
+\def\NOOP{%
    \closein15 
        \def\next{%\input DraTex.sty
 \immediate\write16{.................requesting non-html mode}%
@@ -111,6 +113,12 @@
 \fi
 
 \next
+}
+
+\catcode`\:=12
+\input ProTex.sty
+\AlProTex{sty,<<<>>>,|,title,list,[],ClearCode}
+
 
 
 \def\`{\Verb}

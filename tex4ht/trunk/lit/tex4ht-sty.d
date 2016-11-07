@@ -10,22 +10,6 @@ endef
 define tex4ht-sty_deps
  tex4ht-sty.tex\
  common.tex\
- tex4ht.4ht\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
- plain.4ht\
- html4.4ht\
- html4-math.4ht\
- dratex.4ht\
- html4.4ht\
- html4-math.4ht\
- th4.4ht\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-cpright.tex\
