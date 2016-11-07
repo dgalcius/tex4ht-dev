@@ -2824,8 +2824,8 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/iwona/t5-iwonacap/t5-iwonacbicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/iwona/t5-iwonacap/t5-iwonachicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/vnr/vn.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/txfonts/txbtt.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/txfonts/txtt.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/txbtt.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/txtt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/bchrc8v.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/chartervn/bchri8v.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/chartervn/bchro8v.htf\
@@ -3167,7 +3167,7 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t2b-antt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t2c-antt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-antt.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttbcap.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/antt/t5-anttbcap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttbicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcbcap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/vntex/t5-anttcbicap.htf\
