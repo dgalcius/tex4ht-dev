@@ -20,6 +20,12 @@ deriveddir = derived.dir
 
 # make sure xtpipesdir exists
 foo := $(shell mkdir -p $(xtpipesdir))
+foo := $(shell mkdir -p $(xtpipesdir)/xtpipes)
+foo := $(shell mkdir -p $(xtpipesdir)/xtpipes/lib)
+foo := $(shell mkdir -p $(wd)/xtpipes)
+foo := $(shell mkdir -p $(wd)/xtpipes/util)
+foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
+foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
 tex_opts = --interaction=nonstopmode -recorder #--file-line-error
 tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
@@ -456,7 +462,8 @@ xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xtpipes $(xtpipes_derived): $(xtpipes_deps)
+#$(xtpipes_deps)
+xtpipes $(xtpipes_derived): xtpipes.tex
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
