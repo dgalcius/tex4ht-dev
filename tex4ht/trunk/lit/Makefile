@@ -189,8 +189,9 @@ c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 
 docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps) 
 	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
-docbook-doc $(tex4ht_docbook_derived): tex4ht-docbook.tex $(common)
+docbook-doc $(tex4ht_docbook_doc): tex4ht-docbook.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
@@ -198,7 +199,7 @@ docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps
 
 
 # xx
-docbook-xtpipes-doc $(tex4ht_docbook_xtpipes_derived): tex4ht-docbook-xtpipes.tex $(common)
+docbook-xtpipes-doc $(tex4ht_docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 env $(tex4ht-env_derived): $(tex4ht-env_deps)
@@ -238,6 +239,7 @@ fonts-noncjk-doc $(tex4ht_fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 
 html-speech $(tex4ht-html-speech_derived): $(tex4ht-html-speech_deps) 
 	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps) 
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
@@ -245,7 +247,7 @@ html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps)
 html-speech-xtpipes $(tex4ht-html-speech-xtpipes_derived): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
-html-speech-xtpipes-doc $(tex4ht-html-speech-_xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
+html-speech-xtpipes-doc $(tex4ht-html-speech-xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
 html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
@@ -255,17 +257,18 @@ html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
 html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-html32 $(tex4ht-html32_derived): tex4ht-html32.tex $(common)
+html32 $(tex4ht-html32_derived): $(tex4ht-html32_deps)
+	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-html32-doc $(tex4ht-html32_doc): tex4ht-html32.tex $(common)
+html32-doc $(tex4ht-html32_doc): $(tex4ht-html32_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-html4 $(tex4ht-html4_derived): tex4ht-html4.tex $(common)
+html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-html4-doc $(tex4ht-html4_doc): tex4ht-html4.tex $(common)
+html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
@@ -463,7 +466,8 @@ xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_doc): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xtpipes $(xtpipes_derived): $(xtpipes_deps)
+#$(xtpipes_deps)
+xtpipes $(xtpipes_derived): xtpipes.tex
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
