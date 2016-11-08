@@ -15,7 +15,17 @@ endef
 # deps files list from tex4ht-html4.fls.
 define tex4ht-html4_deps
  tex4ht-html4.tex\
+ mktex4ht.4ht\
  ProTex.sty\
+ tex4ht.sty\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
+ latex.4ht\
+ fontmath.4ht\
+ book.4ht\
+ book.4ht\
+ ProTex.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-html4.tex\
