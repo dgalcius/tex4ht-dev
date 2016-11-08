@@ -1404,21 +1404,8 @@ endef
 # deps files list from tex4ht-fonts-cjk.fls.
 define tex4ht-fonts-cjk_deps
  tex4ht-fonts-cjk.tex\
- tex4ht.sty\
- tex4ht.4ht\
- tex4ht.sty\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
  plain.4ht\
- html4.4ht\
- html4-math.4ht\
  th4.4ht\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-dir.tex\
