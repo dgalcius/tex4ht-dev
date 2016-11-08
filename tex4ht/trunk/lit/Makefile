@@ -84,53 +84,55 @@ derived += $(tex4ht-cond4ht_derived)
 derived += $(cond4ht_derived)
 derived += $(tex4ht-4ht_derived)
 derived += $(tex4ht-bibtex2_derived)
-derived += $(tex4ht-c_derived)
-derived += $(tex4ht-docbook_derived)
-derived += $(tex4ht-docbook-xtpipes_derived)
-derived += $(tex4ht-env_derived)
-derived += $(tex4ht-fonts-cjk_derived)
-derived += $(tex4ht-fonts-cjk-utf8_derived)
-derived += $(tex4ht-fonts-noncjk_derived)
-# whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
+#
+#derived += $(tex4ht-fonts-cjk_derived)
+#derived += $(tex4ht-fonts-cjk-utf8_derived)
+#derived += $(tex4ht-fonts-noncjk_derived)
+#
+#derived += $(tex4ht-c_derived)
+#derived += $(tex4ht-t4ht_derived)
+#derived += $(tex4ht-docbook_derived)
+#derived += $(tex4ht-docbook-xtpipes_derived)
+#derived += $(tex4ht-env_derived)
+## whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
 
-# htcmd not used
-#derived += $(tex4ht_htcmd_derived)
-#tex4ht_htcmd_derived = htcmd.c
+## htcmd not used
+##derived += $(tex4ht_htcmd_derived)
+##tex4ht_htcmd_derived = htcmd.c
 
 derived += $(tex4ht-html-speech_derived)
-derived += $(tex4ht-html-speech-xtpipes_derived)
-derived += $(tex4ht-html0_derived)
-derived += $(tex4ht-html32_derived)
-derived += $(tex4ht-html4_derived)
-derived += $(tex4ht-info-html4_derived)
-derived += $(tex4ht-info-javahelp_derived)
-derived += $(tex4ht-info-mml_derived)
-derived += $(tex4ht-info-ooffice_derived)
-derived += $(tex4ht-info-svg_derived)
-derived += $(tex4ht-info_derived)
-derived += $(tex4ht-javahelp_derived)
-derived += $(tex4ht-javahelp-xtpipes_derived)
-derived += $(tex4ht-jsmath_derived)
-derived += $(tex4ht-jsml-xtpipes_derived)
-derived += $(tex4ht-jsml_derived)
-derived += $(tex4ht-mathltx_derived)
-derived += $(tex4ht-mathml_derived)
-derived += $(tex4ht-mathplayer_derived)
-derived += $(tex4ht-mkht_derived)
-derived += $(mkht-scripts_derived)
-derived += $(tex4ht-moz_derived)
-derived += $(tex4ht-oo-xtpipes_derived)
-derived += $(tex4ht-ooffice_derived)
-derived += $(tex4ht-ooimpress_derived)
-derived += $(tex4ht-options_derived)
-derived += $(tex4ht-sty_derived)
-derived += $(tex4ht-svg_derived)
-derived += $(tex4ht-t4ht_derived)
-derived += $(tex4ht-tei_derived)
-derived += $(tex4ht-unicode_derived)
-derived += $(tex4ht-word_derived)
-derived += $(tex4ht-xhtml-xtpipes_derived)
-derived += $(tex4ht-xhtmml-xtpipes_derived)
+#derived += $(tex4ht-html-speech-xtpipes_derived)
+#derived += $(tex4ht-html0_derived)
+#derived += $(tex4ht-html32_derived)
+#derived += $(tex4ht-html4_derived)
+#derived += $(tex4ht-info-html4_derived)
+#derived += $(tex4ht-info-javahelp_derived)
+#derived += $(tex4ht-info-mml_derived)
+#derived += $(tex4ht-info-ooffice_derived)
+#derived += $(tex4ht-info-svg_derived)
+#derived += $(tex4ht-info_derived)
+#derived += $(tex4ht-javahelp_derived)
+#derived += $(tex4ht-javahelp-xtpipes_derived)
+#derived += $(tex4ht-jsmath_derived)
+#derived += $(tex4ht-jsml-xtpipes_derived)
+#derived += $(tex4ht-jsml_derived)
+#derived += $(tex4ht-mathltx_derived)
+#derived += $(tex4ht-mathml_derived)
+#derived += $(tex4ht-mathplayer_derived)
+#derived += $(tex4ht-mkht_derived)
+#derived += $(mkht-scripts_derived)
+#derived += $(tex4ht-moz_derived)
+#derived += $(tex4ht-oo-xtpipes_derived)
+#derived += $(tex4ht-ooffice_derived)
+#derived += $(tex4ht-ooimpress_derived)
+#derived += $(tex4ht-options_derived)
+#derived += $(tex4ht-sty_derived)
+#derived += $(tex4ht-svg_derived)
+#derived += $(tex4ht-tei_derived)
+#derived += $(tex4ht-unicode_derived)
+#derived += $(tex4ht-word_derived)
+#derived += $(tex4ht-xhtml-xtpipes_derived)
+#derived += $(tex4ht-xhtmml-xtpipes_derived)
 #derived += $(xtpipes_derived)
 
 
@@ -165,6 +167,9 @@ all: $(derived)
 doc: $(derived-doc) tohtmldir
 
 mktex4ht $(cond4ht_derived): $(cond4ht_deps)
+	tex $(tex_opts) $<
+
+cond4ht.fls: cond4ht.4ht
 	tex $(tex_opts) $<
 
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
@@ -211,18 +216,27 @@ tex4ht-c.fls: tex4ht-c.tex
 
 docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
-	latex $(tex_opts) $<
 
 docbook-doc $(tex4ht-docbook_doc): tex4ht-docbook.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
+tex4ht-docbook.fls: tex4ht-docbook.tex
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
 docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
+	xhlatex $< "html,3" "" "" $(tex_1opt)
+
+tex4ht-docbook-xtpipes.fls: tex4ht-docbook-xtpipes.tex
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 env $(tex4ht-env_derived): $(tex4ht-env_deps)
+	latex $(tex_opts) $<
+
+tex4ht-env.fls: tex4ht-env.tex
 	latex $(tex_opts) $<
 
 # xx
@@ -260,6 +274,10 @@ fonts-noncjk-doc $(tex4ht-fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 html-speech $(tex4ht-html-speech_derived): $(tex4ht-html-speech_deps) 
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
+
+#tex4ht-html-speech.fls: tex4ht-html-speech.tex
+#	latex $(tex_opts) $<
+#	latex $(tex_opts) $<
 
 html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps) 
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
@@ -452,6 +470,9 @@ svg-doc $(tex4ht-svg_doc): $(tex4ht-svg_deps)
 t4ht $(tex4ht-t4ht_derived): $(tex4ht-t4ht_deps)
 	tex $(tex_opts) $<
 
+tex4ht-t4ht.fls: tex4ht-t4ht.tex
+	tex $(tex_opts) $<
+
 t4ht-doc $(tex4ht-t4ht_doc): $(tex4ht-t4ht_deps)
 	$(HTTEX) $< ""
 
@@ -631,15 +652,11 @@ mostlyclean:
 # post 'make all' actions
 sources = \
  tex4ht-cond4ht.tex\
+ cond4ht.tex\
  tex4ht-4ht.tex\
  tex4ht-bibtex2.tex\
  tex4ht-c.tex\
  tex4ht-docbook.tex\
- tex4ht-info-html4.tex\
- tex4ht-info-javahelp.tex\
- tex4ht-info-mml.tex\
- tex4ht-info-ooffice.tex\
- tex4ht-info-svg.tex\
  tex4ht-t4ht.tex\
  tex4ht-env.tex\
  tex4ht-fonts-cjk.tex\
@@ -665,6 +682,11 @@ sources = \
  tex4ht-svg.tex\
  tex4ht-tei.tex\
  tex4ht-word.tex\
+ tex4ht-info-html4.tex\
+ tex4ht-info-javahelp.tex\
+ tex4ht-info-mml.tex\
+ tex4ht-info-ooffice.tex\
+ tex4ht-info-svg.tex\
  tex4ht-docbook-xtpipes.tex\
  tex4ht-html-speech-xtpipes.tex\
  tex4ht-javahelp-xtpipes.tex\
@@ -688,7 +710,7 @@ sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
 ##   which are included in main Makefile with 'include' directive.
 ## An attemp to mimick automake dependency computation. Generate (small) Makefiles with
 ## vars for dependencies and derived files from *.fls.
-%.dd: clean %.fls 
+%.dd: %.fls 
 	$(extra_bin)/fls2d $*.fls >$*.d
 
 ## Fonts need to parse *.fls and *.lg files
