@@ -27,6 +27,7 @@ foo := $(shell mkdir -p $(wd)/xtpipes/util)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
+#tex_opts = --interaction=errorstopmode -recorder #--file-line-error
 tex_opts = --interaction=batchmode -recorder #--file-line-error
 tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
 dev_null = </dev/null    # when we don't call tex directly.
@@ -124,7 +125,7 @@ derived += $(tex4ht-unicode_derived)
 derived += $(tex4ht-word_derived)
 derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
-derived += $(xtpipes_derived)
+#derived += $(xtpipes_derived)
 
 
 xderived += $(x_xtpipes_derived)
@@ -191,15 +192,13 @@ docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-docbook-doc $(tex4ht_docbook_doc): tex4ht-docbook.tex $(common)
+docbook-doc $(tex4ht-docbook_doc): tex4ht-docbook.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-
-# xx
-docbook-xtpipes-doc $(tex4ht_docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
+docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 env $(tex4ht-env_derived): $(tex4ht-env_deps)
@@ -230,7 +229,7 @@ fonts-noncjk $(tex4ht-fonts-noncjk_derived): $(tex4ht-fonts-noncjk_deps)
 	tex4ht $<
 	t4ht $< 
 
-fonts-noncjk-doc $(tex4ht_fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
+fonts-noncjk-doc $(tex4ht-fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 	$(HTTEX) $< ""
 
 #xx not used
@@ -336,7 +335,7 @@ jsmath-doc $(tex4ht-jsmath_doc): tex4ht-jsmath.tex $(common)
 jsml-xtpipes $(tex4ht-jsml-xtpipes_derived): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-jsml-xtpipes-doc $(tex4ht_jsml_xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
+jsml-xtpipes-doc $(tex4ht-jsml_xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
 jsml $(tex4ht-jsml_derived): tex4ht-jsml.tex $(common)
@@ -386,20 +385,20 @@ moz $(tex4ht-moz_derived): $(tex4ht-moz_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-moz-doc $(tex4ht_moz_derived): $(tex4ht-moz_deps)
+moz-doc $(tex4ht-moz_doc): $(tex4ht-moz_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 oo-xtpipes $(tex4ht-oo-xtpipes_derived): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-oo-xtpipes-doc $(tex4ht_oo_xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
+oo-xtpipes-doc $(tex4ht-oo-xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
 ooffice $(tex4ht-ooffice_derived): $(tex4ht-ooffice_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-ooffice-doc $(tex4ht_ooffice_doc): tex4ht-ooffice.tex $(common)
+ooffice-doc $(tex4ht-_ooffice_doc): tex4ht-ooffice.tex $(common)
 	htlatex $< "xhtml,4,sections+" "" "" $(tex_1opt)
 
 ooimpress $(tex4ht-ooimpress_derived): $(tex4ht-ooimpress_deps)
@@ -412,7 +411,7 @@ ooimpress-doc $(tex4ht-ooimpress_doc): $(tex4ht-ooimpress_deps)
 options $(tex4ht-options_derived): $(tex4ht-options_deps)
 	latex $(tex_opts) $<
 
-options-doc $(tex4ht_options_doc): $(tex4ht-options_deps)
+options-doc $(tex4ht-options_doc): $(tex4ht-options_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 sty $(tex4ht-sty_derived): $(tex4ht-sty_deps)
@@ -438,7 +437,7 @@ tei $(tex4ht-tei_derived): $(tex4ht-tei_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-tei-doc $(tex4ht_tei_derived): $(tex4ht-tei_deps)
+tei-doc $(tex4ht-tei_doc): $(tex4ht-tei_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 unicode $(tex4ht-unicode_derived): $(tex4ht-unicode_deps)
@@ -458,7 +457,7 @@ word-doc $(tex4ht-word_doc): $(tex4ht-word_deps)
 xhtml-xtpipes $(tex4ht-xhtml-xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtml-xtpipes-doc $(tex4ht_xhtml_xtpipes_doc): $(tex4ht-xhtml-xtpipes_deps)
+xhtml-xtpipes-doc $(tex4ht-xhtml-_xtpipes_doc): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
@@ -708,4 +707,5 @@ done
 
 test:
 	@echo test
-	@echo $(derived)
+#	@echo $(derived)
+	for file in $(tex4ht-fonts-cjk_derived); do test -f $$file && echo "Exists" || echo "NOT exists" ; done
