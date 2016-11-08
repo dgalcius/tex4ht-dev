@@ -80,8 +80,8 @@ common_info = $(common) common-info.tex
 derived =
 xderived =
 
-derived += $(cond4ht_derived)
 derived += $(tex4ht-cond4ht_derived)
+derived += $(cond4ht_derived)
 derived += $(tex4ht-4ht_derived)
 derived += $(tex4ht-bibtex2_derived)
 derived += $(tex4ht-c_derived)
@@ -170,6 +170,12 @@ mktex4ht $(cond4ht_derived): $(cond4ht_deps)
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
 
+mktex4ht.fls: mktex4ht.tex
+	tex $(tex_opts) $<
+
+tex4ht-cond4ht.fls: tex4ht-cond4ht.tex
+	tex $(tex_opts) $<
+
 cond4ht $(tex4ht-cond4ht_derived): $(tex4ht-cond4ht_deps) 
 	tex $(tex_opts) $<
 
@@ -182,10 +188,16 @@ cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
 4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
 	$(HTTEX) $<
 
+tex4ht-4ht.fls: tex4ht-4ht.tex
+	tex $(tex_opts) $<
+
 bibtex2 $(tex4ht-bibtex2_derived): $(tex4ht-bibtex2_deps)
 	latex $(tex_opts) $<
 
 bibtex2-doc $(tex4ht-bibtex2_doc): $(tex4ht-bibtex2_deps)
+	xhlatex $< "html,3" "" "" $(tex_1opt)
+
+tex4ht-bibtex2.fls: tex4ht-bibtex2.tex
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 c $(tex4ht-c_derived): $(tex4ht-c_deps) 
@@ -193,6 +205,9 @@ c $(tex4ht-c_derived): $(tex4ht-c_deps)
 
 c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 	$(HTTEX) $<
+
+tex4ht-c.fls: tex4ht-c.tex
+	tex $(tex_opts) $<
 
 docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
@@ -617,15 +632,15 @@ mostlyclean:
 sources = \
  tex4ht-cond4ht.tex\
  tex4ht-4ht.tex\
+ tex4ht-bibtex2.tex\
+ tex4ht-c.tex\
+ tex4ht-docbook.tex\
  tex4ht-info-html4.tex\
  tex4ht-info-javahelp.tex\
  tex4ht-info-mml.tex\
  tex4ht-info-ooffice.tex\
  tex4ht-info-svg.tex\
- tex4ht-c.tex\
  tex4ht-t4ht.tex\
- tex4ht-docbook.tex\
- tex4ht-bibtex2.tex\
  tex4ht-env.tex\
  tex4ht-fonts-cjk.tex\
  tex4ht-fonts-cjk-utf8.tex\
@@ -673,8 +688,8 @@ sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
 ##   which are included in main Makefile with 'include' directive.
 ## An attemp to mimick automake dependency computation. Generate (small) Makefiles with
 ## vars for dependencies and derived files from *.fls.
-%.dd: %.fls
-	$(extra_bin)/fls2d $< >$*.d
+%.dd: clean %.fls 
+	$(extra_bin)/fls2d $*.fls >$*.d
 
 ## Fonts need to parse *.fls and *.lg files
 tex4ht-fonts-cjk.dd: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
@@ -717,5 +732,6 @@ test:
 #	@echo $(derived)
 	for file in $(tex4ht-fonts-cjk_derived); do test -f $$file && echo "Exists" || echo "NOT exists" ; done
 
-test2: $(tex4ht-cond4ht_derived) $(cond4ht_derived) $(tex4ht-4ht_derived) $(tex4ht-fonts-cjk-utf8_derived) $(tex4ht-fonts-noncjk_derived)
+test2: $(tex4ht-cond4ht_derived)
+#$(cond4ht_derived) $(tex4ht-4ht_derived) $(tex4ht-fonts-cjk-utf8_derived) $(tex4ht-fonts-noncjk_derived)
 	echo foo
