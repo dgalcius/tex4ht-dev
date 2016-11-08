@@ -27,7 +27,7 @@ foo := $(shell mkdir -p $(wd)/xtpipes/util)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
-tex_opts = --interaction=nonstopmode -recorder #--file-line-error
+tex_opts = --interaction=batchmode -recorder #--file-line-error
 tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
 dev_null = </dev/null    # when we don't call tex directly.
 
@@ -266,14 +266,15 @@ html32-doc $(tex4ht-html32_doc): $(tex4ht-html32_deps)
 
 html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+#	latex $(tex_opts) $<
 
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
+#$(tex4ht-info-html4_deps)
+info-html4 $(tex4ht-info-html4_derived): tex4ht-info-html4.tex
 	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+#	latex $(tex_opts) $<
 
 info-html4-doc $(tex4ht-info-html4_doc): $(tex4ht-info-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
