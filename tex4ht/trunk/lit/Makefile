@@ -85,26 +85,39 @@ derived += $(cond4ht_derived)
 derived += $(tex4ht-4ht_derived)
 derived += $(tex4ht-bibtex2_derived)
 #
-#derived += $(tex4ht-fonts-cjk_derived)
-#derived += $(tex4ht-fonts-cjk-utf8_derived)
-#derived += $(tex4ht-fonts-noncjk_derived)
+derived += $(tex4ht-fonts-cjk_derived)
+derived += $(tex4ht-fonts-cjk-utf8_derived)
+derived += $(tex4ht-fonts-noncjk_derived)
+derived += $(tex4ht-unicode_derived)
 #
-#derived += $(tex4ht-c_derived)
-#derived += $(tex4ht-t4ht_derived)
+derived += $(tex4ht-c_derived)
+derived += $(tex4ht-t4ht_derived)
+#
+derived += $(tex4ht-options_derived)
+derived += $(tex4ht-sty_derived)
+derived += $(tex4ht-env_derived)
+#
+derived += $(tex4ht-mkht_derived)
+derived += $(mkht-scripts_derived)
+
+
+derived += $(tex4ht-html4_derived)
+#derived += $(tex4ht-html32_derived)
+#derived += $(tex4ht-html0_derived)
+
 #derived += $(tex4ht-docbook_derived)
 #derived += $(tex4ht-docbook-xtpipes_derived)
-#derived += $(tex4ht-env_derived)
+
 ## whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
 
 ## htcmd not used
 ##derived += $(tex4ht_htcmd_derived)
 ##tex4ht_htcmd_derived = htcmd.c
 
-derived += $(tex4ht-html-speech_derived)
+
+
+#derived += $(tex4ht-html-speech_derived)
 #derived += $(tex4ht-html-speech-xtpipes_derived)
-#derived += $(tex4ht-html0_derived)
-#derived += $(tex4ht-html32_derived)
-#derived += $(tex4ht-html4_derived)
 #derived += $(tex4ht-info-html4_derived)
 #derived += $(tex4ht-info-javahelp_derived)
 #derived += $(tex4ht-info-mml_derived)
@@ -119,17 +132,12 @@ derived += $(tex4ht-html-speech_derived)
 #derived += $(tex4ht-mathltx_derived)
 #derived += $(tex4ht-mathml_derived)
 #derived += $(tex4ht-mathplayer_derived)
-#derived += $(tex4ht-mkht_derived)
-#derived += $(mkht-scripts_derived)
 #derived += $(tex4ht-moz_derived)
 #derived += $(tex4ht-oo-xtpipes_derived)
 #derived += $(tex4ht-ooffice_derived)
 #derived += $(tex4ht-ooimpress_derived)
-#derived += $(tex4ht-options_derived)
-#derived += $(tex4ht-sty_derived)
 #derived += $(tex4ht-svg_derived)
 #derived += $(tex4ht-tei_derived)
-#derived += $(tex4ht-unicode_derived)
 #derived += $(tex4ht-word_derived)
 #derived += $(tex4ht-xhtml-xtpipes_derived)
 #derived += $(tex4ht-xhtmml-xtpipes_derived)
@@ -166,77 +174,49 @@ tex4ht-c_doc = $(htmldir)/tex4ht-c/tex4ht-c.html
 all: $(derived)
 doc: $(derived-doc) tohtmldir
 
-mktex4ht $(cond4ht_derived): $(cond4ht_deps)
-	tex $(tex_opts) $<
-
-cond4ht.fls: cond4ht.4ht
+mktex4ht $(cond4ht_derived): cond4ht.4ht $(cond4ht_deps)
 	tex $(tex_opts) $<
 
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
 
-mktex4ht.fls: mktex4ht.tex
-	tex $(tex_opts) $<
-
-tex4ht-cond4ht.fls: tex4ht-cond4ht.tex
-	tex $(tex_opts) $<
-
-cond4ht $(tex4ht-cond4ht_derived): $(tex4ht-cond4ht_deps) 
+cond4ht $(tex4ht-cond4ht_derived): tex4ht-cond4ht.tex $(tex4ht-cond4ht_deps) 
 	tex $(tex_opts) $<
 
 cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
 	$(HTTEX) $<
 
-4ht $(tex4ht-4ht_derived): $(tex4ht-4ht_deps)
+4ht $(tex4ht-4ht_derived): tex4ht-4ht.tex $(tex4ht-4ht_deps)
 	tex $(tex_opts) $<
 
 4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
 	$(HTTEX) $<
 
-tex4ht-4ht.fls: tex4ht-4ht.tex
-	tex $(tex_opts) $<
-
-bibtex2 $(tex4ht-bibtex2_derived): $(tex4ht-bibtex2_deps)
+bibtex2 $(tex4ht-bibtex2_derived): tex4ht-bibtex2.tex $(tex4ht-bibtex2_deps)
 	latex $(tex_opts) $<
 
 bibtex2-doc $(tex4ht-bibtex2_doc): $(tex4ht-bibtex2_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-tex4ht-bibtex2.fls: tex4ht-bibtex2.tex
-	xhlatex $< "html,3" "" "" $(tex_1opt)
-
-c $(tex4ht-c_derived): $(tex4ht-c_deps) 
+c $(tex4ht-c_derived): tex4ht-c.tex $(tex4ht-c_deps) 
 	tex $(tex_opts) $<
 
 c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 	$(HTTEX) $<
 
-tex4ht-c.fls: tex4ht-c.tex
-	tex $(tex_opts) $<
-
-docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
+docbook $(tex4ht-docbook_derived): tex4ht-docbook.tex $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
 
-docbook-doc $(tex4ht-docbook_doc): tex4ht-docbook.tex $(common)
+docbook-doc $(tex4ht-docbook_doc): tex4ht-docbook.tex $(tex4ht-docbook_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-tex4ht-docbook.fls: tex4ht-docbook.tex
-	latex $(tex_opts) $<
-	latex $(tex_opts) $<
-
-docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
-	xhlatex $< "html,3" "" "" $(tex_1opt)
-
-tex4ht-docbook-xtpipes.fls: tex4ht-docbook-xtpipes.tex
+docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): tex4ht-docbook-xtpipes.tex $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-env $(tex4ht-env_derived): $(tex4ht-env_deps)
-	latex $(tex_opts) $<
-
-tex4ht-env.fls: tex4ht-env.tex
+env $(tex4ht-env_derived): tex4ht-env.tex $(tex4ht-env_deps)
 	latex $(tex_opts) $<
 
 # xx
@@ -288,14 +268,14 @@ html-speech-xtpipes $(tex4ht-html-speech-xtpipes_derived): $(tex4ht-html-speech-
 html-speech-xtpipes-doc $(tex4ht-html-speech-xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
-html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
-	latex $(tex_opts) $<
+html0 $(tex4ht-html0_derived): tex4ht-html0.tex $(tex4ht-html0_deps)
+#	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-html32 $(tex4ht-html32_derived): $(tex4ht-html32_deps)
+html32 $(tex4ht-html32_derived): tex4ht-html32.tex $(tex4ht-html32_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -304,7 +284,7 @@ html32-doc $(tex4ht-html32_doc): $(tex4ht-html32_deps)
 
 html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 	latex $(tex_opts) $<
-#	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
@@ -415,7 +395,8 @@ mkht-doc $(tex4ht-mkht_doc): $(tex4ht-mkht_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 	perl -c mk4ht.perl  # syntax check
 
-mkht-scripts $(mkht-scripts_derived): $(mkht-scripts_deps)
+
+mkht-scripts $(mkht-scripts_derived): $(mkht-scripts_deps) 
 	latex $(tex_opts) $<
 
 mkht-scripts-doc $(mkht-scripts_doc): $(mkht-scripts_deps)
@@ -470,9 +451,6 @@ svg-doc $(tex4ht-svg_doc): $(tex4ht-svg_deps)
 t4ht $(tex4ht-t4ht_derived): $(tex4ht-t4ht_deps)
 	tex $(tex_opts) $<
 
-tex4ht-t4ht.fls: tex4ht-t4ht.tex
-	tex $(tex_opts) $<
-
 t4ht-doc $(tex4ht-t4ht_doc): $(tex4ht-t4ht_deps)
 	$(HTTEX) $< ""
 
@@ -484,7 +462,6 @@ tei-doc $(tex4ht-tei_doc): $(tex4ht-tei_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 unicode $(tex4ht-unicode_derived): $(tex4ht-unicode_deps)
-	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 unicode-doc $(tex4ht-unicode_doc): $(tex4ht-unicode_deps)
