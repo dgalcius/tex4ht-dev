@@ -3,8 +3,8 @@ gitrepo := ~/local/git/tex4ht
 
 
 default:
-	latex --version
-	make -C tex4ht/trunk/lit all
+#	latex --version
+	make -C tex4ht/trunk/lit batchmode=1 all
 #	kpsewhich hyperref.sty
 
 diff-svn:
