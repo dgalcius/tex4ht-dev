@@ -2236,9 +2236,9 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/sw/arial.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/sw/cour.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/iso8859/1/sw/curr.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode//monotype/arial/ma1r8c.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode//monotype/arial/ma1r8t.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode//monotype/arial/ma1b8t.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/monotype/arial/ma1r8c.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/monotype/arial/ma1r8t.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/monotype/arial/ma1b8t.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/iso8859/1/go/go.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/iso8859/1/go/go1whi.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/iso8859/1/go/go2whi.htf\
@@ -3251,21 +3251,8 @@ endef
 # deps files list from tex4ht-fonts-noncjk.fls.
 define tex4ht-fonts-noncjk_deps
  tex4ht-fonts-noncjk.tex\
- tex4ht.sty\
- tex4ht.4ht\
- tex4ht.sty\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
  plain.4ht\
- html4.4ht\
- html4-math.4ht\
  th4.4ht\
- html4.4ht\
- html4-math.4ht\
- html4.4ht\
- html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-dir.tex\
