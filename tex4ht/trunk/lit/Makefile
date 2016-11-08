@@ -27,10 +27,16 @@ foo := $(shell mkdir -p $(wd)/xtpipes/util)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
 foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
-#tex_opts = --interaction=errorstopmode -recorder #--file-line-error
-tex_opts = --interaction=batchmode -recorder #--file-line-error
+tex_opts = --interaction=errorstopmode -recorder #--file-line-error
+tex_opts_batchmode = --interaction=batchmode -recorder #--file-line-error
 tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
 dev_null = </dev/null    # when we don't call tex directly.
+
+ifdef batchmode
+tex_opts:=$(tex_opts_batchmode)
+endif 
+
+
 
 HTTEX = ht "tex $(tex_opts)"  # set tex options for plain tex
 
@@ -158,10 +164,10 @@ tex4ht-c_doc = $(htmldir)/tex4ht-c/tex4ht-c.html
 all: $(derived)
 doc: $(derived-doc) tohtmldir
 
-$(cond4ht_derived): $(cond4ht_deps)
+mktex4ht $(cond4ht_derived): $(cond4ht_deps)
 	tex $(tex_opts) $<
 
-$(cond4ht_doc): $(cond4ht_deps)
+mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
 
 cond4ht $(tex4ht-cond4ht_derived): $(tex4ht-cond4ht_deps) 
@@ -188,7 +194,7 @@ c $(tex4ht-c_derived): $(tex4ht-c_deps)
 c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 	$(HTTEX) $<
 
-docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps) 
+docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -285,7 +291,8 @@ info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
 info-javahelp-doc $(tex4ht-info-javahelp_doc): $(tex4ht-info-javahelp_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
+#$(tex4ht-info-mml_deps)
+info-mml $(tex4ht-info-mml_derived): tex4ht-info-mml.tex
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
