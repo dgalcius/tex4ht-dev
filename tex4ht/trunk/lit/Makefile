@@ -716,3 +716,6 @@ test:
 	@echo test
 #	@echo $(derived)
 	for file in $(tex4ht-fonts-cjk_derived); do test -f $$file && echo "Exists" || echo "NOT exists" ; done
+
+test2: $(tex4ht-cond4ht_derived) $(cond4ht_derived) $(tex4ht-4ht_derived) $(tex4ht-fonts-cjk-utf8_derived) $(tex4ht-fonts-noncjk_derived)
+	echo foo
