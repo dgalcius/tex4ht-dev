@@ -88,7 +88,6 @@ derived += $(tex4ht-bibtex2_derived)
 derived += $(tex4ht-fonts-cjk_derived)
 derived += $(tex4ht-fonts-cjk-utf8_derived)
 derived += $(tex4ht-fonts-noncjk_derived)
-derived += $(tex4ht-unicode_derived)
 #
 derived += $(tex4ht-c_derived)
 derived += $(tex4ht-t4ht_derived)
@@ -97,16 +96,35 @@ derived += $(tex4ht-options_derived)
 derived += $(tex4ht-sty_derived)
 derived += $(tex4ht-env_derived)
 #
+derived += $(tex4ht-unicode_derived)
+#
 derived += $(tex4ht-mkht_derived)
 derived += $(mkht-scripts_derived)
 
 
 derived += $(tex4ht-html4_derived)
-#derived += $(tex4ht-html32_derived)
-#derived += $(tex4ht-html0_derived)
+derived += $(tex4ht-html32_derived)
+derived += $(tex4ht-html0_derived)
 
-#derived += $(tex4ht-docbook_derived)
-#derived += $(tex4ht-docbook-xtpipes_derived)
+derived += $(tex4ht-docbook_derived)
+derived += $(tex4ht-docbook-xtpipes_derived)
+
+derived += $(tex4ht-javahelp_derived)
+derived += $(tex4ht-javahelp-xtpipes_derived)
+derived += $(tex4ht-jsmath_derived)
+derived += $(tex4ht-jsml_derived)
+derived += $(tex4ht-jsml-xtpipes_derived)
+
+derived += $(tex4ht-mathltx_derived)
+derived += $(tex4ht-mathml_derived)
+derived += $(tex4ht-mathplayer_derived)
+derived += $(tex4ht-moz_derived)
+derived += $(tex4ht-ooffice_derived)
+derived += $(tex4ht-oo-xtpipes_derived)
+derived += $(tex4ht-ooimpress_derived)
+derived += $(tex4ht-svg_derived)
+derived += $(tex4ht-tei_derived)
+derived += $(tex4ht-word_derived)
 
 ## whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
 
@@ -116,31 +134,19 @@ derived += $(tex4ht-html4_derived)
 
 
 
-#derived += $(tex4ht-html-speech_derived)
-#derived += $(tex4ht-html-speech-xtpipes_derived)
+derived += $(tex4ht-html-speech_derived)
+derived += $(tex4ht-html-speech-xtpipes_derived)
+
+# xx - circural dependency infoht4.4ht
 #derived += $(tex4ht-info-html4_derived)
 #derived += $(tex4ht-info-javahelp_derived)
 #derived += $(tex4ht-info-mml_derived)
 #derived += $(tex4ht-info-ooffice_derived)
 #derived += $(tex4ht-info-svg_derived)
 #derived += $(tex4ht-info_derived)
-#derived += $(tex4ht-javahelp_derived)
-#derived += $(tex4ht-javahelp-xtpipes_derived)
-#derived += $(tex4ht-jsmath_derived)
-#derived += $(tex4ht-jsml-xtpipes_derived)
-#derived += $(tex4ht-jsml_derived)
-#derived += $(tex4ht-mathltx_derived)
-#derived += $(tex4ht-mathml_derived)
-#derived += $(tex4ht-mathplayer_derived)
-#derived += $(tex4ht-moz_derived)
-#derived += $(tex4ht-oo-xtpipes_derived)
-#derived += $(tex4ht-ooffice_derived)
-#derived += $(tex4ht-ooimpress_derived)
-#derived += $(tex4ht-svg_derived)
-#derived += $(tex4ht-tei_derived)
-#derived += $(tex4ht-word_derived)
-#derived += $(tex4ht-xhtml-xtpipes_derived)
-#derived += $(tex4ht-xhtmml-xtpipes_derived)
+
+derived += $(tex4ht-xhtml-xtpipes_derived)
+derived += $(tex4ht-xhtmml-xtpipes_derived)
 #derived += $(xtpipes_derived)
 
 
@@ -204,16 +210,16 @@ c $(tex4ht-c_derived): tex4ht-c.tex $(tex4ht-c_deps)
 c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 	$(HTTEX) $<
 
-docbook $(tex4ht-docbook_derived): tex4ht-docbook.tex $(tex4ht-docbook_deps)
+docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
 
-docbook-doc $(tex4ht-docbook_doc): tex4ht-docbook.tex $(tex4ht-docbook_deps)
+docbook-doc $(tex4ht-docbook_doc): $(tex4ht-docbook_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): tex4ht-docbook-xtpipes.tex $(tex4ht-docbook-xtpipes_deps)
+docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): tex4ht-docbook-xtpipes.tex $(common)
+docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 env $(tex4ht-env_derived): tex4ht-env.tex $(tex4ht-env_deps)
@@ -268,14 +274,14 @@ html-speech-xtpipes $(tex4ht-html-speech-xtpipes_derived): $(tex4ht-html-speech-
 html-speech-xtpipes-doc $(tex4ht-html-speech-xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
-html0 $(tex4ht-html0_derived): tex4ht-html0.tex $(tex4ht-html0_deps)
+html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
 #	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-html32 $(tex4ht-html32_derived): tex4ht-html32.tex $(tex4ht-html32_deps)
+html32 $(tex4ht-html32_derived): $(tex4ht-html32_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -345,11 +351,11 @@ javahelp-xtpipes $(tex4ht-javahelp-xtpipes_derived): $(tex4ht-javahelp-xtpipes_d
 javahelp-xtpipes-doc $(tex4ht-javahelp-xtpipes_doc): $(tex4ht-javahelp-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-jsmath $(tex4ht-jsmath_derived): tex4ht-jsmath.tex $(common)
+jsmath $(tex4ht-jsmath_derived): $(tex4ht-jsmath_deps) 
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-jsmath-doc $(tex4ht-jsmath_doc): tex4ht-jsmath.tex $(common)
+jsmath-doc $(tex4ht-jsmath_doc): $(tex4ht-jsmath_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 jsml-xtpipes $(tex4ht-jsml-xtpipes_derived): $(tex4ht-jsml-xtpipes_deps)
@@ -358,11 +364,11 @@ jsml-xtpipes $(tex4ht-jsml-xtpipes_derived): $(tex4ht-jsml-xtpipes_deps)
 jsml-xtpipes-doc $(tex4ht-jsml_xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-jsml $(tex4ht-jsml_derived): tex4ht-jsml.tex $(common)
+jsml $(tex4ht-jsml_derived): $(tex4ht-jsml_deps) 
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-jsml-doc $(tex4ht-jsml_doc): tex4ht-jsml.tex $(common)
+jsml-doc $(tex4ht-jsml_doc): $(tex4ht-jsml_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 mathltx $(tex4ht-mathltx_derived): $(tex4ht-mathltx_deps)
@@ -375,10 +381,15 @@ mathltx-doc $(tex4ht-mathltx_doc): $(tex4ht-mathltx_deps)
 mathml $(tex4ht-mathml_derived): $(tex4ht-mathml_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+
 
 mathml-doc $(tex4ht-mathml_doc): $(tex4ht-mathml_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+
+tex4ht-mathplayer.fls: tex4ht-mathplayer.tex
+	rm -rf info4ht.ht infomml.4ht
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 mathplayer $(tex4ht-mathplayer_derived): $(tex4ht-mathplayer_deps)
 	latex $(tex_opts) $<
@@ -402,6 +413,11 @@ mkht-scripts $(mkht-scripts_derived): $(mkht-scripts_deps)
 mkht-scripts-doc $(mkht-scripts_doc): $(mkht-scripts_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
+tex4ht-moz.fls: tex4ht-moz.tex
+	rm -rf info4ht.ht infomml.4ht
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
 moz $(tex4ht-moz_derived): $(tex4ht-moz_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
@@ -414,6 +430,11 @@ oo-xtpipes $(tex4ht-oo-xtpipes_derived): $(tex4ht-oo-xtpipes_deps)
 
 oo-xtpipes-doc $(tex4ht-oo-xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+
+%.fls: %.tex
+	rm -rf info4ht.ht infomml.4ht
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 ooffice $(tex4ht-ooffice_derived): $(tex4ht-ooffice_deps)
 	latex $(tex_opts) $<
