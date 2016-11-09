@@ -147,7 +147,7 @@ derived += $(tex4ht-html-speech-xtpipes_derived)
 
 derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
-#derived += $(xtpipes_derived)
+derived += $(xtpipes_derived)
 
 
 xderived += $(x_xtpipes_derived)
@@ -723,6 +723,9 @@ tex4ht-fonts-noncjk.dd: tex4ht-fonts-noncjk.lg tex4ht-fonts-noncjk.fls
 
 mkht-scripts.dd: mkht-scripts.fls
 	$(extra_bin)/fls2d $< >mkht-scripts.d
+
+xtpipes.dd: xtpipes.lg xtpipes.fls
+	$(extra_bin)/flslg2d $^ >xtpipes.d
 
 d: $(sources_d)
 
