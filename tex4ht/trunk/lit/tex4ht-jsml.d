@@ -51,7 +51,5 @@ define tex4ht-jsml_deps
  common.tex\
  tex4ht-cpright.tex\
  tex4ht-cpright.tex\
- infoht4.4ht\
- infomml.4ht\
 
 endef
