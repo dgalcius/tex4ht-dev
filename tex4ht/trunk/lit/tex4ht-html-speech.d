@@ -52,6 +52,5 @@ define tex4ht-html-speech_deps
  common.tex\
  tex4ht-cpright.tex\
  tex4ht-cpright.tex\
- infomml.4ht\
 
 endef
