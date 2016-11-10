@@ -101,7 +101,6 @@ derived += $(tex4ht-unicode_derived)
 derived += $(tex4ht-mkht_derived)
 derived += $(mkht-scripts_derived)
 
-
 derived += $(tex4ht-html4_derived)
 derived += $(tex4ht-html32_derived)
 derived += $(tex4ht-html0_derived)
@@ -275,7 +274,7 @@ html-speech-xtpipes-doc $(tex4ht-html-speech-xtpipes_doc): $(tex4ht-html-speech-
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
 html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
-#	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
@@ -483,6 +482,7 @@ tei-doc $(tex4ht-tei_doc): $(tex4ht-tei_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 unicode $(tex4ht-unicode_derived): $(tex4ht-unicode_deps)
+	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 unicode-doc $(tex4ht-unicode_doc): $(tex4ht-unicode_deps)
