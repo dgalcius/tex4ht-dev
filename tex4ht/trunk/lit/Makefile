@@ -430,10 +430,10 @@ oo-xtpipes $(tex4ht-oo-xtpipes_derived): $(tex4ht-oo-xtpipes_deps)
 oo-xtpipes-doc $(tex4ht-oo-xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-%.fls: %.tex
-	rm -rf info4ht.ht infomml.4ht
-	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+#%.fls: %.tex
+#	rm -rf info4ht.ht infomml.4ht
+#	latex $(tex_opts) $<
+#	latex $(tex_opts) $<
 
 ooffice $(tex4ht-ooffice_derived): $(tex4ht-ooffice_deps)
 	latex $(tex_opts) $<
