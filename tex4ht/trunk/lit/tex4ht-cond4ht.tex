@@ -656,6 +656,7 @@ WARNING: Missing definition for {\tt \string\CONFIG }
 
 \fi
 
+
 |<include info4ht|>
 
 
@@ -694,6 +695,7 @@ WARNING: Missing definition for {\tt \string\CONFIG }
 @catcode`@\=0     \catcode`\:=12      \catcode`\@=12  \relax
 
 
+\csname BYE-info4ht\endcsname
 \def\curf{}  \input info4ht.4ht
 \ifx \HTML\empty
     \HAssign\curf=0
@@ -704,6 +706,7 @@ WARNING: Missing definition for {\tt \string\CONFIG }
     }
     \expandafter\nextinfo\infofiles,,//%
 \fi
+
 \egroup
 
 >>>
