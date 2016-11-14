@@ -302,7 +302,7 @@ info-html4 $(tex4ht-info-html4_derived): tex4ht-info-html4.tex
 info-html4-doc $(tex4ht-info-html4_doc): $(tex4ht-info-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
+info-javahelp $(tex4ht-info-javahelp_derived): tex4ht-info-javahelp.tex #$(tex4ht-info-javahelp_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -331,8 +331,10 @@ info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
 info-svg-doc $(tex4ht-info-svg_doc): $(tex4ht-info-svg_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-info $(tex4ht-info_derived): $(tex4ht-info_deps)
+info $(tex4ht-info_derived): tex4ht-info.tex #$(tex4ht-info_deps)
 	latex $(tex_opts) $<
+#	latex $(tex_opts) $<
+#	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
 info-doc $(tex4ht-info_doc): $(tex4ht-info_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
