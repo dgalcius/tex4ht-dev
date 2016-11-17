@@ -28,14 +28,10 @@
 \message{(<signature>)}
 
 % Compile with the command `ht latex tex4ht-info'
-
 \ifx \HTML\UnDef
    \def\HTML{info4ht}
    \def\CONFIG{\jobname}
    \def\MAKETITLE{\author{Eitan M. Gurari}}
-   \ifdefined\HCode\else
-      \expandafter\def\csname BYE-info4ht\endcsname{\egroup\end{document}}
-   \fi
    \def\next{\input mktex4ht.4ht   \endinput}
    \expandafter\next
 \fi
