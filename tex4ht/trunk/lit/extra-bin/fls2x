@@ -9,8 +9,15 @@ fls2dd ()
 {
   echo -e "# $5"
   echo define $3
+
+  filter_aux="$2.xref\|$2.dvi\|$2.trc\|$2.aux\|$2.4ct\|$2.4tc\|$2.tmp"
+
+  if [ ! -z "$6" ]
+  then
+      filter_aux="$2.xref\|$2.dvi\|$2.trc\|$2.aux\|$2.4ct\|$2.4tc\|$2.tmp\|$6"
+  fi
   
-  grep -v "$2.xref\|$2.dvi\|$2.trc\|$2.aux\|$2.4ct\|$2.4tc\|$2.tmp" $1 | # read foo.fls; filter out lines with foo* (e.g., foo.aux,foo.log)
+    grep -v "$filter_aux"  $1 | # read foo.fls; filter out lines with foo* (e.g., foo.aux,foo.log)
     grep -v "^$4 /" | # filter out lines with absolute path, e.g. /usr/local/...
     grep -v ".log" | # remove unicode.log, etc
     awk "/$4/ { print \" \" \$2 \"\\\\\" }" | # print (INPUT|OUTPUT) entries only
