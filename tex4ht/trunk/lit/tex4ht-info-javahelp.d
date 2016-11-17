@@ -44,6 +44,5 @@ define tex4ht-info-javahelp_deps
  common.tex\
  common.tex\
  infoht4.4ht\
- infomml.4ht\
 
 endef
