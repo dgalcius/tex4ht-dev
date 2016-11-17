@@ -132,17 +132,16 @@ derived += $(tex4ht-word_derived)
 ##tex4ht_htcmd_derived = htcmd.c
 
 
-
 derived += $(tex4ht-html-speech_derived)
 derived += $(tex4ht-html-speech-xtpipes_derived)
 
-# xx - circural dependency infoht4.4ht
-#derived += $(tex4ht-info-html4_derived)
-#derived += $(tex4ht-info-javahelp_derived)
-#derived += $(tex4ht-info-mml_derived)
-#derived += $(tex4ht-info-ooffice_derived)
-#derived += $(tex4ht-info-svg_derived)
-#derived += $(tex4ht-info_derived)
+derived += $(tex4ht-info_derived)
+derived += $(tex4ht-info-html4_derived)
+derived += $(tex4ht-info-javahelp_derived)
+derived += $(tex4ht-info-mml_derived)
+derived += $(tex4ht-info-ooffice_derived)
+derived += $(tex4ht-info-svg_derived)
+
 
 derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
@@ -294,23 +293,21 @@ html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-#$(tex4ht-info-html4_deps)
-info-html4 $(tex4ht-info-html4_derived): tex4ht-info-html4.tex
+info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
 	latex $(tex_opts) $<
-#	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 info-html4-doc $(tex4ht-info-html4_doc): $(tex4ht-info-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-info-javahelp $(tex4ht-info-javahelp_derived): tex4ht-info-javahelp.tex #$(tex4ht-info-javahelp_deps)
+info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 info-javahelp-doc $(tex4ht-info-javahelp_doc): $(tex4ht-info-javahelp_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-#$(tex4ht-info-mml_deps)
-info-mml $(tex4ht-info-mml_derived): tex4ht-info-mml.tex
+info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -324,17 +321,16 @@ info-ooffice $(tex4ht-info-ooffice_derived): $(tex4ht-info-ooffice_deps)
 info-ooffice-doc $(tex4ht-info-ooffice_doc): $(tex4ht-info-ooffice_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
+info-svg $(tex4ht-info-svg_derived): tex4ht-info-svg.tex #$(tex4ht-info-svg_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
 info-svg-doc $(tex4ht-info-svg_doc): $(tex4ht-info-svg_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 
-info $(tex4ht-info_derived): tex4ht-info.tex #$(tex4ht-info_deps)
+info $(tex4ht-info_derived): $(tex4ht-info_deps)
 	latex $(tex_opts) $<
-#	latex $(tex_opts) $<
-#	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	latex $(tex_opts) $<
 
 info-doc $(tex4ht-info_doc): $(tex4ht-info_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
@@ -728,6 +724,16 @@ mkht-scripts.dd: mkht-scripts.fls
 
 xtpipes.dd: xtpipes.lg xtpipes.fls
 	$(extra_bin)/flslg2d $^ >xtpipes.d
+
+tex4ht-info.dd: tex4ht-info.fls
+	$(extra_bin)/fls2d $< info4ht.4ht >tex4ht-info.d
+
+tex4ht-info-html4.dd: tex4ht-info-html4.fls
+	$(extra_bin)/fls2d $< infoht4.4ht >tex4ht-info-html4.d
+
+tex4ht-info-mml.dd: tex4ht-info-mml.fls
+	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
+
 
 d: $(sources_d)
 
