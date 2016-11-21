@@ -791,8 +791,10 @@ on nodes with large numbers of children.
 
 \AtEndDocument{ 
    \OutputCodE\<JsmlMathBreak.java\> 
-} 
-\input xtpipes-jsml-jar.tex
+}
+\Needs{"
+    javac JsmlMathBreak.java -d \XTPIPES.
+"}
  
 \<JsmlMathBreak.java\><<< 
 package tex4ht;
