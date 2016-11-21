@@ -147,6 +147,7 @@ derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
 derived += $(xtpipes_derived)
 
+derived += tex4ht.jar
 
 xderived += $(x_xtpipes_derived)
 x_xtpipes_derived = \
@@ -513,6 +514,37 @@ xtpipes $(xtpipes_derived): xtpipes.tex
 
 xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
+
+tex4ht.jar:
+	jar cvf tex4ht.jar -C $(xtpipesdir)/ .
+	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
+	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
+	cp $(xtpipesdir)/xtpipes/lib/* ./tex4ht.dir/texmf/tex4ht/xtpipes/.
+#
+# /usr/local/texlive/2015/texmf-dist/tex/generic/tex4ht
+# *.4ht
+# /usr/local/texlive/2015/texmf-dist/tex4ht/base/{unix,win32}/
+# tex4ht.env
+# /usr/local/texlive/2015/texmf-dist/tex4ht/bin/
+# tex4ht.jar
+# /usr/local/texlive/2015/texmf-dist/tex4ht/ht-fonts
+# <dir>/<sub-dir>/*.htf
+# unicode/lm/*.htf
+# alias/lm/*.htf
+# utf8/charset/unicode.4ht
+# /usr/local/texlive/2015/texmf-dist/tex4ht/xtpipes
+# docbook.4xt
+# htspk.4xt
+# javahelp.4xt
+# jsml.4xt
+# oo-math.4xt
+# oo-text.4xt
+# xhtml.4xt
+# xhtmml.4xt
+# xtpipes-default.4xt
+# xtpipes-map.dtd
+# xtpipes.dtd
+
 
 # 
 destdir = ..
