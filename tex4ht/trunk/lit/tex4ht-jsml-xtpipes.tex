@@ -793,8 +793,13 @@ on nodes with large numbers of children.
    \OutputCodE\<JsmlMathBreak.java\> 
 }
 \Needs{"
-    javac JsmlMathBreak.java -d \XTPIPES.
-"}
+  mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
+  ;
+  javac -classpath ./tex4ht.dir/texmf/tex4ht/bin/tex4ht.jar
+          JsmlMathBreak.java
+          -d \XTPIPES. 
+"} 
+
  
 \<JsmlMathBreak.java\><<< 
 package tex4ht;

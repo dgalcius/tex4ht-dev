@@ -92,8 +92,14 @@
    \OutputCodE\<XhtmlEmails.java\> 
 } 
 \Needs{"
-    javac XhtmlEmails.java -d \XTPIPES.
-"}
+    mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
+    ;
+    javac -classpath ./tex4ht.dir/texmf/tex4ht/bin/tex4ht.jar
+          XhtmlEmails.java
+          -d \XTPIPES. 
+"} 
+
+\input xtpipes-xhtml-jar.tex
 
  
 \<XhtmlEmails.java\><<< 
