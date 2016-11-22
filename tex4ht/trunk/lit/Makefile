@@ -105,6 +105,8 @@ derived += $(tex4ht-html4_derived)
 derived += $(tex4ht-html32_derived)
 derived += $(tex4ht-html0_derived)
 
+derived += $(xtpipes_derived)
+
 derived += $(tex4ht-docbook_derived)
 derived += $(tex4ht-docbook-xtpipes_derived)
 
@@ -145,9 +147,9 @@ derived += $(tex4ht-info-svg_derived)
 
 derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
-derived += $(xtpipes_derived)
 
-derived += tex4ht.jar
+
+#derived += tex4ht.jar
 
 xderived += $(x_xtpipes_derived)
 x_xtpipes_derived = \
