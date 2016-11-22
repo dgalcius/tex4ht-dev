@@ -1,4 +1,4 @@
-% $Id: tex4ht-mathml.tex 191 2016-08-10 09:26:24Z michal_h21 $$
+% $Id: tex4ht-mathml.tex 199 2016-11-21 22:09:47Z michal_h21 $$
 % compile 3 times: latex tex4ht-mathltx
 %           or   xhlatex tex4ht-mathltx "html,3,sections+"
 %
@@ -1137,6 +1137,7 @@ space, without having them ignored, must use &nbsp; or other
 >>>
 
 \<config array\><<<
+\let\columnlines\empty
 \Configure{halignTB<>}{array}{\HCode{\Hnewline
    \a:mathml equalrows="false"
    \a:mathml columnlines="\columnlines"
