@@ -149,7 +149,7 @@ derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
 
 
-#derived += tex4ht.jar
+derived += tex4ht.jar
 
 xderived += $(x_xtpipes_derived)
 x_xtpipes_derived = \
