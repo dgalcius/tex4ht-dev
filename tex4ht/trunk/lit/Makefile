@@ -33,45 +33,12 @@ tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
 dev_null = </dev/null    # when we don't call tex directly.
 
 ifdef batchmode
-tex_opts:=$(tex_opts_batchmode)
+  tex_opts:=$(tex_opts_batchmode)
 endif 
-
-
 
 HTTEX = ht "tex $(tex_opts)"  # set tex options for plain tex
 
 include $(wildcard *.d)
-#include cond4ht.d
-#include tex4ht-cond4ht.d
-#include tex4ht-4ht.d
-#include tex4ht-bibtex2.d
-#include tex4ht-c.d
-#include tex4ht-docbook.d
-#include tex4ht-env.d
-#include tex4ht-fonts-cjk.d
-#include tex4ht-fonts-cjk-utf8.d
-#include tex4ht-html-speech.d
-#include tex4ht-html-speech-xtpipes.d
-#include tex4ht-html0.d
-#include tex4ht-html32.d
-#include tex4ht-html4.d
-#include tex4ht-info-html4.d
-#include tex4ht-info-javahelp.d
-#include tex4ht-info-mml.d
-#include tex4ht-info-ooffice.d
-#include tex4ht-info-svg.d
-#include tex4ht-info.d ## xx make: Circular infoht4.4ht <- infoht4.4ht dependency dropped.
-#include tex4ht-javahelp.d
-#include tex4ht-jsmath.d
-#include tex4ht-jsml-xtpipes.d
-#include tex4ht-jsml.d
-#include tex4ht-mathltx.d
-#include tex4ht-mathml.d
-#include tex4ht-mkht.d
-#include mkht-scripts.d
-#include tex4ht-moz.d
-#include tex4ht-oo-xtpipes.d
-#include tex4ht-ooffice.d
 
 default: all
 
