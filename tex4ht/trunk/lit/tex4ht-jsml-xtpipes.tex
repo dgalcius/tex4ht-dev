@@ -788,18 +788,14 @@ on nodes with large numbers of children.
 <sax name="." xml="." content-handler="tex4ht.JsmlMathBreak" />
 >>>
 
-
-\AtEndDocument{ 
-   \OutputCodE\<JsmlMathBreak.java\> 
+\AtEndDocument%
+{
+  \OutputCodE\<JsmlMathBreak.java\>
 }
-\Needs{"
-  mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
-  ;
-  javac -classpath ./tex4ht.dir/texmf/tex4ht/bin/tex4ht.jar
-          JsmlMathBreak.java
-          -d \XTPIPES. 
-"} 
-
+\Needs%
+{"
+    javac -classpath \XTPIPES/ JsmlMathBreak.java -d \XTPIPES.
+"}
  
 \<JsmlMathBreak.java\><<< 
 package tex4ht;

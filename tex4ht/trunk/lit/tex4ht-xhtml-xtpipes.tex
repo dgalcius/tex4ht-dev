@@ -88,20 +88,15 @@
 >>>
 
 
-\AtEndDocument{ 
-   \OutputCodE\<XhtmlEmails.java\> 
-} 
-\Needs{"
-    mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
-    ;
-    javac -classpath ./tex4ht.dir/texmf/tex4ht/bin/tex4ht.jar
-          XhtmlEmails.java
-          -d \XTPIPES. 
-"} 
+\AtEndDocument%
+{%
+  \OutputCodE\<XhtmlEmails.java\>
+}
+\Needs%
+{"
+  javac -classpath \XTPIPES/ XhtmlEmails.java -d \XTPIPES.
+"}
 
-\input xtpipes-xhtml-jar.tex
-
- 
 \<XhtmlEmails.java\><<< 
 package tex4ht;
 /* XhtmlEmails.java (`version), generated from `jobname.tex
