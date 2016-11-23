@@ -94,12 +94,9 @@ derived += $(tex4ht-svg_derived)
 derived += $(tex4ht-tei_derived)
 derived += $(tex4ht-word_derived)
 
-## whither tmp?  how change target dir?  what happened to cmtex.htf?  etc.
-
 ## htcmd not used
 ##derived += $(tex4ht_htcmd_derived)
 ##tex4ht_htcmd_derived = htcmd.c
-
 
 derived += $(tex4ht-html-speech_derived)
 derived += $(tex4ht-html-speech-xtpipes_derived)
@@ -117,21 +114,6 @@ derived += $(tex4ht-xhtmml-xtpipes_derived)
 
 
 derived += tex4ht.jar
-
-xderived += $(x_xtpipes_derived)
-x_xtpipes_derived = \
-  $(wd)/xtpipes.java \
-  $(wd)/xtpipes/FileInfo.java \
-  $(wd)/xtpipes/InputObject.java \
-  $(wd)/xtpipes/Xtpipes.java \
-  $(wd)/xtpipes/XtpipesPrintWriter.java \
-  $(wd)/xtpipes/XtpipesUni.java \
-  $(wd)/xtpipes/util/ScriptsManager.java \
-  $(wd)/xtpipes/util/ScriptsManagerLH.java \
-  xtpipes-default.4xt \
-  xtpipes-map.dtd \
-  xtpipes.dtd \
-
 
 derived-doc =
 derived-doc += $(tex4ht-cond4ht_doc)
@@ -528,16 +510,16 @@ update = cp -pr
 mkdir = install -d
 #
 update: all
-	$(update) $(tex4ht_bibtex2_derived) $(dest_src)/
+	$(update) $(tex4ht-bibtex2_derived) $(dest_src)/
 #
-	$(update) $(tex4ht_c_derived) $(dest_src)/
+	$(update) $(tex4ht-c_derived) $(dest_src)/
 #
-	$(update) $(tex4ht_cond4ht_derived) $(dest_texmf)/
+	$(update) $(tex4ht-cond4ht_derived) $(dest_texmf)/
 #
 	$(update) docbook.4xt $(dest_xtpipes)/
 	$(update) DbUtilities.java $(dest_java)/
 #
-	$(update) $(tex4ht_docbook_derived) $(dest_texmf)/
+	$(update) $(tex4ht-docbook_derived) $(dest_texmf)/
 #
 	$(mkdir) $(dest_base)/unix $(dest_base)/win32
 	$(update) tex4ht.env-unix $(dest_base)/unix/
@@ -691,10 +673,7 @@ sources = \
  tex4ht-oo-xtpipes.tex\
  tex4ht-xhtml-xtpipes.tex\
  tex4ht-xhtmml-xtpipes.tex\
- xtpipes.tex
-
-# whats wrong with tex4ht-info.tex?
-extra_sources := \
+ xtpipes.tex\
  tex4ht-info.tex
 
 sources_d := $(sources:%.tex=%.dd)
@@ -738,11 +717,6 @@ tex4ht-info-mml.dd: tex4ht-info-mml.fls
 
 d: $(sources_d)
 
-derived:
-	for f in *.fls ; do \
-	grep -v  $${f%.*} $$f | awk '/OUTPUT/ { print $$2 }' > $${f%.*}.derived ;  \
-done
-
 ## move *.html files to ./htmldir subfolder
 ## process lg file
 tohtmldir:
@@ -750,20 +724,3 @@ tohtmldir:
 	echo Processing $$f && mkdir -p $(htmldir)/$${f%.*} \
 	&& grep "File: $${f%.*}" $$f | awk -v outdir=$(htmldir)/$${f%.*} '{system("[ -f "$$2" ] &&  mv -f " $$2" "outdir)}'  ; \
 done
-
-## move derived files to ./derived.dir
-## process derived files
-toderiveddir: derived
-	for f in *.derived ; do \
-	echo $$f && mkdir -p $(deriveddir)/$${f%.*} \
-	&& awk -v outdir=$(deriveddir)/$${f%.*} '{system("[ -f "$$0" ] &&  mv -f " $$0" "outdir)}' $$f ; \
-done
-
-test:
-	@echo test
-#	@echo $(derived)
-	for file in $(tex4ht-fonts-cjk_derived); do test -f $$file && echo "Exists" || echo "NOT exists" ; done
-
-test2: $(tex4ht-cond4ht_derived)
-#$(cond4ht_derived) $(tex4ht-4ht_derived) $(tex4ht-fonts-cjk-utf8_derived) $(tex4ht-fonts-noncjk_derived)
-	echo foo
