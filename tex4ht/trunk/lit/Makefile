@@ -37,6 +37,7 @@ ifdef batchmode
 endif 
 
 HTTEX = ht "tex $(tex_opts)"  # set tex options for plain tex
+movetohtmldir := $(extra_bin)/lg2htmldir
 
 include $(wildcard *.d)
 
@@ -136,49 +137,56 @@ mktex4ht $(cond4ht_derived): cond4ht.4ht $(cond4ht_deps)
 
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
+	$(movetohtmldir) $< $(htmldir)
 
 cond4ht $(tex4ht-cond4ht_derived): tex4ht-cond4ht.tex $(tex4ht-cond4ht_deps) 
 	tex $(tex_opts) $<
 
 cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
 	$(HTTEX) $<
+	$(movetohtmldir) $< $(htmldir)
 
 4ht $(tex4ht-4ht_derived): tex4ht-4ht.tex $(tex4ht-4ht_deps)
 	tex $(tex_opts) $<
 
 4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
 	$(HTTEX) $<
+	$(movetohtmldir) $< $(htmldir)
 
 bibtex2 $(tex4ht-bibtex2_derived): tex4ht-bibtex2.tex $(tex4ht-bibtex2_deps)
 	latex $(tex_opts) $<
 
 bibtex2-doc $(tex4ht-bibtex2_doc): $(tex4ht-bibtex2_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 c $(tex4ht-c_derived): tex4ht-c.tex $(tex4ht-c_deps) 
 	tex $(tex_opts) $<
 
 c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 	$(HTTEX) $<
+	$(movetohtmldir) $< $(htmldir)
 
 docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
 
 docbook-doc $(tex4ht-docbook_doc): $(tex4ht-docbook_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
 docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 env $(tex4ht-env_derived): tex4ht-env.tex $(tex4ht-env_deps)
 	latex $(tex_opts) $<
 
-# xx
 env-doc $(tex4ht-env_doc): $(tex4ht-env_deps)
 	htlatex $< "xhtml,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 fonts-cjk $(tex4ht-fonts-cjk_derived): $(tex4ht-fonts-cjk_deps)
 	tex $(tex_opts) $<
@@ -187,6 +195,7 @@ fonts-cjk $(tex4ht-fonts-cjk_derived): $(tex4ht-fonts-cjk_deps)
 
 fonts-cjk-doc $(tex4ht-fonts-cjk_doc): $(tex4ht-fonts-cjk_deps)
 	$(HTTEX) $< ""
+	$(movetohtmldir) $< $(htmldir)
 
 fonts-cjk-utf8 $(tex4ht-fonts-cjk-utf8_derived): $(tex4ht-fonts-cjk-utf8_deps)
 	tex $(tex_opts) $<
@@ -195,6 +204,7 @@ fonts-cjk-utf8 $(tex4ht-fonts-cjk-utf8_derived): $(tex4ht-fonts-cjk-utf8_deps)
 
 fonts-cjk-utf8-doc $(tex4ht-fonts-cjk-utf8_doc): $(tex4ht-fonts-cjk-utf8_deps)
 	$(HTTEX) $< ""
+	$(movetohtmldir) $< $(htmldir)
 
 fonts-noncjk $(tex4ht-fonts-noncjk_derived): $(tex4ht-fonts-noncjk_deps)
 	tex $(tex_opts) $<
