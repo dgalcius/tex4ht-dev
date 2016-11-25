@@ -71,12 +71,13 @@ derived += $(mkht-scripts_derived)
 derived += $(tex4ht-html4_derived)
 derived += $(tex4ht-html32_derived)
 derived += $(tex4ht-html0_derived)
-
+derived += $(tex4ht-html5_derived)
+#
 derived += $(xtpipes_derived)
-
+#
 derived += $(tex4ht-docbook_derived)
 derived += $(tex4ht-docbook-xtpipes_derived)
-
+#
 derived += $(tex4ht-javahelp_derived)
 derived += $(tex4ht-javahelp-xtpipes_derived)
 derived += $(tex4ht-jsmath_derived)
@@ -245,7 +246,7 @@ html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
-html5 $(tex4ht-html5_derived): $(tex4ht-html5_deps)
+html5 $(tex4ht-html5_derived): tex4ht-html5.tex $(tex4ht-html5_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
