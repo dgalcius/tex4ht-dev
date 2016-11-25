@@ -475,11 +475,13 @@ xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 tex4ht.jar:
-	jar cvf tex4ht.jar -C $(xtpipesdir)/ .
-	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
-	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
-	cp $(xtpipesdir)/xtpipes/lib/* ./tex4ht.dir/texmf/tex4ht/xtpipes/.
-#
+	jar cf tex4ht.jar -C $(xtpipesdir)/ .
+#	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
+#	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
+#	cp $(xtpipesdir)/xtpipes/lib/* ./tex4ht.dir/texmf/tex4ht/xtpipes/.
+
+
+
 # /usr/local/texlive/2015/texmf-dist/tex/generic/tex4ht
 # *.4ht
 # /usr/local/texlive/2015/texmf-dist/tex4ht/base/{unix,win32}/
@@ -656,6 +658,7 @@ sources = \
  tex4ht-html0.tex\
  tex4ht-html32.tex\
  tex4ht-html4.tex\
+ tex4ht-html5.tex\
  tex4ht-javahelp.tex\
  tex4ht-jsmath.tex\
  tex4ht-jsml.tex\
@@ -715,15 +718,15 @@ mkht-scripts.dd: mkht-scripts.fls
 xtpipes.dd: xtpipes.lg xtpipes.fls
 	$(extra_bin)/flslg2d $^ >xtpipes.d
 
+#fix circular dependency: remove info4ht.4ht entry from deps
 tex4ht-info.dd: tex4ht-info.fls
 	$(extra_bin)/fls2d $< info4ht.4ht >tex4ht-info.d
-
+#fix circular dependency: remove infoht4.4ht entry from deps
 tex4ht-info-html4.dd: tex4ht-info-html4.fls
 	$(extra_bin)/fls2d $< infoht4.4ht >tex4ht-info-html4.d
-
+#fix circular dependency: remove infomml.4ht entry from deps
 tex4ht-info-mml.dd: tex4ht-info-mml.fls
 	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
-
 
 d: $(sources_d)
 
