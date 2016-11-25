@@ -9,7 +9,13 @@ endef
 # deps files list from tex4ht-options.fls.
 define tex4ht-options_deps
  tex4ht-options.tex\
+ mktex4ht.4ht\
  ProTex.sty\
+ latex.4ht\
+ fontmath.4ht\
+ book.4ht\
+ book.4ht\
+ ProTex.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-options.tex\
