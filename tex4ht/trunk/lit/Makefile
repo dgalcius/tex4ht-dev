@@ -245,6 +245,13 @@ html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 
+html5 $(tex4ht-html5_derived): $(tex4ht-html5_deps)
+	latex $(tex_opts) $<
+	latex $(tex_opts) $<
+
+html5-doc $(tex4ht-html5_doc): tex4ht-html5.tex $(common)
+	xhlatex $< "xhtml,3,sections+" "" "" $(tex_1opt)
+
 info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
@@ -534,6 +541,8 @@ update: all
 	$(update) $(tex4ht_html32_derived) $(dest_texmf)/
 #
 	$(update) $(tex4ht_html4_derived) $(dest_texmf)/
+#
+	$(update) $(tex4ht_html5_derived) $(dest_texmf)/
 #
 	$(update) $(tex4ht_info_mml_derived) $(dest_texmf)/
 #

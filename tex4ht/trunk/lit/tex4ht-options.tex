@@ -1,4 +1,4 @@
-% $Id: tex4ht-options.tex 65 2010-11-17 19:16:45Z karl $
+% $Id: tex4ht-options.tex 202 2016-11-25 12:46:18Z michal_h21 $
 % latex tex4ht-options   or    xhlatex tex4ht-options
 %
 % Copyright (C) 2009-2010 TeX Users Group
@@ -109,6 +109,7 @@ tail>>>
 |<html4 settings|>
 |<0.0 and 3.2 settings|>
 |<mozilla settings|>
+|<html5 settings|>
 |<tei settings|>
 |<docbook settings|>
 |<html for word settings|>
@@ -253,6 +254,21 @@ Allows cleanup using xtpipes.
        \Log:Note{For MathML on MSIE + MathPlayer use
            the command line option `mathplayer'}
    \fi
+}
+>>>
+
+
+\<html5 settings\><<<
+\Configure{html5}{%
+   \:CheckOption{info}\if:Option
+               \Hinclude[*]{infoht4.4ht}\fi
+   \:CheckOption{info}\if:Option
+               \Hinclude[*]{infomml.4ht}\fi
+   \Hinclude[*]{html4.4ht}%
+   \Hinclude[*]{unicode.4ht}%
+   \Hinclude[*]{mathml.4ht}%
+   \Hinclude[*]{html-mml.4ht}%
+   \Hinclude[*]{html5.4ht}%
 }
 >>>
 
