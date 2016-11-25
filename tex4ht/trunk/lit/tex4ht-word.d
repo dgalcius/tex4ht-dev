@@ -48,3 +48,8 @@ define tex4ht-word_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-word_doc
+ ./html.dir/tex4ht-word/tex4ht-word.html
+endef

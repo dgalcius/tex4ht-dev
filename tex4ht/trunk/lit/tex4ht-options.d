@@ -27,3 +27,8 @@ define tex4ht-options_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define tex4ht-options_doc
+ ./html.dir/tex4ht-options/tex4ht-options.html
+endef

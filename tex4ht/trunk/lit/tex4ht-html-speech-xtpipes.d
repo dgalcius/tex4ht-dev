@@ -43,3 +43,8 @@ define tex4ht-html-speech-xtpipes_deps
  xtpipes-jar.tex\
 
 endef
+
+#set main html file
+define tex4ht-html-speech-xtpipes_doc
+ ./html.dir/tex4ht-html-speech-xtpipes/tex4ht-html-speech-xtpipes.html
+endef

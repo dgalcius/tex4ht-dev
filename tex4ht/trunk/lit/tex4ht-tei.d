@@ -51,3 +51,8 @@ define tex4ht-tei_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-tei_doc
+ ./html.dir/tex4ht-tei/tex4ht-tei.html
+endef

@@ -45,3 +45,8 @@ define tex4ht-info_deps
  common.tex\
 
 endef
+
+#set main html file
+define tex4ht-info_doc
+ ./html.dir/tex4ht-info/tex4ht-info.html
+endef

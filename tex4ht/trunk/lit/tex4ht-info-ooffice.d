@@ -50,3 +50,8 @@ define tex4ht-info-ooffice_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-info-ooffice_doc
+ ./html.dir/tex4ht-info-ooffice/tex4ht-info-ooffice.html
+endef

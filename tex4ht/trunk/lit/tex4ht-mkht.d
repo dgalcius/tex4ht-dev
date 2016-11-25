@@ -26,3 +26,8 @@ define tex4ht-mkht_deps
  common.tex\
 
 endef
+
+#set main html file
+define tex4ht-mkht_doc
+ ./html.dir/tex4ht-mkht/tex4ht-mkht.html
+endef

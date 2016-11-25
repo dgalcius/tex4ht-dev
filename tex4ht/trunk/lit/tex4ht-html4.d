@@ -37,3 +37,8 @@ define tex4ht-html4_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define tex4ht-html4_doc
+ ./html.dir/tex4ht-html4/tex4ht-html4.html
+endef

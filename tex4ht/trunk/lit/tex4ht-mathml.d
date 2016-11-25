@@ -51,3 +51,8 @@ define tex4ht-mathml_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-mathml_doc
+ ./html.dir/tex4ht-mathml/tex4ht-mathml.html
+endef

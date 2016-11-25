@@ -16,3 +16,8 @@ define cond4ht_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define cond4ht_doc
+ ./html.dir/cond4ht/cond4ht.html
+endef

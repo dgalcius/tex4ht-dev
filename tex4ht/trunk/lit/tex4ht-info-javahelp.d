@@ -48,3 +48,8 @@ define tex4ht-info-javahelp_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-info-javahelp_doc
+ ./html.dir/tex4ht-info-javahelp/tex4ht-info-javahelp.html
+endef

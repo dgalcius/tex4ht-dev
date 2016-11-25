@@ -47,3 +47,8 @@ define tex4ht-javahelp-xtpipes_deps
  xtpipes-jar.tex\
 
 endef
+
+#set main html file
+define tex4ht-javahelp-xtpipes_doc
+ ./html.dir/tex4ht-javahelp-xtpipes/tex4ht-javahelp-xtpipes.html
+endef

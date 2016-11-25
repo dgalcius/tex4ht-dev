@@ -50,3 +50,8 @@ define tex4ht-info-svg_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-info-svg_doc
+ ./html.dir/tex4ht-info-svg/tex4ht-info-svg.html
+endef

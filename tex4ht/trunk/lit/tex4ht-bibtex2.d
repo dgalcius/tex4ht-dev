@@ -17,3 +17,8 @@ define tex4ht-bibtex2_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define tex4ht-bibtex2_doc
+ ./html.dir/tex4ht-bibtex2/tex4ht-bibtex2.html
+endef

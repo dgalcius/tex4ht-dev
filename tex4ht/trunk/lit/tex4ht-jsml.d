@@ -56,3 +56,8 @@ define tex4ht-jsml_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-jsml_doc
+ ./html.dir/tex4ht-jsml/tex4ht-jsml.html
+endef

@@ -47,3 +47,8 @@ define tex4ht-docbook-xtpipes_deps
  xtpipes-jar.tex\
 
 endef
+
+#set main html file
+define tex4ht-docbook-xtpipes_doc
+ ./html.dir/tex4ht-docbook-xtpipes/tex4ht-docbook-xtpipes.html
+endef

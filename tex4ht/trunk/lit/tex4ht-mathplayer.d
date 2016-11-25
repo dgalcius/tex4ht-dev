@@ -48,3 +48,8 @@ define tex4ht-mathplayer_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-mathplayer_doc
+ ./html.dir/tex4ht-mathplayer/tex4ht-mathplayer.html
+endef

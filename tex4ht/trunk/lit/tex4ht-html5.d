@@ -48,3 +48,8 @@ define tex4ht-html5_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-html5_doc
+ ./html.dir/tex4ht-html5/tex4ht-html5.html
+endef

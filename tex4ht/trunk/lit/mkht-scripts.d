@@ -249,3 +249,8 @@ define mkht-scripts_deps
  mkht-scripts.4ht\
 
 endef
+
+#set main html file
+define mkht-scripts_doc
+ ./html.dir/mkht-scripts/mkht-scripts.html
+endef

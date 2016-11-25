@@ -323,10 +323,34 @@ endef
 # deps files list from tex4ht-4ht.fls.
 define tex4ht-4ht_deps
  tex4ht-4ht.tex\
+ th4.4ht\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ plain.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ dratex.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ th4.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  cond4ht.4ht\
  mktex4ht-cnf.tex\
  tex4ht-cpright.tex\
 
+endef
+
+#set main html file
+define tex4ht-4ht_doc
+ ./html.dir/tex4ht-4ht/tex4ht-4ht.html
 endef

@@ -57,3 +57,8 @@ define tex4ht-html-speech_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-html-speech_doc
+ ./html.dir/tex4ht-html-speech/tex4ht-html-speech.html
+endef

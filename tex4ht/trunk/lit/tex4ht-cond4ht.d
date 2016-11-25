@@ -14,3 +14,8 @@ define tex4ht-cond4ht_deps
  common.tex\
 
 endef
+
+#set main html file
+define tex4ht-cond4ht_doc
+ ./html.dir/tex4ht-cond4ht/tex4ht-cond4ht.html
+endef

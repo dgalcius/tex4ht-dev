@@ -46,3 +46,8 @@ define tex4ht-info-html4_deps
  info4ht.4ht\
 
 endef
+
+#set main html file
+define tex4ht-info-html4_doc
+ ./html.dir/tex4ht-info-html4/tex4ht-info-html4.html
+endef

@@ -55,3 +55,8 @@ define tex4ht-docbook_deps
  infomml.4ht\
 
 endef
+
+#set main html file
+define tex4ht-docbook_doc
+ ./html.dir/tex4ht-docbook/tex4ht-docbook.html
+endef

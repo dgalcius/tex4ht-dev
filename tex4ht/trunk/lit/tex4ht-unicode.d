@@ -31,3 +31,8 @@ define tex4ht-unicode_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define tex4ht-unicode_doc
+ ./html.dir/tex4ht-unicode/tex4ht-unicode.html
+endef

@@ -53,3 +53,8 @@ define tex4ht-html32_deps
  tex4ht-cpright.tex\
 
 endef
+
+#set main html file
+define tex4ht-html32_doc
+ ./html.dir/tex4ht-html32/tex4ht-html32.html
+endef
