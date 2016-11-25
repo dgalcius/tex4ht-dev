@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 #
 # Summary: process *.fls file, output *.d file (Makefile format)
-#          with  lists of dependencies and derived files
+#          with  lists of dependencies and derived files.
+#          Second optional param is for removing from deps
 #
-# Usage: fls2d foo.fls
+# Usage: fls2d foo.fls [bar.4ht]
 #
 # 
 # 
@@ -11,10 +12,16 @@
 set -e
 input=$1
 stem=${1%.*}
-filter=$2
+filter=$2 #remove file(s)
+doc=./html.dir/${stem}/${stem}.html
 
 source ${0%/*}/fls2x
 
 echo -e "##\n## Script generated file. Please do not edit\n##"
 fls2dd $input $stem ${stem}_derived OUTPUT "derived files list from ${input}."
 fls2dd $input $stem ${stem}_deps    INPUT "deps files list from ${input}." $filter
+echo -e "\n#set main html file"
+echo -e "define ${stem}_doc"
+echo -e " ${doc}"
+echo -e "endef"
+
