@@ -46,7 +46,7 @@ default: all
 common = tex4ht-cpright.tex common.tex common-code.tex ProTex.sty AlProTex.sty
 common_info = $(common) common-info.tex
 derived =
-xderived =
+derived-doc =
 
 derived += $(tex4ht-cond4ht_derived)
 derived += $(cond4ht_derived)
@@ -137,21 +137,19 @@ mktex4ht $(cond4ht_derived): cond4ht.4ht $(cond4ht_deps)
 
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
-	$(movetohtmldir) $< $(htmldir)
+
 
 cond4ht $(tex4ht-cond4ht_derived): tex4ht-cond4ht.tex $(tex4ht-cond4ht_deps) 
 	tex $(tex_opts) $<
 
 cond4ht-doc $(tex4ht-cond4ht_doc): $(tex4ht-cond4ht_deps)
 	$(HTTEX) $<
-	$(movetohtmldir) $< $(htmldir)
 
 4ht $(tex4ht-4ht_derived): tex4ht-4ht.tex $(tex4ht-4ht_deps)
 	tex $(tex_opts) $<
 
 4ht-doc $(tex4ht-4ht_doc): $(tex4ht-4ht_deps)
 	$(HTTEX) $<
-	$(movetohtmldir) $< $(htmldir)
 
 bibtex2 $(tex4ht-bibtex2_derived): tex4ht-bibtex2.tex $(tex4ht-bibtex2_deps)
 	latex $(tex_opts) $<
@@ -221,10 +219,6 @@ fonts-noncjk-doc $(tex4ht-fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 html-speech $(tex4ht-html-speech_derived): $(tex4ht-html-speech_deps) 
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
-
-#tex4ht-html-speech.fls: tex4ht-html-speech.tex
-#	latex $(tex_opts) $<
-#	latex $(tex_opts) $<
 
 html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps) 
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
@@ -373,7 +367,6 @@ mkht-doc $(tex4ht-mkht_doc): $(tex4ht-mkht_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 	perl -c mk4ht.perl  # syntax check
 
-
 mkht-scripts $(mkht-scripts_derived): $(mkht-scripts_deps) 
 	latex $(tex_opts) $<
 
@@ -397,11 +390,6 @@ oo-xtpipes $(tex4ht-oo-xtpipes_derived): $(tex4ht-oo-xtpipes_deps)
 
 oo-xtpipes-doc $(tex4ht-oo-xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
-
-#%.fls: %.tex
-#	rm -rf info4ht.ht infomml.4ht
-#	latex $(tex_opts) $<
-#	latex $(tex_opts) $<
 
 ooffice $(tex4ht-ooffice_derived): $(tex4ht-ooffice_deps)
 	latex $(tex_opts) $<
@@ -702,6 +690,9 @@ sources = \
 sources_d := $(sources:%.tex=%.dd)
 sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
 
+# list of foo_doc targets
+sources_doc := $(foreach S,$(sources),$(call $(S:%.tex=%_doc)))
+
 ## Generate *.d (dependency) file. Trying to mimick automake dependency computation.
 ## Automake:
 ##   Dependency computation is done at build time, as a side-effect of compilation.
@@ -739,6 +730,7 @@ tex4ht-info-mml.dd: tex4ht-info-mml.fls
 	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
 
 d: $(sources_d)
+doc: $(sources_doc)
 
 ## move *.html files to ./htmldir subfolder
 ## process lg file
@@ -747,3 +739,18 @@ tohtmldir:
 	echo Processing $$f && mkdir -p $(htmldir)/$${f%.*} \
 	&& grep "File: $${f%.*}" $$f | awk -v outdir=$(htmldir)/$${f%.*} '{system("[ -f "$$2" ] &&  mv -f " $$2" "outdir)}'  ; \
 done
+
+htmldir2:
+	$(movetohtmldir) $< $(htmldir)
+
+foo_doc := aa  bb
+bar_doc := bar1 bar2
+x := foo.tex bar.tex
+
+
+sources_doc_:=$(call $(sources:%.tex=%_doc))
+#sources_doc:=$(eval $(sources_doc_))
+test:
+	echo $x
+	echo -e $(sources_doc_)
+	echo $(sources_doc)
