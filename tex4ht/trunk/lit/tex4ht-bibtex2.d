@@ -11,10 +11,6 @@ define tex4ht-bibtex2_deps
  tex4ht-bibtex2.tex\
  ProTex.sty\
  AlProTex.sty\
- latex.4ht\
- fontmath.4ht\
- article.4ht\
- article.4ht\
  common.tex\
  common.tex\
  tex4ht-cpright.tex\

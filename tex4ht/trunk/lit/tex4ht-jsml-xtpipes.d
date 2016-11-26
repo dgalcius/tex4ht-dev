@@ -43,7 +43,6 @@ define tex4ht-jsml-xtpipes_deps
  common.tex\
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
- xtpipes-jsml-jar.tex\
  xtpipes-jar.tex\
 
 endef
