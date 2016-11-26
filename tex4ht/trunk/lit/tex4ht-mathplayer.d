@@ -43,9 +43,6 @@ define tex4ht-mathplayer_deps
  common.tex\
  tex4ht-cpright.tex\
  tex4ht-cpright.tex\
- info4ht.4ht\
- infoht4.4ht\
- infomml.4ht\
 
 endef
 
