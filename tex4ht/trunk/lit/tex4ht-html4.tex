@@ -1,4 +1,4 @@
-% $Id: tex4ht-html4.tex 177 2016-06-17 11:58:34Z michal_h21 $
+% $Id: tex4ht-html4.tex 205 2016-11-26 23:44:54Z michal_h21 $
 % Compile 4 times: latex tex4ht-html4
 % Copy html4.4ht into the work directory before all but the last compilation.
 %
@@ -21590,9 +21590,15 @@ gets something wrong there.
 >>>
 
 
+We can't use styles from .htf files with fontspec, so we must add meaning to
+font commands
 
-
-
+\<configure html4 fontspec\><<<
+\Configure{textit}{\Tg<i>}{\Tg</i>}
+\Configure{textbf}{\Tg<strong>}{\Tg</strong>}
+\Configure{textsc}{\Tg<span class="small-caps">}{\Tg</span>}
+\Css{.small-caps{font-variant: small-caps;}}
+>>>
 
 
 
@@ -21663,9 +21669,6 @@ them in the same row.
 \Configure{enoteformat}
    {\Link{enmark-\endnoteN}{ennote-\endnoteN}} {\EndLink}
 >>>
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
