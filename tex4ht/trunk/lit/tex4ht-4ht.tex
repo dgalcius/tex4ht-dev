@@ -1,4 +1,4 @@
-% $Id: tex4ht-4ht.tex 205 2016-11-26 23:44:54Z michal_h21 $
+% $Id: tex4ht-4ht.tex 210 2016-12-04 11:19:31Z michal_h21 $
 % tex tex4ht-4ht   or   ht tex tex4ht-4ht
 %
 % Copyright 2009-2016 TeX Users Group    
@@ -3500,40 +3500,22 @@ fontspec,>>>
 
 We need to add support for utf-8 input. Different methods are used for LuaTeX
 and XeTeX. In LuaTeX, node callbacks are used, in XeTeX, all used characters
-must be declared first. This is done in xetex-fontspec.4ht file.
+must be declared first. This is done in the fontspec-xetex.4ht file.
 
 \<fontspec.4ht\><<<
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-% fontspec.4ht                               |version %
-% Copyright (C) |CopyYear.2016.       TeX Users Group %
+% fontspec.4ht (|version), generated from |jobname.tex
+% Copyright |CopyYear.2016. TeX Users Group
 |<TeX4ht copyright|>
-% LuaTeX support
-\ifdefined\directlua
-\RequirePackage{luatexbase}
-\RequirePackage{luacode}
-
-\begin{luacode*}
-  local fontspec = require "fontspec-4ht"
-  luatexbase.add_to_callback("pre_linebreak_filter", fontspec.char_to_entity, "Char to entity")
-  luatexbase.add_to_callback("hpack_filter", fontspec.char_to_entity, "hpack-char-to-entity")
-\end{luacode*}
-\else
-\input xetex-fontspec.4ht
-\xeuniuseblock{Latin}
-\ExplSyntaxOn
-\seq_map_inline:Nn \fontspec_ht_scripts {\typeout{use block #1}\xeuniuseblock{#1}}
-\ExplSyntaxOff
 \Hinput{fontspec}
-\fi
 
->>>
-\AddFile{9}{fontspec}
-
+>>> \AddFile{9}{fontspec}
 
 \<fontspec-4ht.lua\><<<
--- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
---  fontspec-4ht.lua                            |version %
--- Copyright (C) |CopyYear.2016.       TeX Users Group %
+-- fontspec-4ht.lua (|version), generated from |jobname.tex
+-- Copyright |CopyYear.2016. TeX Users Group
+--[[
+|<TeX4ht copyright|>
+--]]
 local M = {}
 
 local glyph_id = node.id "glyph"
@@ -3641,10 +3623,9 @@ Alternatively, you can eiter directly declare unicode range using
 \`|\xeuniregisterblock{start charcode}{end charcode}|, or load ranges for
 given Script using \`|\xeuniuseblock{Script name}|. 
 
-\<xetex-fontspec.4ht\><<<
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-% xetex-fontspec.4ht                               |version %
-% Copyright (C) |CopyYear.2016.       TeX Users Group  %
+\<fontspec-xetex.4ht\><<<
+% fontspec-xetex.4ht, generated from |jobname.tex
+% Copyright |CopyYear.2016. TeX Users Group
 |<TeX4ht copyright|>
 
 \input binhex
@@ -3989,9 +3970,32 @@ given Script using \`|\xeuniuseblock{Script name}|.
 \xeuniblockdef{CJK Unified Ideographs Extension D}{\xeuniregisterblockhex{2B740}{2B81F}}
 \xeuniblockdef{CJK Unified Ideographs Extension E}{\xeuniregisterblockhex{2B820}{2CEAF}}
 \xeuniblockdef{CJK Compatibility Ideographs Supplement}{\xeuniregisterblockhex{2F800}{2FA1F}}
+% load default latin block and blocks requested through Script option in fontspec's font 
+% selection commands
+\ExplSyntaxOn
+\xeuniuseblock{Latin}
+\seq_map_inline:Nn \fontspec_ht_scripts {\typeout{use block #1}\xeuniuseblock{#1}}
+\ExplSyntaxOff
+\Hinput{fontspec-xetex}
 \endinput
->>>
-\AddFile{7}{xetex-fontspec}
+>>> \AddFile{9}{fontspec-xetex}
+
+
+\<fontspec-luatex.4ht\><<<
+% fontspec-luatex.4ht, generated from |jobname.tex
+% Copyright |CopyYear.2016. TeX Users Group
+|<TeX4ht copyright|>
+\RequirePackage{luatexbase}
+\RequirePackage{luacode}
+
+\begin{luacode*}
+  local fontspec = require "fontspec-4ht"
+  luatexbase.add_to_callback("pre_linebreak_filter", fontspec.char_to_entity, "Char to entity")
+  luatexbase.add_to_callback("hpack_filter", fontspec.char_to_entity, "hpack-char-to-entity")
+\end{luacode*}
+\Hinput{fontspec-luatex}
+\endinput
+>>> \AddFile{9}{fontspec-luatex}
 
 %%%%%%%%%%%%%%%%%%
 \Section{url.sty}
@@ -9147,9 +9151,8 @@ the  recursive macro \`'\inspect:cline' checks the digits separately.
 %%%%%%%%%%%%%%%%%%%
 
 \<multirow.4ht\><<<
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-% multirow.4ht                         |version %
-% Copyright (C) |CopyYear.2004.      Eitan M. Gurari         %
+% multirow.4ht (|version), generated from |jobname.tex
+% Copyright (C) |CopyYear.2004. Eitan M. Gurari
 |<TeX4ht copyright|>
  |<multirow hooks|>
 \Hinput{multirow}
@@ -9157,18 +9160,41 @@ the  recursive macro \`'\inspect:cline' checks the digits separately.
 >>>        \AddFile{9}{multirow}
 
 \<multirow hooks\><<<
-\def\@xmultirow#1[#2]#3[#4]#5{\@tempcnta=#1%
-  \@tempdima\@tempcnta\ht\@arstrutbox
-  \advance\@tempdima\@tempcnta\dp\@arstrutbox
-  \ifnum\@tempcnta<0\@tempdima=-\@tempdima\fi
-  \advance\@tempdima#2\bigstrutjot
-  \leavevmode \a:multirow
-  \if*#3\vtop to \@tempdima{\vfill\multirowsetup
-    \hbox{\strut#5\strut}\vfill}%
+\def\@xmultirow[#1]#2[#3]#4[#5]#6{%
+  \expandafter\multirow@piii#3\relax\end%
+  \multirow@dima=#2\ht\@arstrutbox
+  \advance\multirow@dima#2\dp\@arstrutbox
+  \ifdim#2pt<\z@\multirow@dima=-\multirow@dima\fi
+  \advance\multirow@dima \multirow@cntb\bigstrutjot
+  \if*#4\multirow@vbox{#1}{}{\hbox{\strut#6\strut}}%
+  \else \if=#4\multirow@setcolwidth{#6}%
+    \multirow@vbox{#1}{\hsize\multirow@colwidth\@parboxrestore}{\strut#6\strut\par}%
+  \else \multirow@vbox{#1}{\hsize#4\@parboxrestore}{\strut#6\strut\par}%
+  \fi \fi
+  \ifdim#2pt>\z@
+    \if#1t\relax\multirow@dima=\ht0\else
+      \multirow@dima=\ht\@arstrutbox
+      \ifmultirow@prefixt \advance\multirow@dima\bigstrutjot\fi
+      \if#1b\relax \advance\multirow@dima\dp\@arstrutbox
+        \ifmultirow@prefixb \advance\multirow@dima\bigstrutjot\fi
+      \fi
+    \fi
   \else
-      \vtop to \@tempdima{\hsize#3\@parboxrestore
-                \vfill \multirowsetup \strut#5\strut\par\vfill}%
-  \fi \b:multirow}
+    \if#1b\relax\else
+      \advance\multirow@dima-\dp\@arstrutbox
+      \ifmultirow@prefixb \advance\multirow@dima-\bigstrutjot\fi
+      \if#1t\relax\advance\multirow@dima-\ht\@arstrutbox
+        \ifmultirow@prefixt \advance\multirow@dima-\bigstrutjot\fi
+        \advance\multirow@dima\ht0
+      \fi
+    \fi
+  \fi
+  \advance\multirow@dima#5\relax
+  \leavevmode\a:multirow
+  \setbox0\vtop{\vskip-\multirow@dima\box0\vss}\dp0=\z@
+  \ifmultirowdebug{\showboxdepth=5 \showboxbreadth=10 \showbox0}\fi
+  \box0\b:multirow
+}
 \NewConfigure{multirow}{2}
 >>>
 
