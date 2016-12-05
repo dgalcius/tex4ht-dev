@@ -691,7 +691,13 @@ sources_d := $(sources:%.tex=%.dd)
 sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
 
 # list of foo_doc targets
-sources_doc := $(foreach S,$(sources),$(call $(S:%.tex=%_doc)))
+sources_doc := $(foreach s,$(sources),$(call $(s:%.tex=%_doc)))
+clean2:
+#	$(foreach s,$(sources),$(call $(s:%.tex=%_derived)))
+#	$(foreach s,$(derived), echo  $s)
+#	for f in $(sources); do for g in $$f; echo $$g done ; done
+#	($info $(derived))
+
 
 ## Generate *.d (dependency) file. Trying to mimick automake dependency computation.
 ## Automake:
