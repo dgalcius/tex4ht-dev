@@ -740,11 +740,11 @@ tex4ht-jar.dd: tex4ht.jar
 	echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
 	echo  "## derived files" >>tex4ht-jar.d
 	echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
-	echo  $< >>tex4ht-jar.d
-	echo  "\n endef" >>tex4ht-jar.d
+	echo  $< \\ >>tex4ht-jar.d
+	echo  "\nendef" >>tex4ht-jar.d
 	echo  "# deps files list from $<" >>tex4ht-jar.d
 	echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
-	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' >>tex4ht-jar.d
+	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' | sed -e 's/$$/ \\/' >>tex4ht-jar.d
 	echo  "\nendef" >>tex4ht-jar.ddd >>tex4ht-jar.d
 	echo "\n#set main html file" >>tex4ht-jar.d
 	echo "define tex4ht-jar_doc" >>tex4ht-jar.d
