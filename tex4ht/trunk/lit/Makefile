@@ -115,7 +115,7 @@ derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
 
 
-derived += tex4ht.jar
+derived += $(tex4ht-jar_derived)
 
 derived-doc =
 derived-doc += $(tex4ht-cond4ht_doc)
@@ -472,7 +472,7 @@ xtpipes $(xtpipes_derived): xtpipes.tex
 xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-tex4ht.jar:
+jar $(tex4ht-jar_derived): $(tex4ht-jar_deps)
 	jar cf tex4ht.jar -C $(xtpipesdir)/ .
 #	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
 #	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
@@ -689,6 +689,7 @@ sources = \
 
 sources_d := $(sources:%.tex=%.dd)
 sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
+sources_d += tex4ht-jar.dd   # to get tex4ht-jar.d
 
 # list of foo_doc targets
 sources_doc := $(foreach s,$(sources),$(call $(s:%.tex=%_doc)))
@@ -734,6 +735,22 @@ tex4ht-info-html4.dd: tex4ht-info-html4.fls
 #fix circular dependency: remove infomml.4ht entry from deps
 tex4ht-info-mml.dd: tex4ht-info-mml.fls
 	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
+
+tex4ht-jar.dd: tex4ht.jar
+	echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
+	echo  "## derived files" >>tex4ht-jar.d
+	echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
+	echo  $< >>tex4ht-jar.d
+	echo  "\n endef" >>tex4ht-jar.d
+	echo  "# deps files list from $<" >>tex4ht-jar.d
+	echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
+	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' >>tex4ht-jar.d
+	echo  "\nendef" >>tex4ht-jar.ddd >>tex4ht-jar.d
+	echo "\n#set main html file" >>tex4ht-jar.d
+	echo "define tex4ht-jar_doc" >>tex4ht-jar.d
+	echo "" >>tex4ht-jar.d
+	echo "endef" >>tex4ht-jar.d
+
 
 d: $(sources_d)
 doc: $(sources_doc)
