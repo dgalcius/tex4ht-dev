@@ -24,7 +24,8 @@ define tex4ht-4ht_derived
  xr.4ht\
  xr-hyper.4ht\
  fontspec.4ht\
- xetex-fontspec.4ht\
+ fontspec-xetex.4ht\
+ fontspec-luatex.4ht\
  url.4ht\
  path.4ht\
  hyperref.4ht\
@@ -326,6 +327,10 @@ endef
 # deps files list from tex4ht-4ht.fls.
 define tex4ht-4ht_deps
  tex4ht-4ht.tex\
+ th4.4ht\
+ plain.4ht\
+ dratex.4ht\
+ th4.4ht\
  ProTex.sty\
  AlProTex.sty\
  cond4ht.4ht\
