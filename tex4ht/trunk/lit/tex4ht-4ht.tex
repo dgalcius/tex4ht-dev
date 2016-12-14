@@ -1,4 +1,4 @@
-% $Id: tex4ht-4ht.tex 210 2016-12-04 11:19:31Z michal_h21 $
+% $Id: tex4ht-4ht.tex 219 2016-12-13 22:52:21Z karl $
 % tex tex4ht-4ht   or   ht tex tex4ht-4ht
 %
 % Copyright 2009-2016 TeX Users Group    
@@ -91,6 +91,7 @@
                 \Preamble{html,th4,family,sections+,xhtml,next}
                 \Configure{@HEAD}{\HCode{<link rev="made" 
                       href="mailto:tex4ht@tug.org" />}}
+%                \input MyTeX4ht.sty {}%
                 \input ProTex.sty
              \AlProTex{sty,<<<>>>,|,title,list,[],ClearCode}
                 \EndPreamble
@@ -440,7 +441,7 @@ to include the above (new) ``TeX4ht license text''.  I don't understand.
 \<usepackage.4ht\><<<
 % usepackage.4ht (|version), generated from |jobname.tex
 % Copyright |CopyYear.2003. Eitan M. Gurari
-|<TeX4ht copywrite|>
+|<TeX4ht copyright|>
    |<insert into latex|>
 \endinput
 >>>
@@ -3495,7 +3496,21 @@ fontspec,>>>
   \global\expandafter\let\csname opt@fontenc.sty\endcsname\relax
 }
 \ExplSyntaxOff
+|<Restore TivhTcats|>
 \fi
+>>>
+
+I am not really sure what is the problem here, but I've found that use of
+Expl3 package in fontspec patch causes catcode problems in packages which
+are loaded latter, for example with calc.sty. The catcodes are stored in
+\`|\TivhTcats| macro, we need to set catcode of : to 12 manually, saved catcode 
+of @ is OK, so we don't need to reset it.
+
+\<Restore TivhTcats\><<<
+\edef\TivhTcats{%                                                                                                                                     
+  \catcode`:=12%
+  \catcode`@=\the\catcode`@%
+} 
 >>>
 
 We need to add support for utf-8 input. Different methods are used for LuaTeX
@@ -3537,7 +3552,7 @@ local make_node = function(data)
 end
 
 -- this should be table with patterns for allowed fonts
-local allowed_names = {"^cmr", "^cmb","^cmt", "^cmb", "^cmcs", "^rm%-l"}
+local allowed_names = {"^cmr", "^cmb","^cmt", "^cmb", "^cmcs", "^rm%-l", "^cmi", "none"}
 
 local testfont = function(name)
   -- test font name for all allowed names, when it is found, return true
@@ -3553,7 +3568,7 @@ end
 local fonttypes = {}
 local get_font_type = function(id)
   if fonttypes[id]~=nil then return fonttypes[id] end
-  local f = font.getfont(id)
+  local f = font.getfont(id) or {name = "none"} -- font object can be nil sometimes
   local name = f.name
   local type = testfont(string.lower(name))
   if not type then
@@ -24849,10 +24864,9 @@ colortbl.sty invokes color.sty, if the last package is not loaded.
 The same is true for array.sty.
 
 \<colortbl.4ht\><<<
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
-% colortbl.4ht                          |version %
-% Copyright (C) |CopyYear.1997.       Eitan M. Gurari         %
-|<TeX4ht copyright|>
+% colortbl.4ht (|version), generated from |jobname.tex
+% Copyright |CopyYear.1997. Eitan M. Gurari
+|<TeX4ht copywrite|>
 
    |<fix colortbl|>
    |<colortbl.sty shared config|>
@@ -24860,16 +24874,30 @@ The same is true for array.sty.
 \endinput
 >>>        \AddFile{7}{colortbl}
 
+color.sty is obsoleted by xcolor, so we will load the latter package in 
+order to get access to the color space conversion commands.
+
+\<fix colortbl\><<<
+\RequirePackage{xcolor}
+>>>
+
 \<fix colortbl\><<<
 \CT@everycr{\o:noalign:{\global\let\CT@row@color\relax}\the\everycr}
 >>>
+
+We use xcolor's \`|\convertcolorspec| command to convert argument of
+\`|\columncolor| to HTML color specification.
+
 
 \<fix colortbl\><<<
 \def\columncolor#1{{\def\current@color{#1}%
                     \csname a:cell-colortbl\endcsname}}
 \Odef\columncolor[#1]#2{{\if :#1:\def\current@color{#2}%
                          \else 
-                            \Configure{tblcol:#1}{#2}%
+                           \gHAdvance\tblcol:N by 1
+                           \convertcolorspec{#1}{#2}{HTML}\tmp:tblcolor
+                           \Configure{HColor}{tblcol-\tblcol:N}{\#\tmp:tblcolor}%
+                           \def\current@color{tblcol-\tblcol:N}%
                          \fi
                     \csname a:cell-colortbl\endcsname}%
    \futurelet\:temp\left:colcol}
@@ -24884,38 +24912,6 @@ The same is true for array.sty.
 }
 \def\right::colcol[#1]{}
 \HAssign\tblcol:N = 0
-\NewConfigure{tblcol:gray}[1]{%
-   \gHAdvance\tblcol:N by 1
-   \def\:temp##1 ##2//{%
-       \int:of\:tempa{255}{##1}%
-       \Configure{HColor}{tblcol-\tblcol:N}{rgb(\:tempa,\:tempa,\:tempa)}%
-   }\:temp #1 //%
-   \def\current@color{tblcol-\tblcol:N}%
-}
-\NewConfigure{tblcol:rgb}[1]{%
-   \gHAdvance\tblcol:N by 1
-   \def\:temp##1 ##2 ##3 ##4//{%
-       \int:of\:tempa{255}{##1}%
-       \int:of\:tempb{255}{##2}%
-       \int:of\:tempc{255}{##3}%
-       \Configure{HColor}{tblcol-\tblcol:N}{rgb(\:tempa,\:tempb,\:tempc)}%
-   }\:temp #1 //%
-   \def\current@color{tblcol-\tblcol:N}%
-}
-\NewConfigure{tblcol:cmyk}[1]{%
-   \gHAdvance\tblcol:N by 1
-   \def\:temp##1 ##2 ##3 ##4 ##5//{%
-      \int:of\:Cyan{255}{##1}%
-      \int:of\:Magenta{255}{##2}%
-      \int:of\:Yellow{255}{##3}%
-      \int:of\:Black{255}{##4}%
-      \:cmyk\:tempa\:Cyan
-      \:cmyk\:tempb\:Magenta
-      \:cmyk\:tempc\:Yellow
-       \Configure{HColor}{tblcol-\tblcol:N}{rgb(\:tempa,\:tempb,\:tempc)}%
-   }\:temp #1 //%
-   \def\current@color{tblcol-\tblcol:N}%
-}
 >>>
 
 The followning is a redefinition of a macro from array.sty

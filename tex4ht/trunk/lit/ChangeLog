@@ -1,16 +1,57 @@
+2016-12-13  Michal Hoftich  <michal.h21@gmail.com>
+
+	* tex4ht-4ht.tex (colortbl.4ht): Use xcolor.sty commands 
+	to convert color specifications to CSS.
+	https://puszcza.gnu.org.ua/bugs/?346
+
+2016-12-11  Karl Berry  <karl@freefriends.org>
+
+	* tex4ht-fonts-noncjk.tex ([g]version 2..18): eliminate
+	right-justified %'s, typos.
+
+	* tex4ht-fonts-modern.tex (rm-lm): copyright for
+	tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/rm-lm.htf.
+
+2016-12-11  Michal Hoftich  <michal.h21@gmail.com>
+
+	* tex4ht-fonts-modern.tex
+	(tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/rm-lm.htf,
+	tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/rm-lmt.htf,
+	tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/rm-lmvt.htf):
+	Typewriter lmodern fonts in OT1 encoding containded wrong
+	backslashes and other characters.
+	
+2016-12-10  Michal Hoftich  <michal.h21@gmail.com>
+
+	* tex4ht-4ht.tex (usepackage.4ht): There was catcode issue with 
+	`:` character, it was 11 instead of 12.
+	* tex4ht-4ht.tex (fontspec-4ht.lua): There could be Lua error caused
+	by some fonts.
+	https://puszcza.gnu.org.ua/bugs/?123
+
+2016-12-09  Karl Berry  <karl@freefriends.org>
+
+	* tex4ht-env.tex: copyright 2016.
+
+	* tex4ht-4ht.tex (usepackage.4ht): |<TeX4ht copyright|>
+	not copywrite, so the full notice is inserted.
+	
+2016-12-08  Karl Berry  <karl@freefriends.org>
+
+	* tex4ht-cond4ht.tex (mktex4ht.4ht): copyright 2016.
+
 2016-12-07  Michal Hoftich  <michal.h21@gmail.com>
 
-	* tex4ht-env.tex (tex4ht.env): moved default picture conversion scripts
-	below alternative scripts, in order to enable their selection with -c option
-	of t4ht
-
+	* tex4ht-env.tex (tex4ht.env): moved default picture conversion
+	scripts below alternative scripts, in order to enable their
+	selection with -c option of t4ht.
 
 2016-12-04  Michal Hoftich  <michal.h21@gmail.com>
 
-	* tex4ht-4ht.tex (fontspec.4ht, fontspec-luatex.4ht, fontspec-xetex.4ht):
-	moved luatex and xetex definitions for fontspec to fontspec-xetex.4ht and
-	fontspec-luatex.4ht
-	* mktex4ht-cnf.tex (mktex4ht.4ht): added fontspec-luatex
+	* tex4ht-4ht.tex (fontspec.4ht, fontspec-luatex.4ht,
+	fontspec-xetex.4ht): moved luatex and xetex definitions for
+	fontspec to fontspec-xetex.4ht and fontspec-luatex.4ht.
+	* mktex4ht-cnf.tex (mktex4ht.4ht): added fontspec-luatex.
 
 2016-12-03  Karl Berry  <karl@freefriends.org>
 
@@ -1185,6 +1226,12 @@ This file is public domain.  Started 2010, Karl Berry.
 	* tex4ht.c [__MINGW32__]: #define HAVE_BOOLEAN in order to avoid
 	conflicting declaration for boolean from kpathsea/types.h.
 	Declare various param strings as const.
+
+2010-01-11  Karl Berry  <karl@tug.org>
+
+	* texmf/tex/generic/tex4ht/frenchb.4ht: patch from
+	daniel.flipo@univ-lille1.fr to improve compatibility
+	with different versions of frenchb.
 
 2009-09-30  Peter Breitenlohner  <peb@mppmu.mpg.de>
 

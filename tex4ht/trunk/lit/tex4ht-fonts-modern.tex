@@ -1,5 +1,5 @@
-% $Id: tex4ht-fonts-modern.tex 157 2015-10-09 23:08:52Z karl $
-% Copyright 2009-2015 TeX Users Group
+% $Id: tex4ht-fonts-modern.tex 217 2016-12-11 23:48:31Z karl $
+% Copyright 2009-2016 TeX Users Group
 % Copyright 1997-2009 Eitan M. Gurari
 % Released under LPPL 1.3c+.
 % See tex4ht-cpright.tex for license text.
@@ -1779,9 +1779,9 @@ htfcss: cs-lmtcso font-style:italic;
 
 \<rm-lm\><<<
 rm-lm 0 255
-'&#x0393;' '' `% /Gamma `%      0 % rm-lm.htf `version % 
-'&#x0394;' '' `% /Delta `%      1 % Copyright (C) `CopyYear.2007.`<EMG`>%   
-'&#x0398;' '' `% /Theta `%      2 `<version 2`> 
+'&#x0393;' '' `% /Gamma `%      0 % rm-lm.htf `version, generated from `jobname
+'&#x0394;' '' `% /Delta `%      1 % Copyright 2009-2016 TeX Users Group
+'&#x0398;' '' `% /Theta `%      2 % Copyright 2007-2009 Eitan M. Gurari
 '&#x039B;' '' `% /Lambda `%      3 `<version 3`> 
 '&#x039E;' '' `% /Xi `%      4 `<version 4`> 
 '&#x03A0;' '' `% /Pi `%      5 `<version 5`> 
@@ -1790,13 +1790,13 @@ rm-lm 0 255
 '&#x03A6;' '' `% /Phi `%      8 `<version 8`> 
 '&#x03A8;' '' `% /Psi `%      9 `<version 9`> 
 '&#x03A9;' '' `% /Omega `%      10 `<version 10`> 
-'&#xFB00;' '' `% /ff `%   11 `<version 11`> 
-'&#xFB01;' '' `% /fi `%   12 `<version 12`> 
-'&#xFB02;' '' `% /fl `%   13 `<version 13`> 
-'&#xFB03;' '' `% /ffi `%   14 `<version 14`> 
-'&#xFB04;' '' `% /ffl `%   15 `<version 15`> 
-'&#x0131;' '' `% /dotlessi `%   16 `<version 16`> 
-'&#x0237;' '' `% /dotlessj `%   17 `<version 17`> 
+'&#xFB00;' '' `% /ff `%      11 `<version 11`> 
+'&#xFB01;' '' `% /fi `%      12 `<version 12`> 
+'&#xFB02;' '' `% /fl `%      13 `<version 13`> 
+'&#xFB03;' '' `% /ffi `%      14 `<version 14`> 
+'&#xFB04;' '' `% /ffl `%      15 `<version 15`> 
+'&#x0131;' '' `% /dotlessi `%      16 `<version 16`> 
+'&#x0237;' '' `% /dotlessj `%      17 `<version 17`> 
 '&#x0060;' '' `% /grave `%      18 `<version 18`> 
 '&#x00B4;' '' `% /acute `%      19 
 '&#x02C7;' '' `% /caron `%      20 
@@ -2052,6 +2052,12 @@ htfcss: rm-lmssq  font-family: sans-serif;
 htfcss: rm-lmssqbo  font-family: sans-serif; font-style: oblique; font-weight: bold;
 htfcss: rm-lmssqbx  font-family: sans-serif; font-weight: bold;
 htfcss: rm-lmssqo  font-family: sans-serif; font-style: oblique;
+>>>
+
+\AddFont{rm-lm}{unicode/lm/rm-lm}
+
+\<rm-lmt\><<<
+.lm-ec
 htfcss: rm-lmtcso  font-style: oblique; font-family: monospace;
 htfcss: rm-lmtk  font-family: monospace;
 htfcss: rm-lmtko  font-style: oblique; font-family: monospace;
@@ -2060,8 +2066,14 @@ htfcss: rm-lmtlc  font-weight: light; font-family: monospace;
 htfcss: rm-lmtlco  font-weight: light; font-style: oblique; font-family: monospace;
 htfcss: rm-lmtlo  font-weight: light; font-style: oblique; font-family: monospace;
 htfcss: rm-lmtt  font-family: monospace;
+htfcss: rm-lmtk  font-family: monospace;
 htfcss: rm-lmtti  font-family: monospace; font-style:italic;
 htfcss: rm-lmtto  font-style: oblique; font-family: monospace;
+>>>
+\AddFont{rm-lmt}{alias/lm/rm-lmt}
+
+\<rm-lmvt\><<<
+.lm-ec
 htfcss: rm-lmvtk  font-family: monospace;
 htfcss: rm-lmvtko  font-style: oblique; font-family: monospace;
 htfcss: rm-lmvtl  font-weight: light; font-family: monospace;
@@ -2069,25 +2081,7 @@ htfcss: rm-lmvtlo  font-weight: light; font-style: oblique; font-family: monospa
 htfcss: rm-lmvtt  font-family: monospace;
 htfcss: rm-lmvtto  font-style: oblique; font-family: monospace;
 >>>
-
-\AddFont{rm-lm}{unicode/lm/rm-lm}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\AddFont{rm-lmvt}{alias/lm/rm-lmvt}
 
 
 \<lmbsy\><<<
@@ -2408,6 +2402,7 @@ htfcss: ec-lmbx  font-weight: bold;
 htfcss: ec-lmbxi  font-style:italic; font-weight: bold;
 htfcss: ec-lmbxo  font-style: oblique; font-weight: bold;
 htfcss: ec-lmcsco  font-style: oblique;
+htfcss: ec-lmcs  font-variant: small-caps;
 htfcss: ec-lmri  font-style:italic;
 htfcss: ec-lmro  font-style: oblique;
 htfcss: ec-lmss  font-family: sans-serif;
@@ -4225,8 +4220,8 @@ htfcss: qx-lmvtto font-style:italic; font-style: oblique;
 \AddFont{qx-lmvt}{alias/lm/pre2005/qx-lmvt}
 
 
-%% lm-qx already defined
-%% \AddFont{lm-qx-LM-05}{unicode/lm/lm-qx}
+
+\AddFont{lm-qx-LM-05}{unicode/lm/lm-qx}
 
 
 \AddFont{lm-qxtt-LM-05}{unicode/lm/lm-qxtt}
