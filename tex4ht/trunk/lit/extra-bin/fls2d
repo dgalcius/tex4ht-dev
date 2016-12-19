@@ -35,7 +35,7 @@ awk -v stem=${stem} '
       END      { print " " htmldir "/" stem "/" stem ".html"}
       END      { print "\nendef" }
       $1 == "OUTPUT" && $2 !~ stem && $2 !~ begin_with_slash { outp[$2] = $2; ii++; outpi[ii] = $2 }
-      $1 == "INPUT"  &&               $2 !~ begin_with_slash && $2 !~ auxfiles { i++; inpi[i] = $2 }
+      $1 == "INPUT"  &&               $2 !~ begin_with_slash && $2 !~ auxfiles { if ( $2 in inp) ; else { inp[$2] = $2; i++ ; inpi[i] = $2 } }
     ' ${input}
 
 
