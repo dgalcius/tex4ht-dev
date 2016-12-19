@@ -711,7 +711,7 @@ clean2:
 %.dd: %.fls 
 	$(extra_bin)/fls2d $*.fls >$*.d
 
-## Fonts need to parse *.fls and *.lg files
+## We need to parse *.fls and *.lg files for fonts derived/deps
 tex4ht-fonts-cjk.dd: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
 	$(extra_bin)/flslg2d $^ >tex4ht-fonts-cjk.d
 
@@ -728,29 +728,29 @@ xtpipes.dd: xtpipes.lg xtpipes.fls
 	$(extra_bin)/flslg2d $^ >xtpipes.d
 
 #fix circular dependency: remove info4ht.4ht entry from deps
-tex4ht-info.dd: tex4ht-info.fls
-	$(extra_bin)/fls2d $< info4ht.4ht >tex4ht-info.d
+#tex4ht-info.dd: tex4ht-info.fls
+#	$(extra_bin)/fls2d $< info4ht.4ht >tex4ht-info.d
 #fix circular dependency: remove infoht4.4ht entry from deps
-tex4ht-info-html4.dd: tex4ht-info-html4.fls
-	$(extra_bin)/fls2d $< infoht4.4ht >tex4ht-info-html4.d
+#tex4ht-info-html4.dd: tex4ht-info-html4.fls
+#	$(extra_bin)/fls2d $< infoht4.4ht >tex4ht-info-html4.d
 #fix circular dependency: remove infomml.4ht entry from deps
-tex4ht-info-mml.dd: tex4ht-info-mml.fls
-	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
+#tex4ht-info-mml.dd: tex4ht-info-mml.fls
+#	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
 
 tex4ht-jar.dd: tex4ht.jar
-	echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
-	echo  "## derived files" >>tex4ht-jar.d
-	echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
-	echo  $< \\ >>tex4ht-jar.d
-	echo  "\nendef" >>tex4ht-jar.d
-	echo  "# deps files list from $<" >>tex4ht-jar.d
-	echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
+	@echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
+	@echo  "## derived files" >>tex4ht-jar.d
+	@echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
+	@echo  $< \\ >>tex4ht-jar.d
+	@echo  "\nendef" >>tex4ht-jar.d
+	@echo  "# deps files list from $<" >>tex4ht-jar.d
+	@echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
 	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' | sed -e 's/$$/ \\/' >>tex4ht-jar.d
-	echo  "\nendef" >>tex4ht-jar.ddd >>tex4ht-jar.d
-	echo "\n#set main html file" >>tex4ht-jar.d
-	echo "define tex4ht-jar_doc" >>tex4ht-jar.d
-	echo "" >>tex4ht-jar.d
-	echo "endef" >>tex4ht-jar.d
+	@echo  "\nendef" >>tex4ht-jar.ddd >>tex4ht-jar.d
+	@echo "\n#set main html file" >>tex4ht-jar.d
+	@echo "define tex4ht-jar_doc" >>tex4ht-jar.d
+	@echo "" >>tex4ht-jar.d
+	@echo "endef" >>tex4ht-jar.d
 
 
 d: $(sources_d)
