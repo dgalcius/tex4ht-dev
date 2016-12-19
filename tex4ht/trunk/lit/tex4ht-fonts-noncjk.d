@@ -2655,6 +2655,8 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/cs-lm.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/cs-lmcs.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/rm-lm.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/rm-lmt.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/rm-lmvt.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lmbsy.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lmex.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lmmi.htf\
@@ -2705,7 +2707,7 @@ define tex4ht-fonts-noncjk_derived
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/kurier/ec/ec-kuriercmicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/kurier/ec/ec-kuriercbicap.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/kurier/ec/ec-kurierchicap.htf\
-  ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lm-qx/lm-qx.htf\
+  ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/lm-qx.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/lm-qx/qx-lm.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/alias/lm/pre2005/qx-.htf\
   ./tex4ht.dir/texmf/tex4ht/ht-fonts/unicode/lm/pre2005/qx-lmcs.htf\
@@ -3251,8 +3253,21 @@ endef
 # deps files list from tex4ht-fonts-noncjk.fls.
 define tex4ht-fonts-noncjk_deps
  tex4ht-fonts-noncjk.tex\
+ tex4ht.sty\
+ tex4ht.4ht\
+ tex4ht.sty\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
  plain.4ht\
+ html4.4ht\
+ html4-math.4ht\
  th4.4ht\
+ html4.4ht\
+ html4-math.4ht\
+ html4.4ht\
+ html4-math.4ht\
  ProTex.sty\
  AlProTex.sty\
  tex4ht-dir.tex\

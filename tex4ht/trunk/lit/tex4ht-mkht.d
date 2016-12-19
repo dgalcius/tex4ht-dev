@@ -13,21 +13,19 @@ define tex4ht-mkht_deps
  tex4ht-mkht.tex\
  tex4ht.sty\
  tex4ht.4ht\
- tex4ht.sty\
+ html4.4ht\
+ html4-math.4ht\
  latex.4ht\
  fontmath.4ht\
  article.4ht\
- article.4ht\
- url.4ht\
  url.4ht\
  ProTex.sty\
  AlProTex.sty\
  common.tex\
- common.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-mkht_doc
  ./html.dir/tex4ht-mkht/tex4ht-mkht.html
+
 endef

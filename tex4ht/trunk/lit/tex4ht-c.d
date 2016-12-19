@@ -10,6 +10,10 @@ endef
 define tex4ht-c_deps
  tex4ht-c.tex\
  common.tex\
+ tex4ht.sty\
+ tex4ht.4ht\
+ html4.4ht\
+ html4-math.4ht\
  plain.4ht\
  dratex.4ht\
  th4.4ht\
@@ -18,8 +22,8 @@ define tex4ht-c_deps
  tex4ht-cpright.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-c_doc
  ./html.dir/tex4ht-c/tex4ht-c.html
+
 endef

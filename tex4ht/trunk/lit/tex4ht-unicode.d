@@ -12,27 +12,21 @@ define tex4ht-unicode_deps
  mktex4ht.4ht\
  ProTex.sty\
  tex4ht.sty\
- tex4ht.sty\
  tex4ht.4ht\
- tex4ht.sty\
+ html4.4ht\
+ html4-math.4ht\
  latex.4ht\
  fontmath.4ht\
  book.4ht\
- book.4ht\
  ProTex.4ht\
- ProTex.sty\
  AlProTex.sty\
- tex4ht-unicode.tex\
- common.tex\
  common.tex\
  common-code.tex\
- common-code.tex\
- tex4ht-cpright.tex\
  tex4ht-cpright.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-unicode_doc
  ./html.dir/tex4ht-unicode/tex4ht-unicode.html
+
 endef

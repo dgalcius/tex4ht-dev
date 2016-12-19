@@ -12,22 +12,22 @@ endef
 define tex4ht-env_deps
  tex4ht-env.tex\
  tex4ht-dir.tex\
+ tex4ht.sty\
  ProTex.sty\
  AlProTex.sty\
  common.tex\
- common.tex\
+ tex4ht.4ht\
+ html4.4ht\
+ html4-math.4ht\
  latex.4ht\
  fontmath.4ht\
  article.4ht\
- article.4ht\
  url.4ht\
- url.4ht\
- tex4ht-cpright.tex\
  tex4ht-cpright.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-env_doc
  ./html.dir/tex4ht-env/tex4ht-env.html
+
 endef

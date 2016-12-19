@@ -334,8 +334,8 @@ define tex4ht-4ht_deps
  tex4ht-cpright.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-4ht_doc
  ./html.dir/tex4ht-4ht/tex4ht-4ht.html
+
 endef

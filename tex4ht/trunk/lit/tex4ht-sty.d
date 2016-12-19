@@ -14,12 +14,10 @@ define tex4ht-sty_deps
  AlProTex.sty\
  tex4ht-cpright.tex\
  wripro.tex\
- wripro.tex\
- wripro.tex\
 
 endef
-
-#set main html file
+# set main html file
 define tex4ht-sty_doc
  ./html.dir/tex4ht-sty/tex4ht-sty.html
+
 endef

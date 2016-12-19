@@ -239,18 +239,15 @@ define mkht-scripts_deps
  AlProTex.sty\
  tex4ht.sty\
  tex4ht.4ht\
- tex4ht.sty\
+ html4.4ht\
+ html4-math.4ht\
  latex.4ht\
  fontmath.4ht\
  article.4ht\
- article.4ht\
- ProTex.sty\
- AlProTex.sty\
- mkht-scripts.4ht\
 
 endef
-
-#set main html file
+# set main html file
 define mkht-scripts_doc
  ./html.dir/mkht-scripts/mkht-scripts.html
+
 endef
