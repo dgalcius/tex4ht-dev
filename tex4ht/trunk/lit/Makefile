@@ -167,6 +167,7 @@ c-doc $(tex4ht-c_doc): $(tex4ht-c_deps)
 
 docbook $(tex4ht-docbook_derived): $(tex4ht-docbook_deps)
 	latex $(tex_opts) $<
+	latex $(tex_opts) $<
 
 docbook-doc $(tex4ht-docbook_doc): $(tex4ht-docbook_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
