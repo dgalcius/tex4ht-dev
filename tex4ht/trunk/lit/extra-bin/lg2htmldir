@@ -1,14 +1,13 @@
 #!/usr/bin/env bash
 #
-# Summary: process *.fls file, output *.d file (Makefile format)
-#          with  lists of dependencies and derived files.
-#          Second optional param is for removing from deps
+# Summary: process foo.lg file,
+#          move generated html(css,png) to ./html.dir/foo/ dir
 #
 # Usage: lg2htmldir foo.lg ./htmldir/foo/
 #
 # 
 #
-set -x
+set -e
 
 
 input=$1
