@@ -30,6 +30,6 @@ define tex4ht-info-ooffice_deps
 endef
 # set main html file
 define tex4ht-info-ooffice_doc
- ./html.dir/tex4ht-info-ooffice/tex4ht-info-ooffice.html
+ html.dir/tex4ht-info-ooffice/tex4ht-info-ooffice.html
 
 endef

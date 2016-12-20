@@ -30,6 +30,6 @@ define tex4ht-svg_deps
 endef
 # set main html file
 define tex4ht-svg_doc
- ./html.dir/tex4ht-svg/tex4ht-svg.html
+ html.dir/tex4ht-svg/tex4ht-svg.html
 
 endef

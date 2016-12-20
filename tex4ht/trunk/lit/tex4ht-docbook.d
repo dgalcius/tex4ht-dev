@@ -33,6 +33,6 @@ define tex4ht-docbook_deps
 endef
 # set main html file
 define tex4ht-docbook_doc
- ./html.dir/tex4ht-docbook/tex4ht-docbook.html
+ html.dir/tex4ht-docbook/tex4ht-docbook.html
 
 endef

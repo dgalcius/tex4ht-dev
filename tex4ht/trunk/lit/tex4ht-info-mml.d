@@ -29,6 +29,6 @@ define tex4ht-info-mml_deps
 endef
 # set main html file
 define tex4ht-info-mml_doc
- ./html.dir/tex4ht-info-mml/tex4ht-info-mml.html
+ html.dir/tex4ht-info-mml/tex4ht-info-mml.html
 
 endef

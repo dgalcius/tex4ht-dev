@@ -34,6 +34,6 @@ define tex4ht-html-speech_deps
 endef
 # set main html file
 define tex4ht-html-speech_doc
- ./html.dir/tex4ht-html-speech/tex4ht-html-speech.html
+ html.dir/tex4ht-html-speech/tex4ht-html-speech.html
 
 endef

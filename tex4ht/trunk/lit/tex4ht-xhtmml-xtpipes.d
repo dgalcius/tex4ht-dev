@@ -30,6 +30,6 @@ define tex4ht-xhtmml-xtpipes_deps
 endef
 # set main html file
 define tex4ht-xhtmml-xtpipes_doc
- ./html.dir/tex4ht-xhtmml-xtpipes/tex4ht-xhtmml-xtpipes.html
+ html.dir/tex4ht-xhtmml-xtpipes/tex4ht-xhtmml-xtpipes.html
 
 endef

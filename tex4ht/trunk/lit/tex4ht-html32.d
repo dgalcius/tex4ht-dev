@@ -30,6 +30,6 @@ define tex4ht-html32_deps
 endef
 # set main html file
 define tex4ht-html32_doc
- ./html.dir/tex4ht-html32/tex4ht-html32.html
+ html.dir/tex4ht-html32/tex4ht-html32.html
 
 endef

@@ -31,6 +31,6 @@ define tex4ht-mathltx_deps
 endef
 # set main html file
 define tex4ht-mathltx_doc
- ./html.dir/tex4ht-mathltx/tex4ht-mathltx.html
+ html.dir/tex4ht-mathltx/tex4ht-mathltx.html
 
 endef

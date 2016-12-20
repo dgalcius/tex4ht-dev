@@ -23,6 +23,6 @@ define tex4ht-t4ht_deps
 endef
 # set main html file
 define tex4ht-t4ht_doc
- ./html.dir/tex4ht-t4ht/tex4ht-t4ht.html
+ html.dir/tex4ht-t4ht/tex4ht-t4ht.html
 
 endef

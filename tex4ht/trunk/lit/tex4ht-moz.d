@@ -29,6 +29,6 @@ define tex4ht-moz_deps
 endef
 # set main html file
 define tex4ht-moz_doc
- ./html.dir/tex4ht-moz/tex4ht-moz.html
+ html.dir/tex4ht-moz/tex4ht-moz.html
 
 endef

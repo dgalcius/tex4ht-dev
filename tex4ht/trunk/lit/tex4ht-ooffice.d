@@ -38,6 +38,6 @@ define tex4ht-ooffice_deps
 endef
 # set main html file
 define tex4ht-ooffice_doc
- ./html.dir/tex4ht-ooffice/tex4ht-ooffice.html
+ html.dir/tex4ht-ooffice/tex4ht-ooffice.html
 
 endef

@@ -27,6 +27,6 @@ define tex4ht-html0_deps
 endef
 # set main html file
 define tex4ht-html0_doc
- ./html.dir/tex4ht-html0/tex4ht-html0.html
+ html.dir/tex4ht-html0/tex4ht-html0.html
 
 endef

@@ -31,6 +31,6 @@ define tex4ht-jsml-xtpipes_deps
 endef
 # set main html file
 define tex4ht-jsml-xtpipes_doc
- ./html.dir/tex4ht-jsml-xtpipes/tex4ht-jsml-xtpipes.html
+ html.dir/tex4ht-jsml-xtpipes/tex4ht-jsml-xtpipes.html
 
 endef

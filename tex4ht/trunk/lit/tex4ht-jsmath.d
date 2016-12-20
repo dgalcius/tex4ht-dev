@@ -31,6 +31,6 @@ define tex4ht-jsmath_deps
 endef
 # set main html file
 define tex4ht-jsmath_doc
- ./html.dir/tex4ht-jsmath/tex4ht-jsmath.html
+ html.dir/tex4ht-jsmath/tex4ht-jsmath.html
 
 endef

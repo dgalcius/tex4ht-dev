@@ -32,6 +32,6 @@ define tex4ht-tei_deps
 endef
 # set main html file
 define tex4ht-tei_doc
- ./html.dir/tex4ht-tei/tex4ht-tei.html
+ html.dir/tex4ht-tei/tex4ht-tei.html
 
 endef

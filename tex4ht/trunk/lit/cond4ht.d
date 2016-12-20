@@ -18,6 +18,6 @@ define cond4ht_deps
 endef
 # set main html file
 define cond4ht_doc
- ./html.dir/cond4ht/cond4ht.html
+ html.dir/cond4ht/cond4ht.html
 
 endef

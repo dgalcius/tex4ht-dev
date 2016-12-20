@@ -29,6 +29,6 @@ define tex4ht-info-javahelp_deps
 endef
 # set main html file
 define tex4ht-info-javahelp_doc
- ./html.dir/tex4ht-info-javahelp/tex4ht-info-javahelp.html
+ html.dir/tex4ht-info-javahelp/tex4ht-info-javahelp.html
 
 endef

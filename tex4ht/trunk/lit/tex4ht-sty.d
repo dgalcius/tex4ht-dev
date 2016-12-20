@@ -18,6 +18,6 @@ define tex4ht-sty_deps
 endef
 # set main html file
 define tex4ht-sty_doc
- ./html.dir/tex4ht-sty/tex4ht-sty.html
+ html.dir/tex4ht-sty/tex4ht-sty.html
 
 endef

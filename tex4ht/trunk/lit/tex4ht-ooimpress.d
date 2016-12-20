@@ -37,6 +37,6 @@ define tex4ht-ooimpress_deps
 endef
 # set main html file
 define tex4ht-ooimpress_doc
- ./html.dir/tex4ht-ooimpress/tex4ht-ooimpress.html
+ html.dir/tex4ht-ooimpress/tex4ht-ooimpress.html
 
 endef

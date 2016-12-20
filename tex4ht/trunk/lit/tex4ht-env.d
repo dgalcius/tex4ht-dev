@@ -28,6 +28,6 @@ define tex4ht-env_deps
 endef
 # set main html file
 define tex4ht-env_doc
- ./html.dir/tex4ht-env/tex4ht-env.html
+ html.dir/tex4ht-env/tex4ht-env.html
 
 endef

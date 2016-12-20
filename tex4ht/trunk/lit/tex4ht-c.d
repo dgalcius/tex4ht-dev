@@ -24,6 +24,6 @@ define tex4ht-c_deps
 endef
 # set main html file
 define tex4ht-c_doc
- ./html.dir/tex4ht-c/tex4ht-c.html
+ html.dir/tex4ht-c/tex4ht-c.html
 
 endef

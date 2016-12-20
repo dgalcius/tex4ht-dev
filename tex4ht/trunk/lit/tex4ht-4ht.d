@@ -336,6 +336,6 @@ define tex4ht-4ht_deps
 endef
 # set main html file
 define tex4ht-4ht_doc
- ./html.dir/tex4ht-4ht/tex4ht-4ht.html
+ html.dir/tex4ht-4ht/tex4ht-4ht.html
 
 endef

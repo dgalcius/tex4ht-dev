@@ -31,6 +31,6 @@ define tex4ht-mathml_deps
 endef
 # set main html file
 define tex4ht-mathml_doc
- ./html.dir/tex4ht-mathml/tex4ht-mathml.html
+ html.dir/tex4ht-mathml/tex4ht-mathml.html
 
 endef

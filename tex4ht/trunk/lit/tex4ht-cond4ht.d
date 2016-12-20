@@ -16,6 +16,6 @@ define tex4ht-cond4ht_deps
 endef
 # set main html file
 define tex4ht-cond4ht_doc
- ./html.dir/tex4ht-cond4ht/tex4ht-cond4ht.html
+ html.dir/tex4ht-cond4ht/tex4ht-cond4ht.html
 
 endef

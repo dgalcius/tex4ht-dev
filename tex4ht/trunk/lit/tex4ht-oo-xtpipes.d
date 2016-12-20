@@ -33,6 +33,6 @@ define tex4ht-oo-xtpipes_deps
 endef
 # set main html file
 define tex4ht-oo-xtpipes_doc
- ./html.dir/tex4ht-oo-xtpipes/tex4ht-oo-xtpipes.html
+ html.dir/tex4ht-oo-xtpipes/tex4ht-oo-xtpipes.html
 
 endef

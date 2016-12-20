@@ -33,6 +33,6 @@ define tex4ht-jsml_deps
 endef
 # set main html file
 define tex4ht-jsml_doc
- ./html.dir/tex4ht-jsml/tex4ht-jsml.html
+ html.dir/tex4ht-jsml/tex4ht-jsml.html
 
 endef
