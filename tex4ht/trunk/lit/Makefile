@@ -130,14 +130,13 @@ tex4ht-c_doc = $(htmldir)/tex4ht-c/tex4ht-c.html
 
 # 
 all: $(derived)
-doc: $(derived-doc) tohtmldir
+doc: $(derived-doc)
 
 mktex4ht $(cond4ht_derived): cond4ht.4ht $(cond4ht_deps)
 	tex $(tex_opts) $<
 
 mktex4ht-doc $(cond4ht_doc): $(cond4ht_deps)
 	$(HTTEX) $<
-
 
 cond4ht $(tex4ht-cond4ht_derived): tex4ht-cond4ht.tex $(tex4ht-cond4ht_deps) 
 	tex $(tex_opts) $<
@@ -176,7 +175,7 @@ docbook-doc $(tex4ht-docbook_doc): $(tex4ht-docbook_deps)
 docbook-xtpipes $(tex4ht-docbook-xtpipes_derived): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 
-docbook-xtpipes-doc $(tex4ht-docbook_xtpipes_doc): $(tex4ht-docbook-xtpipes_deps)
+docbook-xtpipes-doc $(tex4ht-docbook-xtpipes_doc): $(tex4ht-docbook-xtpipes_deps)
 	xhlatex $< "html,3" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
@@ -212,6 +211,7 @@ fonts-noncjk $(tex4ht-fonts-noncjk_derived): $(tex4ht-fonts-noncjk_deps)
 
 fonts-noncjk-doc $(tex4ht-fonts_noncjk_doc): $(tex4ht-fonts-noncjk_deps)
 	$(HTTEX) $< ""
+	$(movetohtmldir) $< $(htmldir)
 
 #xx not used
 # $(tex4ht_htcmd_derived): tex4ht-htcmd.tex $(common)
@@ -223,12 +223,14 @@ html-speech $(tex4ht-html-speech_derived): $(tex4ht-html-speech_deps)
 
 html-speech-doc $(tex4ht-html-speech_doc): $(tex4ht-html-speech_deps) 
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 html-speech-xtpipes $(tex4ht-html-speech-xtpipes_derived): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
 
 html-speech-xtpipes-doc $(tex4ht-html-speech-xtpipes_doc): $(tex4ht-html-speech-xtpipes_deps)
 	htlatex $< "html,next,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
 	latex $(tex_opts) $<
@@ -236,6 +238,7 @@ html0 $(tex4ht-html0_derived): $(tex4ht-html0_deps)
 
 html0-doc $(tex4ht-html0_doc): $(tex4ht-html0_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 html32 $(tex4ht-html32_derived): $(tex4ht-html32_deps)
 	latex $(tex_opts) $<
@@ -243,6 +246,7 @@ html32 $(tex4ht-html32_derived): $(tex4ht-html32_deps)
 
 html32-doc $(tex4ht-html32_doc): $(tex4ht-html32_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 	latex $(tex_opts) $<
@@ -250,6 +254,7 @@ html4 $(tex4ht-html4_derived): $(tex4ht-html4_deps)
 
 html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 html5 $(tex4ht-html5_derived): tex4ht-html5.tex $(tex4ht-html5_deps)
 	latex $(tex_opts) $<
@@ -257,6 +262,7 @@ html5 $(tex4ht-html5_derived): tex4ht-html5.tex $(tex4ht-html5_deps)
 
 html5-doc $(tex4ht-html5_doc): tex4ht-html5.tex $(common)
 	xhlatex $< "xhtml,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
 	latex $(tex_opts) $<
@@ -264,6 +270,7 @@ info-html4 $(tex4ht-info-html4_derived): $(tex4ht-info-html4_deps)
 
 info-html4-doc $(tex4ht-info-html4_doc): $(tex4ht-info-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
 	latex $(tex_opts) $<
@@ -271,6 +278,7 @@ info-javahelp $(tex4ht-info-javahelp_derived): $(tex4ht-info-javahelp_deps)
 
 info-javahelp-doc $(tex4ht-info-javahelp_doc): $(tex4ht-info-javahelp_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
 	latex $(tex_opts) $<
@@ -278,6 +286,7 @@ info-mml $(tex4ht-info-mml_derived): $(tex4ht-info-mml_deps)
 
 info-mml-doc $(tex4ht-info-mml_doc): $(tex4ht-info-mml_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info-ooffice $(tex4ht-info-ooffice_derived): $(tex4ht-info-ooffice_deps)
 	latex $(tex_opts) $<
@@ -285,6 +294,7 @@ info-ooffice $(tex4ht-info-ooffice_derived): $(tex4ht-info-ooffice_deps)
 
 info-ooffice-doc $(tex4ht-info-ooffice_doc): $(tex4ht-info-ooffice_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info-svg $(tex4ht-info-svg_derived): tex4ht-info-svg.tex #$(tex4ht-info-svg_deps)
 	latex $(tex_opts) $<
@@ -292,6 +302,7 @@ info-svg $(tex4ht-info-svg_derived): tex4ht-info-svg.tex #$(tex4ht-info-svg_deps
 
 info-svg-doc $(tex4ht-info-svg_doc): $(tex4ht-info-svg_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 info $(tex4ht-info_derived): $(tex4ht-info_deps)
 	latex $(tex_opts) $<
@@ -299,6 +310,7 @@ info $(tex4ht-info_derived): $(tex4ht-info_deps)
 
 info-doc $(tex4ht-info_doc): $(tex4ht-info_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 javahelp $(tex4ht-javahelp_derived): $(tex4ht-javahelp_deps)
 	latex $(tex_opts) $<
@@ -306,12 +318,14 @@ javahelp $(tex4ht-javahelp_derived): $(tex4ht-javahelp_deps)
 
 javahelp-doc $(tex4ht-javahelp_doc): $(tex4ht-javahelp_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 javahelp-xtpipes $(tex4ht-javahelp-xtpipes_derived): $(tex4ht-javahelp-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
 javahelp-xtpipes-doc $(tex4ht-javahelp-xtpipes_doc): $(tex4ht-javahelp-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 jsmath $(tex4ht-jsmath_derived): $(tex4ht-jsmath_deps) 
 	latex $(tex_opts) $<
@@ -319,12 +333,14 @@ jsmath $(tex4ht-jsmath_derived): $(tex4ht-jsmath_deps)
 
 jsmath-doc $(tex4ht-jsmath_doc): $(tex4ht-jsmath_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 jsml-xtpipes $(tex4ht-jsml-xtpipes_derived): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
-jsml-xtpipes-doc $(tex4ht-jsml_xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
+jsml-xtpipes-doc $(tex4ht-jsml-xtpipes_doc): $(tex4ht-jsml-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 jsml $(tex4ht-jsml_derived): $(tex4ht-jsml_deps) 
 	latex $(tex_opts) $<
@@ -332,6 +348,7 @@ jsml $(tex4ht-jsml_derived): $(tex4ht-jsml_deps)
 
 jsml-doc $(tex4ht-jsml_doc): $(tex4ht-jsml_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 mathltx $(tex4ht-mathltx_derived): $(tex4ht-mathltx_deps)
 	latex $(tex_opts) $<
@@ -339,19 +356,15 @@ mathltx $(tex4ht-mathltx_derived): $(tex4ht-mathltx_deps)
 
 mathltx-doc $(tex4ht-mathltx_doc): $(tex4ht-mathltx_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 mathml $(tex4ht-mathml_derived): $(tex4ht-mathml_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-
 mathml-doc $(tex4ht-mathml_doc): $(tex4ht-mathml_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-
-tex4ht-mathplayer.fls: tex4ht-mathplayer.tex
-	rm -rf info4ht.ht infomml.4ht
-	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+	$(movetohtmldir) $< $(htmldir)
 
 mathplayer $(tex4ht-mathplayer_derived): $(tex4ht-mathplayer_deps)
 	latex $(tex_opts) $<
@@ -359,6 +372,7 @@ mathplayer $(tex4ht-mathplayer_derived): $(tex4ht-mathplayer_deps)
 
 mathplayer-doc $(tex4ht-mathplayer_doc): $(tex4ht-mathplayer_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 mkht $(tex4ht-mkht_derived): $(tex4ht-mkht_deps)
 	latex $(tex_opts) $<
@@ -366,18 +380,14 @@ mkht $(tex4ht-mkht_derived): $(tex4ht-mkht_deps)
 
 mkht-doc $(tex4ht-mkht_doc): $(tex4ht-mkht_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-	perl -c mk4ht.perl  # syntax check
+	$(movetohtmldir) $< $(htmldir)
 
 mkht-scripts $(mkht-scripts_derived): $(mkht-scripts_deps) 
 	latex $(tex_opts) $<
 
 mkht-scripts-doc $(mkht-scripts_doc): $(mkht-scripts_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
-
-tex4ht-moz.fls: tex4ht-moz.tex
-	rm -rf info4ht.ht infomml.4ht
-	latex $(tex_opts) $<
-	latex $(tex_opts) $<
+	$(movetohtmldir) $< $(htmldir)
 
 moz $(tex4ht-moz_derived): $(tex4ht-moz_deps)
 	latex $(tex_opts) $<
@@ -385,19 +395,22 @@ moz $(tex4ht-moz_derived): $(tex4ht-moz_deps)
 
 moz-doc $(tex4ht-moz_doc): $(tex4ht-moz_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 oo-xtpipes $(tex4ht-oo-xtpipes_derived): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
 
 oo-xtpipes-doc $(tex4ht-oo-xtpipes_doc): $(tex4ht-oo-xtpipes_deps)
 	htlatex $< "xhtml,next,3" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 ooffice $(tex4ht-ooffice_derived): $(tex4ht-ooffice_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-ooffice-doc $(tex4ht-_ooffice_doc): tex4ht-ooffice.tex $(common)
+ooffice-doc $(tex4ht-ooffice_doc): tex4ht-ooffice.tex $(common)
 	htlatex $< "xhtml,4,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 ooimpress $(tex4ht-ooimpress_derived): $(tex4ht-ooimpress_deps)
 	latex $(tex_opts) $<
@@ -405,18 +418,21 @@ ooimpress $(tex4ht-ooimpress_derived): $(tex4ht-ooimpress_deps)
 
 ooimpress-doc $(tex4ht-ooimpress_doc): $(tex4ht-ooimpress_deps)
 	htlatex $< "xhtml,4,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 options $(tex4ht-options_derived): $(tex4ht-options_deps)
 	latex $(tex_opts) $<
 
 options-doc $(tex4ht-options_doc): $(tex4ht-options_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 sty $(tex4ht-sty_derived): $(tex4ht-sty_deps)
 	tex $(tex_opts) $<
 
 sty-doc $(tex4ht-sty_doc): $(tex4ht-sty_deps)
 	$(HTTEX) $< ""
+	$(movetohtmldir) $< $(htmldir)
 
 svg $(tex4ht-svg_derived): $(tex4ht-svg_deps)
 	latex $(tex_opts) $<
@@ -424,12 +440,14 @@ svg $(tex4ht-svg_derived): $(tex4ht-svg_deps)
 
 svg-doc $(tex4ht-svg_doc): $(tex4ht-svg_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 t4ht $(tex4ht-t4ht_derived): $(tex4ht-t4ht_deps)
 	tex $(tex_opts) $<
 
 t4ht-doc $(tex4ht-t4ht_doc): $(tex4ht-t4ht_deps)
 	$(HTTEX) $< ""
+	$(movetohtmldir) $< $(htmldir)
 
 tei $(tex4ht-tei_derived): $(tex4ht-tei_deps)
 	latex $(tex_opts) $<
@@ -437,6 +455,7 @@ tei $(tex4ht-tei_derived): $(tex4ht-tei_deps)
 
 tei-doc $(tex4ht-tei_doc): $(tex4ht-tei_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 unicode $(tex4ht-unicode_derived): $(tex4ht-unicode_deps)
 	latex $(tex_opts) $<
@@ -444,6 +463,7 @@ unicode $(tex4ht-unicode_derived): $(tex4ht-unicode_deps)
 
 unicode-doc $(tex4ht-unicode_doc): $(tex4ht-unicode_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 word $(tex4ht-word_derived): $(tex4ht-word_deps)
 	latex $(tex_opts) $<
@@ -451,18 +471,21 @@ word $(tex4ht-word_derived): $(tex4ht-word_deps)
 
 word-doc $(tex4ht-word_doc): $(tex4ht-word_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 xhtml-xtpipes $(tex4ht-xhtml-xtpipes_derived): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
-xhtml-xtpipes-doc $(tex4ht-xhtml-_xtpipes_doc): $(tex4ht-xhtml-xtpipes_deps)
+xhtml-xtpipes-doc $(tex4ht-xhtml-xtpipes_doc): $(tex4ht-xhtml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 xhtmml-xtpipes $(tex4ht-xhtmml-xtpipes_derived): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 
 xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_doc): $(tex4ht-xhtmml-xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 #$(xtpipes_deps)
 xtpipes $(xtpipes_derived): xtpipes.tex
@@ -472,13 +495,13 @@ xtpipes $(xtpipes_derived): xtpipes.tex
 
 xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
+	$(movetohtmldir) $< $(htmldir)
 
 jar $(tex4ht-jar_derived): $(tex4ht-jar_deps)
 	jar cf tex4ht.jar -C $(xtpipesdir)/ .
 #	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
 #	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
 #	cp $(xtpipesdir)/xtpipes/lib/* ./tex4ht.dir/texmf/tex4ht/xtpipes/.
-
 
 
 # /usr/local/texlive/2015/texmf-dist/tex/generic/tex4ht
@@ -534,64 +557,64 @@ update: all
 	$(update) tex4ht.env-unix $(dest_base)/unix/
 	$(update) tex4ht.env-win32 $(dest_base)/win32/
 #
-	$(update) $(tex4ht_html_speech_xtpipes_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html-speech-xtpipes_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_html_speech_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html-speech_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_html0_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html0_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_html32_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html32_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_html4_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html4_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_html5_derived) $(dest_texmf)/
+	$(update) $(tex4ht-html5_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_info_mml_derived) $(dest_texmf)/
+	$(update) $(tex4ht-info-mml_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_info_ooffice_derived) $(dest_texmf)/
+	$(update) $(tex4ht-info-ooffice_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_info_svg_derived) $(dest_texmf)/
+	$(update) $(tex4ht-info-svg_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_info_derived) $(dest_texmf)/
+	$(update) $(tex4ht-info_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_javahelp_xtpipes_derived) $(dest_texmf)/
+	$(update) $(tex4ht-javahelp-xtpipes_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_javahelp_derived) $(dest_texmf)/
+	$(update) $(tex4ht-javahelp_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_jsmath_derived) $(dest_texmf)/
+	$(update) $(tex4ht-jsmath_derived) $(dest_texmf)/
 #
 	$(update) jsml.4xt $(dest_xtpipes)/
 	$(update) HtJsml.java GroupMn.java JsmlFilter.java \
 	          JsmlMathBreak.java $(dest_java)/
 #
-	$(update) $(tex4ht_jsml_derived) $(dest_texmf)/
+	$(update) $(tex4ht-jsml_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_mathltx_derived) $(dest_texmf)/
+	$(update) $(tex4ht-mathltx_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_mathplayer_derived) $(dest_texmf)/
+	$(update) $(tex4ht-mathplayer_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_moz_derived) $(dest_texmf)/
+	$(update) $(tex4ht-moz_derived) $(dest_texmf)/
 #
 	$(update) oo-text.4xt oo-math.4xt $(dest_xtpipes)/
 	$(update) OoUtilities.java OomFilter.java $(dest_java)/
 #
-	$(update) $(tex4ht_ooffice_derived) $(dest_texmf)/
+	$(update) $(tex4ht-ooffice_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_ooimpress_derived) $(dest_texmf)/
+	$(update) $(tex4ht-ooimpress_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_options_derived) $(dest_texmf)/
+	$(update) $(tex4ht-options_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_sty_derived) $(dest_texmf)/
+	$(update) $(tex4ht-sty_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_svg_derived) $(dest_texmf)/
+	$(update) $(tex4ht-svg_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_t4ht_derived) $(dest_src/
+	$(update) $(tex4ht-t4ht_derived) $(dest_src/
 #
-	$(update) $(tex4ht_tei_derived) $(dest_texmf)/
+	$(update) $(tex4ht-tei_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_unicode_derived) $(dest_texmf)/
+	$(update) $(tex4ht-unicode_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht_word_derived) $(dest_texmf)/
+	$(update) $(tex4ht-word_derived) $(dest_texmf)/
 #
 	$(update) xhtml.4xt $(dest_xtpipes)/
 	$(update) XhtmlEmails.java $(dest_java)/
@@ -756,25 +779,5 @@ tex4ht-jar.dd: tex4ht.jar
 d: $(sources_d)
 doc: $(sources_doc)
 
-## move *.html files to ./htmldir subfolder
-## process lg file
-tohtmldir:
-	for f in *.lg ; do \
-	echo Processing $$f && mkdir -p $(htmldir)/$${f%.*} \
-	&& grep "File: $${f%.*}" $$f | awk -v outdir=$(htmldir)/$${f%.*} '{system("[ -f "$$2" ] &&  mv -f " $$2" "outdir)}'  ; \
-done
-
-htmldir2:
-	$(movetohtmldir) $< $(htmldir)
-
-foo_doc := aa  bb
-bar_doc := bar1 bar2
-x := foo.tex bar.tex
-
-
-sources_doc_:=$(call $(sources:%.tex=%_doc))
-#sources_doc:=$(eval $(sources_doc_))
-test:
-	echo $x
-	echo -e $(sources_doc_)
+test2:
 	echo $(sources_doc)
