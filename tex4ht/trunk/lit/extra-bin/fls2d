@@ -19,7 +19,7 @@ awk -v stem=${stem} '
       BEGIN    {
                  auxfiles = stem".""(xref|fls|aux|tmp|4tc|4ct)" # remove foo.aux, etc.
                  begin_with_slash = "^/"                        # remove entries with absolute path
-                 htmldir = "./html.dir"
+                 htmldir = "html.dir"
                  print "##\n## Script generated file. Please do not edit\n##"
                }
       END      { print "# derived files list from " stem ".fls." }
