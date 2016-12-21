@@ -540,9 +540,11 @@ dest_java = $(dest_src)/java
 #
 update = cp -pr
 mkdir = install -d
+update:
+	$(update) $(tex4ht-bibtex2_derived) $(dest_texmf)/
 #
-update: all
-	$(update) $(tex4ht-bibtex2_derived) $(dest_src)/
+update2: all
+	$(update) $(tex4ht-bibtex2_derived) $(dest_texmf)/
 #
 	$(update) $(tex4ht-c_derived) $(dest_src)/
 #
@@ -608,7 +610,7 @@ update: all
 #
 	$(update) $(tex4ht-svg_derived) $(dest_texmf)/
 #
-	$(update) $(tex4ht-t4ht_derived) $(dest_src/
+	$(update) $(tex4ht-t4ht_derived) $(dest_src)/
 #
 	$(update) $(tex4ht-tei_derived) $(dest_texmf)/
 #
@@ -779,5 +781,19 @@ tex4ht-jar.dd: tex4ht.jar
 d: $(sources_d)
 doc: $(sources_doc)
 
+derived_4ht := $(filter %.4ht,  $(derived))
+derived_tex := $(filter %.tex,  $(derived))
+derived_htf := $(filter %.htf,  $(derived))
+derived_lua := $(filter %.lua,  $(derived))
+derived_c   := $(filter %.c,    $(derived))
+derived_java:= $(filter %.java, $(derived))
+derived_4xt := $(filter %.4xt %.dtd, $(derived))
+derived_unix:= $(filter %.unix, $(derived))
+derived_bat := $(filter %.bat, $(derived))
+derived_env :=
+derived_jar := $(filter %.jar, $(derived))
+
+
+
 test2:
-	echo $(sources_doc)
+	echo $(derived_jar)
