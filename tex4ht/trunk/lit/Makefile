@@ -17,13 +17,13 @@ xtpipesdir = xtpipes.dir
 tex4htdir  = tex4ht.dir
 
 # make sure xtpipesdir exists
-#foo := $(shell mkdir -p $(xtpipesdir))
-#foo := $(shell mkdir -p $(xtpipesdir)/xtpipes)
-#foo := $(shell mkdir -p $(xtpipesdir)/xtpipes/lib)
-#foo := $(shell mkdir -p $(wd)/xtpipes)
-#foo := $(shell mkdir -p $(wd)/xtpipes/util)
-#foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
-#foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
+foo := $(shell mkdir -p $(xtpipesdir))
+foo := $(shell mkdir -p $(xtpipesdir)/xtpipes)
+foo := $(shell mkdir -p $(xtpipesdir)/xtpipes/lib)
+foo := $(shell mkdir -p $(wd)/xtpipes)
+foo := $(shell mkdir -p $(wd)/xtpipes/util)
+foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
+foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
 tex_opts           = --interaction=errorstopmode -recorder #--file-line-error
 tex_opts_batchmode = --interaction=batchmode     -recorder #--file-line-error
@@ -251,11 +251,11 @@ html4-doc $(tex4ht-html4_doc): $(tex4ht-html4_deps)
 	xhlatex $< "html,3,sections+" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
-html5 $(tex4ht-html5_derived): tex4ht-html5.tex $(tex4ht-html5_deps)
+html5 $(tex4ht-html5_derived): $(tex4ht-html5_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
-html5-doc $(tex4ht-html5_doc): tex4ht-html5.tex $(common)
+html5-doc $(tex4ht-html5_doc): $(tex4ht-html5_deps)
 	xhlatex $< "xhtml,3,sections+" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
