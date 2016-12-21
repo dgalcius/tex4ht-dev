@@ -3,7 +3,7 @@
 # 
 # todo: look for xx below
 
-SHELL := /bin/sh
+SHELL := /bin/sh -e
 extra_bin := ./extra-bin
 ht_bin := ../bin/ht/unix
 PATH := $(shell echo $$PATH)
@@ -11,26 +11,23 @@ PATH := $(shell echo $$PATH)
 # and look for xmlint/vcss in ./extra-bin
 export PATH:=$(ht_bin):$(extra_bin):$(PATH)
 
-
 wd = work.dir
 htmldir = html.dir
 xtpipesdir = xtpipes.dir
-deriveddir = derived.dir
-
+tex4htdir  = tex4ht.dir
 
 # make sure xtpipesdir exists
-foo := $(shell mkdir -p $(xtpipesdir))
-foo := $(shell mkdir -p $(xtpipesdir)/xtpipes)
-foo := $(shell mkdir -p $(xtpipesdir)/xtpipes/lib)
-foo := $(shell mkdir -p $(wd)/xtpipes)
-foo := $(shell mkdir -p $(wd)/xtpipes/util)
-foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
-foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
+#foo := $(shell mkdir -p $(xtpipesdir))
+#foo := $(shell mkdir -p $(xtpipesdir)/xtpipes)
+#foo := $(shell mkdir -p $(xtpipesdir)/xtpipes/lib)
+#foo := $(shell mkdir -p $(wd)/xtpipes)
+#foo := $(shell mkdir -p $(wd)/xtpipes/util)
+#foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/bin)
+#foo := $(shell mkdir -p ./tex4ht.dir/texmf/tex4ht/xtpipes)
 
-tex_opts = --interaction=errorstopmode -recorder #--file-line-error
-tex_opts_batchmode = --interaction=batchmode -recorder #--file-line-error
+tex_opts           = --interaction=errorstopmode -recorder #--file-line-error
+tex_opts_batchmode = --interaction=batchmode     -recorder #--file-line-error
 tex_1opt = "$(tex_opts)" # must be quoted, passing to shell script
-dev_null = </dev/null    # when we don't call tex directly.
 
 ifdef batchmode
   tex_opts:=$(tex_opts_batchmode)
@@ -43,10 +40,7 @@ include $(wildcard *.d)
 
 default: all
 
-common = tex4ht-cpright.tex common.tex common-code.tex ProTex.sty AlProTex.sty
-common_info = $(common) common-info.tex
 derived =
-derived-doc =
 
 derived += $(tex4ht-cond4ht_derived)
 derived += $(cond4ht_derived)
@@ -114,19 +108,20 @@ derived += $(tex4ht-info-svg_derived)
 derived += $(tex4ht-xhtml-xtpipes_derived)
 derived += $(tex4ht-xhtmml-xtpipes_derived)
 
-
 derived += $(tex4ht-jar_derived)
 
-derived-doc =
-derived-doc += $(tex4ht-cond4ht_doc)
-derived-doc += $(cond4ht_doc)
-derived-doc += $(tex4ht-4ht_doc)
-derived-doc += $(tex4ht-c_doc)
+derived_4ht := $(filter %.4ht,  $(derived))
+derived_tex := $(filter %.tex,  $(derived))
+derived_htf := $(filter %.htf,  $(derived))
+derived_lua := $(filter %.lua,  $(derived))
+derived_c   := $(filter %.c,    $(derived))
+derived_java:= $(filter %.java, $(derived))
+derived_4xt := $(filter %.4xt %.dtd, $(derived))
+derived_unix:= $(filter %.unix, $(derived))
+derived_bat := $(filter %.bat, $(derived))
+derived_env :=
+derived_jar := $(filter %.jar, $(derived))
 
-cond4ht_doc = $(htmldir)/cond4ht/cond4ht.html
-tex4ht-cond4ht_doc = $(htmldir)/tex4ht-cond4ht/tex4ht-cond4ht.html
-tex4ht-4ht_doc = $(htmldir)/tex4ht-4ht/tex4ht-4ht.html
-tex4ht-c_doc = $(htmldir)/tex4ht-c/tex4ht-c.html
 
 # 
 all: $(derived)
@@ -296,7 +291,7 @@ info-ooffice-doc $(tex4ht-info-ooffice_doc): $(tex4ht-info-ooffice_deps)
 	htlatex $< "html,sections+" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
-info-svg $(tex4ht-info-svg_derived): tex4ht-info-svg.tex #$(tex4ht-info-svg_deps)
+info-svg $(tex4ht-info-svg_derived): $(tex4ht-info-svg_deps)
 	latex $(tex_opts) $<
 	latex $(tex_opts) $<
 
@@ -488,7 +483,7 @@ xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_doc): $(tex4ht-xhtmml-xtpipes_deps)
 	$(movetohtmldir) $< $(htmldir)
 
 #$(xtpipes_deps)
-xtpipes $(xtpipes_derived): xtpipes.tex
+xtpipes $(xtpipes_derived): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
@@ -660,71 +655,63 @@ diff-all:
 diff1:
 	$(diff) $(inst_dir)/$(d) .
 
+# clean all derived except for htf (Argument list is too long on macos) and then remove dir with fonts
 mostlyclean:
-	rm -f $(derived)
+	rm -rf $(filter-out %.htf, $(derived)) 
+	rm -rf $(tex4htdir)
 
-# ** experimental section **
-# post 'make all' actions
-sources = \
- tex4ht-cond4ht.tex\
- cond4ht.tex\
- tex4ht-4ht.tex\
- tex4ht-bibtex2.tex\
- tex4ht-c.tex\
- tex4ht-docbook.tex\
- tex4ht-t4ht.tex\
- tex4ht-env.tex\
- tex4ht-fonts-cjk.tex\
- tex4ht-fonts-cjk-utf8.tex\
- tex4ht-fonts-noncjk.tex\
- tex4ht-unicode.tex\
- tex4ht-html-speech.tex\
- tex4ht-html0.tex\
- tex4ht-html32.tex\
- tex4ht-html4.tex\
- tex4ht-html5.tex\
- tex4ht-javahelp.tex\
- tex4ht-jsmath.tex\
- tex4ht-jsml.tex\
- tex4ht-mathltx.tex\
- tex4ht-mathml.tex\
- tex4ht-mathplayer.tex\
- tex4ht-mkht.tex\
- tex4ht-moz.tex\
- tex4ht-ooffice.tex\
- tex4ht-ooimpress.tex\
- tex4ht-options.tex\
- tex4ht-sty.tex\
- tex4ht-svg.tex\
- tex4ht-tei.tex\
- tex4ht-word.tex\
- tex4ht-info-html4.tex\
- tex4ht-info-javahelp.tex\
- tex4ht-info-mml.tex\
- tex4ht-info-ooffice.tex\
- tex4ht-info-svg.tex\
- tex4ht-docbook-xtpipes.tex\
- tex4ht-html-speech-xtpipes.tex\
- tex4ht-javahelp-xtpipes.tex\
- tex4ht-jsml-xtpipes.tex\
- tex4ht-oo-xtpipes.tex\
- tex4ht-xhtml-xtpipes.tex\
- tex4ht-xhtmml-xtpipes.tex\
- xtpipes.tex\
- tex4ht-info.tex
+sources = tex4ht-cond4ht.tex\
+            cond4ht.tex\
+            tex4ht-4ht.tex\
+            tex4ht-bibtex2.tex\
+            tex4ht-c.tex\
+            tex4ht-docbook.tex\
+            tex4ht-t4ht.tex\
+            tex4ht-env.tex\
+            tex4ht-fonts-cjk.tex\
+            tex4ht-fonts-cjk-utf8.tex\
+            tex4ht-fonts-noncjk.tex\
+            tex4ht-unicode.tex\
+            tex4ht-html-speech.tex\
+            tex4ht-html0.tex\
+            tex4ht-html32.tex\
+            tex4ht-html4.tex\
+            tex4ht-html5.tex\
+            tex4ht-javahelp.tex\
+            tex4ht-jsmath.tex\
+            tex4ht-jsml.tex\
+            tex4ht-mathltx.tex\
+            tex4ht-mathml.tex\
+            tex4ht-mathplayer.tex\
+            tex4ht-mkht.tex\
+            tex4ht-moz.tex\
+            tex4ht-ooffice.tex\
+            tex4ht-ooimpress.tex\
+            tex4ht-options.tex\
+            tex4ht-sty.tex\
+            tex4ht-svg.tex\
+            tex4ht-tei.tex\
+            tex4ht-word.tex\
+            tex4ht-info-html4.tex\
+            tex4ht-info-javahelp.tex\
+            tex4ht-info-mml.tex\
+            tex4ht-info-ooffice.tex\
+            tex4ht-info-svg.tex\
+            tex4ht-docbook-xtpipes.tex\
+            tex4ht-html-speech-xtpipes.tex\
+            tex4ht-javahelp-xtpipes.tex\
+            tex4ht-jsml-xtpipes.tex\
+            tex4ht-oo-xtpipes.tex\
+            tex4ht-xhtml-xtpipes.tex\
+            tex4ht-xhtmml-xtpipes.tex\
+            xtpipes.tex\
+            tex4ht-info.tex
 
 sources_d := $(sources:%.tex=%.dd)
 sources_d += mkht-scripts.dd # in order to get mkht-scripts.d
 sources_d += tex4ht-jar.dd   # to get tex4ht-jar.d
 
-# list of foo_doc targets
 sources_doc := $(foreach s,$(sources),$(call $(s:%.tex=%_doc)))
-clean2:
-#	$(foreach s,$(sources),$(call $(s:%.tex=%_derived)))
-#	$(foreach s,$(derived), echo  $s)
-#	for f in $(sources); do for g in $$f; echo $$g done ; done
-#	($info $(derived))
-
 
 ## Generate *.d (dependency) file. Trying to mimick automake dependency computation.
 ## Automake:
@@ -732,7 +719,7 @@ clean2:
 ##   If I understand it right, gcc -MD option generates *.d file(s) (small Makefile)
 ##   which are included in main Makefile with 'include' directive.
 ## An attemp to mimick automake dependency computation. Generate (small) Makefiles with
-## vars for dependencies and derived files from *.fls.
+## vars for dependencies and derived files from *.fls (and .lg).
 %.dd: %.fls 
 	$(extra_bin)/fls2d $*.fls >$*.d
 
@@ -752,16 +739,6 @@ mkht-scripts.dd: mkht-scripts.fls
 xtpipes.dd: xtpipes.lg xtpipes.fls
 	$(extra_bin)/flslg2d $^ >xtpipes.d
 
-#fix circular dependency: remove info4ht.4ht entry from deps
-#tex4ht-info.dd: tex4ht-info.fls
-#	$(extra_bin)/fls2d $< info4ht.4ht >tex4ht-info.d
-#fix circular dependency: remove infoht4.4ht entry from deps
-#tex4ht-info-html4.dd: tex4ht-info-html4.fls
-#	$(extra_bin)/fls2d $< infoht4.4ht >tex4ht-info-html4.d
-#fix circular dependency: remove infomml.4ht entry from deps
-#tex4ht-info-mml.dd: tex4ht-info-mml.fls
-#	$(extra_bin)/fls2d $< infomml.4ht >tex4ht-info-mml.d
-
 tex4ht-jar.dd: tex4ht.jar
 	@echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
 	@echo  "## derived files" >>tex4ht-jar.d
@@ -780,20 +757,3 @@ tex4ht-jar.dd: tex4ht.jar
 
 d: $(sources_d)
 doc: $(sources_doc)
-
-derived_4ht := $(filter %.4ht,  $(derived))
-derived_tex := $(filter %.tex,  $(derived))
-derived_htf := $(filter %.htf,  $(derived))
-derived_lua := $(filter %.lua,  $(derived))
-derived_c   := $(filter %.c,    $(derived))
-derived_java:= $(filter %.java, $(derived))
-derived_4xt := $(filter %.4xt %.dtd, $(derived))
-derived_unix:= $(filter %.unix, $(derived))
-derived_bat := $(filter %.bat, $(derived))
-derived_env :=
-derived_jar := $(filter %.jar, $(derived))
-
-
-
-test2:
-	echo $(derived_jar)
