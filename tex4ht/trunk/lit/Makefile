@@ -483,7 +483,7 @@ xhtmml-xtpipes-doc $(tex4ht-xhtmml-xtpipes_doc): $(tex4ht-xhtmml-xtpipes_deps)
 	$(movetohtmldir) $< $(htmldir)
 
 #$(xtpipes_deps)
-xtpipes $(xtpipes_derived): $(xtpipes_deps)
+xtpipes $(xtpipes_derived): xtpipes.tex #$(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 # Derived files are generated in . and $(wd).
 # (corresponds to src/java for xtpipes.tex)
