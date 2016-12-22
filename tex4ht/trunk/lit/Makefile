@@ -492,7 +492,7 @@ xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
-jar $(tex4ht-jar_derived): $(tex4ht-jar_deps)
+jar $(tex4ht-jar_derived): #$(tex4ht-jar_deps)
 	jar cf tex4ht.jar -C $(xtpipesdir)/ .
 #	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
 #	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
@@ -748,7 +748,7 @@ tex4ht-jar.dd: tex4ht.jar
 	@echo  "# deps files list from $<" >>tex4ht-jar.d
 	@echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
 	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' | sed -e 's/$$/ \\/' >>tex4ht-jar.d
-	@echo  "\nendef" >>tex4ht-jar.ddd >>tex4ht-jar.d
+	@echo  "\nendef"  >>tex4ht-jar.d
 	@echo "\n#set main html file" >>tex4ht-jar.d
 	@echo "define tex4ht-jar_doc" >>tex4ht-jar.d
 	@echo "" >>tex4ht-jar.d
