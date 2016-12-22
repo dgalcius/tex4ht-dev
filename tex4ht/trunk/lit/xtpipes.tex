@@ -23,6 +23,12 @@
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
 
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
+
+
 \def\CNT{0}
 \bgroup
    \catcode`\^=7
@@ -219,14 +225,14 @@
 \AtEndDocument{\Needs{"
   cd \WD
   ;
-  javac -Xlint:unchecked xtpipes/*.java
-        -d ../\XTPIPES.
+  javac -verbose -Xlint:unchecked xtpipes/*.java
+        -d ../\XTPIPES. 2>>\javaclog
   ;
-  javac -Xlint:unchecked xtpipes/*/*.java
-        -d ../\XTPIPES.
+  javac -verbose -Xlint:unchecked xtpipes/*/*.java
+        -d ../\XTPIPES. 2>>\javaclog
   ;
-  javac -Xlint:unchecked xtpipes.java
-        -d ../\XTPIPES.
+  javac -verbose -Xlint:unchecked xtpipes.java
+        -d ../\XTPIPES. 2>>\javaclog
 "}}
 }
 

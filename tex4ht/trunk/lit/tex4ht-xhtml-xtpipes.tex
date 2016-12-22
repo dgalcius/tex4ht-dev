@@ -15,6 +15,10 @@
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
 
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
 
 %%%%%%%%%%%%%%%%%%
 \part{Post Processing for Html Output Mode}
@@ -94,7 +98,7 @@
 }
 \Needs%
 {"
-  javac -classpath \XTPIPES/ XhtmlEmails.java -d \XTPIPES.
+  javac -verbose -classpath \XTPIPES. XhtmlEmails.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<XhtmlEmails.java\><<< 

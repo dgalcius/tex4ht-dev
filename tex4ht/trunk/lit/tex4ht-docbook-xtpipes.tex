@@ -14,7 +14,10 @@
 \input{tex4ht-cpright}
 \input{tex4ht-dir}
 
-
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
 
 %%%%%%%%%%%%%%%%%%
 \part{Post Processing for DocBook Output Mode}
@@ -50,7 +53,7 @@
 \AtEndDocument{\OutputCodE\<DbUtilities.java\>}
 
 \Needs{"
-    javac DbUtilities.java -d \XTPIPES
+    javac -verbose DbUtilities.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<DbUtilities.java\><<<

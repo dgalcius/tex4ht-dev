@@ -13,6 +13,11 @@
 \input common.tex
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
+
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  >\javaclog
+"}
 %%%%%%%%%%%%%%%%%%
 \part{Script for xtpipes}
 %%%%%%%%%%%%%%%%%%
@@ -148,7 +153,7 @@
 \AtEndDocument{\OutputCodE\<HtSpk.java\>}
 
 \Needs{"
-    javac HtSpk.java      -d \XTPIPES.
+    javac -verbose HtSpk.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<HtSpk.java\><<<

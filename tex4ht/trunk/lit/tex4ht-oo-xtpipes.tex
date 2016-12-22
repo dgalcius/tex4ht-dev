@@ -14,6 +14,11 @@
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
 
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
+
 
 %%%%%%%%%%%%%%%%%%
 \section{Outline}
@@ -283,7 +288,7 @@ above
 \AtEndDocument{\OutputCodE\<OoUtilities.java\>}
 
 \Needs{"
-    javac OoUtilities.java -d \XTPIPES. 
+    javac -verbose OoUtilities.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<OoUtilities.java\><<<
@@ -1543,7 +1548,7 @@ mtext.
 \AtEndDocument{\OutputCodE\<OomFilter.java\>}
 
 \Needs{"
-    javac OomFilter.java     -d \XTPIPES.
+    javac -verbose OomFilter.java     -d \XTPIPES. 2>>\javaclog
 "}
 
 \<OomFilter.java\><<<
@@ -1608,7 +1613,7 @@ public class OomFilter extends XMLFilterImpl {
 \AtEndDocument{\OutputCodE\<OoFilter.java\>}
 
 \Needs{"
-    javac OoFilter.java      -d \XTPIPES.
+    javac -verbose OoFilter.java      -d \XTPIPES. 2>>\javaclog
 "}
 
 \<OoFilter.java\><<<

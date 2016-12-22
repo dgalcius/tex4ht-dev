@@ -15,6 +15,11 @@
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
 
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
+
 %%%%%%%%%%%%%%%%%%
 \part{Script for xtpipes}
 %%%%%%%%%%%%%%%%%%
@@ -148,7 +153,7 @@
 \AtEndDocument{\OutputCodE\<HtJsml.java\>}
 
 \Needs{"
-    javac HtJsml.java -d \XTPIPES.
+    javac -verbose HtJsml.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<HtJsml.java\><<<
@@ -184,7 +189,7 @@ public class HtJsml {
    \OutputCodE\<GroupMn.java\> 
 } 
 \Needs{"
-    javac GroupMn.java -d \XTPIPES. 
+    javac -verbose GroupMn.java -d \XTPIPES. 2>>\javaclog
 "} 
  
 \<GroupMn.java\><<< 
@@ -794,7 +799,7 @@ on nodes with large numbers of children.
 }
 \Needs%
 {"
-    javac -classpath \XTPIPES/ JsmlMathBreak.java -d \XTPIPES.
+    javac -verbose -classpath \XTPIPES. JsmlMathBreak.java -d \XTPIPES. 2>>\javaclog
 "}
  
 \<JsmlMathBreak.java\><<< 
@@ -992,7 +997,7 @@ The following adds PARA on `p' paragraphs, ul.
    \OutputCodE\<JsmlFilter.java\> 
 } 
 \Needs{"
-    javac JsmlFilter.java -d \XTPIPES.  
+    javac -verbose JsmlFilter.java -d \XTPIPES. 2>>\javaclog
 "} 
  
 \<JsmlFilter.java\><<< 

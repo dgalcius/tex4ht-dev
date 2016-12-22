@@ -15,6 +15,11 @@
 \input tex4ht-cpright.tex
 \input tex4ht-dir.tex
 
+\def\javaclog{\jobname.javac.log}
+\Needs{"
+    echo  > \javaclog
+"}
+
 
 %%%%%%%%%%%%%%%%%%
 \part{Post Processing for HTML Output Mode}
@@ -54,7 +59,7 @@
 \AtEndDocument{\OutputCodE\<XhtmmlUtilities.java\>}
 
 \Needs{"
-    javac XhtmmlUtilities.java -d \XTPIPES.
+    javac -verbose XhtmmlUtilities.java -d \XTPIPES. 2>>\javaclog
 "}
 
 \<XhtmmlUtilities.java\><<<
