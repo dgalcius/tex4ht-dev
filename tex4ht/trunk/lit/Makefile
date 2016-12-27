@@ -740,6 +740,9 @@ xtpipes.dd: xtpipes.lg xtpipes.fls
 	$(extra_bin)/flslg2d $^ >xtpipes.d
 
 tex4ht-jar.dd: tex4ht.jar
+	$(extra_bin)/jar2d $< >tex4ht-jar.d
+
+-tex4ht-jar.dd: tex4ht.jar
 	@echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
 	@echo  "## derived files" >>tex4ht-jar.d
 	@echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
