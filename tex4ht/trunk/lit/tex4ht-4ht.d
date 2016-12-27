@@ -327,6 +327,7 @@ endef
 # deps files list from tex4ht-4ht.fls.
 define tex4ht-4ht_deps
  tex4ht-4ht.tex\
+ tex4ht.sty\
  ProTex.sty\
  AlProTex.sty\
  cond4ht.4ht\

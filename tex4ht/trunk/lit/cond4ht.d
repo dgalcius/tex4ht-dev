@@ -10,6 +10,7 @@ endef
 define cond4ht_deps
  cond4ht.4ht\
  common.tex\
+ tex4ht.sty\
  ProTex.sty\
  AlProTex.sty\
  mktex4ht-cnf.tex\
