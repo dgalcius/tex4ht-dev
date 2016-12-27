@@ -11,13 +11,12 @@
 set -e
 input=$1
 stem=${1%.*}
-filter=$2 #remove file(s)
 doc=./html.dir/${stem}/${stem}.html
 
 
 awk -v stem=${stem} '
       BEGIN    {
-                 auxfiles = stem".""(xref|fls|aux|tmp|4tc|4ct)" # remove foo.aux, etc.
+                 auxfiles = stem".""(xref|fls|aux|tmp|4tc|4ct|log|dvi|trc)" # remove foo.aux, etc.
                  begin_with_slash = "^/"                        # remove entries with absolute path
                  htmldir = "html.dir"
                  print "##\n## Script generated file. Please do not edit\n##"

@@ -12,9 +12,43 @@ set -e
 lginput=$1
 flsinput=$2
 stem=${1%.*}
+doc=./html.dir/${stem}/${stem}.html
 
-source ${0%/*}/fls2x
+#source ${0%/*}/fls2x
+#
+#echo -e "##\n## Script generated file. Please do not edit\n##"
+#flslg2dd $lginput $flsinput $stem ${stem}_derived OUTPUT "derived files list from ${lginput} and ${flsinput}."
+#fls2dd $flsinput $stem ${stem}_deps    INPUT "deps files list from ${flsinput}."
 
-echo -e "##\n## Script generated file. Please do not edit\n##"
-flslg2dd $lginput $flsinput $stem ${stem}_derived OUTPUT "derived files list from ${lginput} and ${flsinput}."
-fls2dd $flsinput $stem ${stem}_deps    INPUT "deps files list from ${flsinput}."
+awk -v stem=${stem} '
+      $4 == "needs" && $6 == "\"mv" { 
+         str = $8; gsub("\"", "", str); print "s!OUTPUT " $7 "!OUTPUT " str  "!" }
+      ' ${lginput} > temp.sed
+
+sed -f temp.sed ${flsinput} | 
+awk -v stem=${stem} '
+      BEGIN {
+             auxfiles = stem".""(xref|fls|aux|tmp|4tc|4ct|log|dvi|trc)" # remove foo.aux, etc.
+              begin_with_slash = "^/"                        # remove entries with absolute path
+             htmldir = "html.dir"
+             print "##\n## Script generated file. Please do not edit\n##"
+             }
+      END    { print "# derived files list from " stem ".lg and " stem ".fls." }
+      END    { print "define " stem "_derived" }
+      END    { for ( j = 1; j < ii+1; j++) print " "outpi[j]"\\" }
+      END    { print "\nendef" }
+      END    { print "# deps files list from " stem ".fls." }
+      END    { print "define " stem "_deps" }
+# print deps files that is not in derived files list
+      # otherwise we have circular dependency issue
+      END    { for ( j = 1; j < i+1; j++) if (inpi[j] in outp) ; else  print " " inpi[j] "\\" 
+               } 
+      END      { print "\nendef" }
+      END      { print "# set main html file" }
+      END      { print "define " stem "_doc" }
+      END      { print " " htmldir "/" stem "/" stem ".html"}
+      END      { print "\nendef" }
+      $1 == "OUTPUT" && $2 !~ auxfiles && $2 !~ ".log" && $2 !~ "tmp;" { outp[$2] = $2; ii++; outpi[ii] = $2 }
+      $1 == "INPUT"  && $2 !~ begin_with_slash && $2 !~ auxfiles && $2 !~ ".log" { if ( $2 in inp) ; else { inp[$2] = $2; i++ ; inpi[i] = $2 } }
+      '
+
