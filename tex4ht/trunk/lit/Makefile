@@ -492,7 +492,7 @@ xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
-jar $(tex4ht-jar_derived): #$(tex4ht-jar_deps)
+jar $(tex4ht-jar_derived): $(tex4ht-jar_deps)
 	jar cf tex4ht.jar -C $(xtpipesdir)/ .
 #	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
 #	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
@@ -723,6 +723,10 @@ sources_doc := $(foreach s,$(sources),$(call $(s:%.tex=%_doc)))
 %.dd: %.fls 
 	$(extra_bin)/fls2d $*.fls >$*.d
 
+%-xtpipes.dd: %-xtpipes.fls %-xtpipes.javac.log
+	$(extra_bin)/fls2d $^ >$*-xtpipes.d
+
+
 ## We need to parse *.fls and *.lg files for fonts derived/deps
 tex4ht-fonts-cjk.dd: tex4ht-fonts-cjk.lg tex4ht-fonts-cjk.fls
 	$(extra_bin)/flslg2d $^ >tex4ht-fonts-cjk.d
@@ -733,6 +737,7 @@ tex4ht-fonts-cjk-utf8.dd: tex4ht-fonts-cjk-utf8.lg tex4ht-fonts-cjk-utf8.fls
 tex4ht-fonts-noncjk.dd: tex4ht-fonts-noncjk.lg tex4ht-fonts-noncjk.fls
 	$(extra_bin)/flslg2d $^ >tex4ht-fonts-noncjk.d
 
+
 mkht-scripts.dd: mkht-scripts.fls
 	$(extra_bin)/fls2d $< >mkht-scripts.d
 
@@ -741,22 +746,6 @@ xtpipes.dd: xtpipes.lg xtpipes.fls
 
 tex4ht-jar.dd: tex4ht.jar
 	$(extra_bin)/jar2d $< >tex4ht-jar.d
-
--tex4ht-jar.dd: tex4ht.jar
-	@echo  "##\n## Script generated file. Please do not edit\n##" >tex4ht-jar.d
-	@echo  "## derived files" >>tex4ht-jar.d
-	@echo  "define tex4ht-jar_derived" >>tex4ht-jar.d
-	@echo  $< \\ >>tex4ht-jar.d
-	@echo  "\nendef" >>tex4ht-jar.d
-	@echo  "# deps files list from $<" >>tex4ht-jar.d
-	@echo  "define tex4ht-jar_deps" >>tex4ht-jar.d
-	jar -tf $< | grep -v META | sed -e 's/^/$(xtpipesdir)\//' | sed -e 's/$$/ \\/' >>tex4ht-jar.d
-	@echo  "\nendef"  >>tex4ht-jar.d
-	@echo "\n#set main html file" >>tex4ht-jar.d
-	@echo "define tex4ht-jar_doc" >>tex4ht-jar.d
-	@echo "" >>tex4ht-jar.d
-	@echo "endef" >>tex4ht-jar.d
-
 
 d: $(sources_d)
 doc: $(sources_doc)
