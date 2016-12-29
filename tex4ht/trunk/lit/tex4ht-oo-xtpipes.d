@@ -29,6 +29,9 @@ define tex4ht-oo-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
+ ./xtpipes.dir/tex4ht/OoUtilities.class\
+ ./xtpipes.dir/tex4ht/OomFilter.class\
+ ./xtpipes.dir/tex4ht/OoFilter.class\
 
 endef
 # set main html file

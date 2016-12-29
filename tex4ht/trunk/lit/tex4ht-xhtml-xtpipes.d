@@ -26,6 +26,7 @@ define tex4ht-xhtml-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
+ ./xtpipes.dir/tex4ht/XhtmlEmails.class\
 
 endef
 # set main html file
