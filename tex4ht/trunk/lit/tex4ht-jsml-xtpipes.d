@@ -27,10 +27,6 @@ define tex4ht-jsml-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
- ./xtpipes.dir/tex4ht/HtJsml.class\
- ./xtpipes.dir/tex4ht/GroupMn.class\
- ./xtpipes.dir/tex4ht/JsmlMathBreak.class\
- ./xtpipes.dir/tex4ht/JsmlFilter.class\
 
 endef
 # set main html file

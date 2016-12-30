@@ -24,7 +24,6 @@ define tex4ht-html-speech-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
- ./xtpipes.dir/tex4ht/HtSpk.class\
 
 endef
 # set main html file

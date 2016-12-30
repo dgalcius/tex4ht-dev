@@ -41,5 +41,5 @@ awk -v stem=${stem} '
       # keep sequentual order
       $1 == "INPUT"  &&               $2 !~ begin_with_slash && $2 !~ auxfiles { if ( $2 in inp) ; else { inp[$2] = $2; i++ ; inpi[i] = $2 } }
       # process javaclog
-      $1 == "\[wrote" { str = $2;  gsub("\]", "", str); gsub("/[.]", "", str);  if ( str in inp) ; else { inp[str] = str; i++ ; inpi[i] = str } }
+      $1 == "\[wrote" { str = $2;  gsub("\]", "", str); gsub("/[.]", "", str); outp[str] = str; ii++; outpi[ii] = str  }
     ' $1 $2

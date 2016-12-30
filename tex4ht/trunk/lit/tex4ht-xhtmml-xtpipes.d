@@ -26,7 +26,6 @@ define tex4ht-xhtmml-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
- ./xtpipes.dir/tex4ht/XhtmmlUtilities.class\
 
 endef
 # set main html file

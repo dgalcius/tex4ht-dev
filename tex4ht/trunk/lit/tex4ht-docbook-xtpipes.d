@@ -24,7 +24,6 @@ define tex4ht-docbook-xtpipes_deps
  tex4ht-cpright.tex\
  tex4ht-dir.tex\
  xtpipes-jar.tex\
- ./xtpipes.dir/tex4ht/DbUtilities.class\
 
 endef
 # set main html file
