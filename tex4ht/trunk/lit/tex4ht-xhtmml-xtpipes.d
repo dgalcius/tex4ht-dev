@@ -5,6 +5,7 @@
 define tex4ht-xhtmml-xtpipes_derived
  xhtmml.4xt\
  XhtmmlUtilities.java\
+ ./xtpipes.dir/tex4ht/XhtmmlUtilities.class\
 
 endef
 # deps files list from tex4ht-xhtmml-xtpipes.fls.

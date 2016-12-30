@@ -8,6 +8,9 @@ define tex4ht-oo-xtpipes_derived
  OoUtilities.java\
  OomFilter.java\
  OoFilter.java\
+ ./xtpipes.dir/tex4ht/OoUtilities.class\
+ ./xtpipes.dir/tex4ht/OomFilter.class\
+ ./xtpipes.dir/tex4ht/OoFilter.class\
 
 endef
 # deps files list from tex4ht-oo-xtpipes.fls.

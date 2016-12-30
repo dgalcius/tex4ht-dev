@@ -5,6 +5,7 @@
 define tex4ht-html-speech-xtpipes_derived
  htspk.4xt\
  HtSpk.java\
+ ./xtpipes.dir/tex4ht/HtSpk.class\
 
 endef
 # deps files list from tex4ht-html-speech-xtpipes.fls.

@@ -8,6 +8,10 @@ define tex4ht-jsml-xtpipes_derived
  GroupMn.java\
  JsmlMathBreak.java\
  JsmlFilter.java\
+ ./xtpipes.dir/tex4ht/HtJsml.class\
+ ./xtpipes.dir/tex4ht/GroupMn.class\
+ ./xtpipes.dir/tex4ht/JsmlMathBreak.class\
+ ./xtpipes.dir/tex4ht/JsmlFilter.class\
 
 endef
 # deps files list from tex4ht-jsml-xtpipes.fls.

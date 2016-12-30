@@ -5,6 +5,7 @@
 define tex4ht-docbook-xtpipes_derived
  docbook.4xt\
  DbUtilities.java\
+ ./xtpipes.dir/tex4ht/DbUtilities.class\
 
 endef
 # deps files list from tex4ht-docbook-xtpipes.fls.

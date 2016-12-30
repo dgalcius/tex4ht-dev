@@ -5,6 +5,7 @@
 define tex4ht-xhtml-xtpipes_derived
  xhtml.4xt\
  XhtmlEmails.java\
+ ./xtpipes.dir/tex4ht/XhtmlEmails.class\
 
 endef
 # deps files list from tex4ht-xhtml-xtpipes.fls.
