@@ -1,16 +1,11 @@
-svnrepo := ~/local/svn/tex4ht
-gitrepo := ~/local/git/tex4ht
-
 
 default:
-#	latex --version
-	make -C tex4ht/trunk/lit batchmode=1 all
-#	kpsewhich hyperref.sty
+	make -C tex4ht/trunk/lit batchmode=1 all 1>log1 2>log2
+	cat log2
+	cat log1 | grep -v "System" 
 
-diff-svn:
-	diff -r  $(svnrepo) $(gitrepo) 
+latex-version:
+	latex --version
 
-sync:
-#	svn checkout http://svn.gnu.org.ua/sources/tex4ht
-	svn checkout svn+ssh://deimi@svn.gnu.org.ua/tex4ht
-
+check:
+	kpsewhich hyperref.sty
