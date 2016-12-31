@@ -4500,9 +4500,9 @@ rmdir /s /q doc.dir
 \AtEndDocument{\Needs{"
 cd work.dir ;
 mkdir -p bin;
- javac -Xlint:unchecked  -d bin  xtpipes/*.java  ;
- javac -Xlint:unchecked  -d bin  xtpipes/util/*.java;
- javac -Xlint:unchecked  -d bin  *.java ;
+ javac -Xlint:unchecked  -d bin  xtpipes/*.java  2>>\javaclog ;
+ javac -Xlint:unchecked  -d bin  xtpipes/util/*.java 2>>\javaclog ;
+ javac -Xlint:unchecked  -d bin  *.java 2>>\javaclog ;
 cd bin;
  jar cf xtpipes.jar *;
 cd ..;
