@@ -14,7 +14,7 @@ define xtpipes_derived
  ./xtpipes.dir/xtpipes/lib/xtpipes-default.4xt\
  ./work.dir/xtpipes/util/ScriptsManager.java\
  ./work.dir/xtpipes/util/ScriptsManagerLH.java\
- xtpipes.dir/xtpipes/bin/xtpipes.jar
+ xtpipes.dir/xtpipes/bin/xtpipes.jar\
 
 endef
 # deps files list from xtpipes.fls.
