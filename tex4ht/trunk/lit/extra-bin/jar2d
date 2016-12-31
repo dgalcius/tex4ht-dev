@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#
+set -e
+
+input=$1
+stem=${1%.*}
+doc=html.dir/${stem}/${stem}.html
+
+echo -e "##\n## Script generated file. Please do not edit\n##" 
+echo  "## derived files list from ${input}" 
+echo  "define tex4ht-jar_derived" 
+echo  " tex4ht.jar\\"
+echo  -e "\nendef"
+echo  "# deps files list from ${input}" 
+echo  "define tex4ht-jar_deps" 
+jar -tf $input | grep -v META | grep -v '/$'| sed -e 's/^/ .\/xtpipes.dir\//' | sed -e 's/$/\\/'
+echo -e "\nendef"  
+echo -e "\n#set main html file" 
+echo "define tex4ht-jar_doc"
+echo " ${doc}"
+echo -e "\nendef"
+
