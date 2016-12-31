@@ -492,7 +492,7 @@ xtpipes-doc $(xtpipes_doc): $(xtpipes_deps)
 	htlatex $< "xhtml,3,next" "" "" $(tex_1opt)
 	$(movetohtmldir) $< $(htmldir)
 
-jar $(tex4ht-jar_derived): $(tex4ht-jar_deps)
+jar $(tex4ht-jar_derived): #$(tex4ht-jar_deps)
 	jar cf tex4ht.jar -C $(xtpipesdir)/ .
 #	mkdir -p ./tex4ht.dir/texmf/tex4ht/bin
 #	mv tex4ht.jar ./tex4ht.dir/texmf/tex4ht/bin/.
@@ -742,7 +742,9 @@ mkht-scripts.dd: mkht-scripts.fls
 	$(extra_bin)/fls2d $< >mkht-scripts.d
 
 xtpipes.dd: xtpipes.lg xtpipes.fls
-	$(extra_bin)/flslg2d $^ >xtpipes.d
+	$(extra_bin)/flslg2d $^ | \
+        awk ' BEGIN { RS = ":"; FS = "\nendef"; OFS = "\nendef" } { print $$1  " xtpipes.dir/xtpipes/bin/xtpipes.jar\\\n",  $$2, $$3, $$4  } ' > xtpipes.d
+
 
 tex4ht-jar.dd: tex4ht.jar
 	$(extra_bin)/jar2d $< >tex4ht-jar.d
